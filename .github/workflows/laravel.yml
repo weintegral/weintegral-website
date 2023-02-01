@@ -44,4 +44,4 @@ jobs:
           username: ${{ secrets.USERNAME }}
           password: ${{ secrets.SSH_PASSWORD }}
           port: ${{ secrets.PORT }}
-          script: "cd /var/www/html && ./.scripts/deploy.sh"
+          script: "cd /var/www/weintegral-website && ./.scripts/deploy.sh"
