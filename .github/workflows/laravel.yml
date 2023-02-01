@@ -45,4 +45,4 @@ jobs:
           username: ${{ secrets.USERNAME }}
           password: ${{ secrets.SSH_PASSWORD }}
           port: ${{ secrets.PORT }}
-          script: "cd /var/www/weintegral-website && ./.scripts/deploy.sh"
+          script: "cd /var/www/weintegral-website && chmod +x .scripts/deploy.sh && ./.scripts/deploy.sh"
