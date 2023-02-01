@@ -13,16 +13,21 @@ git reset --hard origin/main
 git pull origin main
 
 # Compile npm assets
-# npm install
-# npm run prod
+npm install
+npm run build
 
 # Install composer dependencies
-composer install --no-dev --no-interaction --prefer-dist --optimize-autoloader
+COMPOSER_ALLOW_SUPERUSER=1 composer install --no-dev --no-interaction --prefer-dist --optimize-autoloader
 
 # Clear the old cache
 php artisan clear-compiled
+php artisan route:clear
+php artisan cache:clear
+php artisan config:clear
+php artisan view:clear
 
 # Recreate cache
+php artisan config:cache
 php artisan optimize
 
 # Run database migrations
