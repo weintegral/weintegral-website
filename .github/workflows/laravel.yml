@@ -48,4 +48,4 @@ jobs:
           password: ${{ secrets.SSH_PASSWORD }}
           port: ${{ secrets.PORT }}
       - name: Deployment
-        run: ./.scripts/deploy.sh"
+        run: ./.scripts/deploy.sh
