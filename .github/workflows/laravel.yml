@@ -37,9 +37,6 @@ jobs:
     needs: [laravel-tests]
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
-      - name: Directory Permissions
-        run: chmod +x .scripts/deploy.sh
       - name: SSH into Server
         uses: appleboy/ssh-action@master
         with:

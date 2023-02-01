@@ -13,8 +13,7 @@ git reset --hard origin/main
 git pull origin main
 
 # Compile npm assets
-npm install
-npm run build
+npm install && npm run build
 
 # Install composer dependencies
 COMPOSER_ALLOW_SUPERUSER=1 composer install --no-dev --no-interaction --prefer-dist --optimize-autoloader
