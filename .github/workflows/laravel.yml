@@ -37,15 +37,12 @@ jobs:
     needs: [laravel-tests]
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
-      - name: Directory Permissions
-        run: chmod +x .scripts/deploy.sh
-      - name: SSH into Server
+      - uses: actions/checkout@v2
+      - name: Deploy to Server
         uses: appleboy/ssh-action@master
         with:
           host: ${{ secrets.HOST }}
           username: ${{ secrets.USERNAME }}
           password: ${{ secrets.SSH_PASSWORD }}
           port: ${{ secrets.PORT }}
-      - name: Deployment
-        run: ./.scripts/deploy.sh
+          script: "cd /var/www/weintegral-website && ./.scripts/deploy.sh"
