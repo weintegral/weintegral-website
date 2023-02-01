@@ -38,7 +38,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Directory Permissions
-        run: chmod +x weintegral-website/.scripts/deploy.sh
+        run: chmod +x /var/www/weintegral-website/.scripts/deploy.sh
       - name: Deployment
         uses: appleboy/ssh-action@master
         with:
