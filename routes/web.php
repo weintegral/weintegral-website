@@ -1,5 +1,10 @@
 <?php
 
+use App\Http\Controllers\AboutController;
+use App\Http\Controllers\BlogController;
+use App\Http\Controllers\CareerController;
+use App\Http\Controllers\HomePageController;
+use App\Http\Controllers\ManagementController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -13,50 +18,46 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+/*
+|--------------------------------------------------------------------------
+| About Firm
+|--------------------------------------------------------------------------
+*/
+Route::get('/', [HomePageController::class, 'indexAction'])->name('homePage');
 
-Route::get('/about', function () {
-    return 'About Page';
-});
+Route::get('/about', [AboutController::class, 'aboutAction'])->name('aboutCompanyPage');
 
-Route::get('/services', function () {
-    return 'Services Page';
-});
+Route::get('/services', [AboutController::class, 'servicesAction'])->name('servicesPage');
 
-Route::get('/clients', function () {
-    return 'Clients Page';
-});
+Route::get('/clients', [AboutController::class, 'clientsAction'])->name('clientsPage');
 
-Route::get('/team', function () {
-    return 'Team Page';
-});
+Route::get('/industries', [AboutController::class, 'industriesAction'])->name('industriesPage');
 
-Route::get('/industries', function () {
-    return 'Industries that we serve Page';
-});
+/*
+|--------------------------------------------------------------------------
+| Career & Job Openings
+|--------------------------------------------------------------------------
+*/
+Route::get('/career', [CareerController::class, 'indexAction'])->name('careerIndexPage');
 
-Route::get('/blog', function () {
-    return 'Blog Page';
-});
+Route::get('/career/work-culture', [CareerController::class, 'cultureAction'])->name('workCulturePage');
 
-Route::get('/career', function () {
-    return 'Career Page';
-});
+Route::get('/career/benefits', [CareerController::class, 'benefitsAction'])->name('benefitsPage');
 
-Route::get('/career/work-culture', function () {
-    return 'Work Culture Page';
-});
+Route::get('/career/openings', [CareerController::class, 'jobOpeningsAction'])->name('jobOpeningsPage');
 
-Route::get('/career/benefits', function () {
-    return 'Benefits Page';
-});
+/*
+|--------------------------------------------------------------------------
+| Blog Posts
+|--------------------------------------------------------------------------
+*/
+Route::get('/blog', [BlogController::class, 'indexAction'])->name('blogIndexPage');
 
-Route::get('/career/openings', function () {
-    return 'Current Openings Page';
-});
+/*
+|--------------------------------------------------------------------------
+| Company Management
+|--------------------------------------------------------------------------
+*/
+Route::get('/team', [ManagementController::class, 'teamAction'])->name('teamPage');
 
-Route::get('/contact', function () {
-    return 'Contact Page';
-});
+Route::get('/contact', [ManagementController::class, 'contactAction'])->name('contactPage');
