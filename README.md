@@ -7,8 +7,9 @@
 - [ ] Create Layout that all pages in websites will reuse.
 - [ ] Add favicon to the Website.
 - [ ] Store all content in Database for easy updates.
-- [ ] Provide Login access to the employees to view their tasks and documents.
+- [ ] Add Newsletter functionality(providing updates about company) to subscribers.
 - [ ] Configure email and SMS functionality for receiving requests from clients and employees.
+- [ ] Provide Login access to the employees to view their tasks and documents.
 - [ ] Integrate Notion with the Website.
 - [ ] Add Cron Job to the server renew SSL certificate on regular basis.
 - [ ] Add Docker Support for Development Env.
