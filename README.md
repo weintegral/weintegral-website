@@ -14,3 +14,4 @@
 - [ ] Add Cron Job to the server renew SSL certificate on regular basis.
 - [ ] Add Docker Support for Development Env.
 - [ ] Add Docker Support for Production Deployment.
+- [ ] Update [Deployment Processes](https://www.youtube.com/watch?v=QJPOdsbeLik)
