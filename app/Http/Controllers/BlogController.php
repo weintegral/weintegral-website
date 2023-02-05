@@ -3,11 +3,17 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\View\View;
 
 class BlogController extends Controller
 {
-    public function indexAction()
+    public function indexAction(): View
     {
-        return 'Blog Page';
+        return view('blog/index');
+    }
+
+    public function singleArticleAction(): View
+    {
+        return view('blog/index');
     }
 }

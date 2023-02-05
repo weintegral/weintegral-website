@@ -9,6 +9,6 @@ class HomePageController extends Controller
 {
     public function indexAction(): View
     {
-        return view('welcome');
+        return view('homePage/index');
     }
 }

@@ -3,26 +3,27 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\View\View;
 
 class CareerController extends Controller
 {
-    public function indexAction()
+    public function indexAction(): View
     {
-        return 'Career Page';
+        return view('maintenance/pageUnderConstruction');
     }
 
-    public function cultureAction()
+    public function cultureAction(): View
     {
-        return 'Work Culture Page';
+        return view('maintenance/pageUnderConstruction');
     }
 
-    public function benefitsAction()
+    public function benefitsAction(): View
     {
-        return 'Benefits Page';
+        return view('maintenance/pageUnderConstruction');
     }
 
-    public function jobOpeningsAction()
+    public function jobOpeningsAction(): View
     {
-        return 'Current Job Openings Page';
+        return view('maintenance/pageUnderConstruction');
     }
 }

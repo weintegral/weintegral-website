@@ -53,6 +53,8 @@ Route::get('/career/openings', [CareerController::class, 'jobOpeningsAction'])->
 */
 Route::get('/blog', [BlogController::class, 'indexAction'])->name('blogIndexPage');
 
+Route::get('/blog/single', [BlogController::class, 'singleArticleAction'])->name('singleArticlePage');
+
 /*
 |--------------------------------------------------------------------------
 | Company Management

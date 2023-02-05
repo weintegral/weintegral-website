@@ -3,16 +3,17 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\View\View;
 
 class ManagementController extends Controller
 {
-    public function teamAction()
+    public function teamAction(): View
     {
-        return 'Team Page';
+        return view('management/team');
     }
 
-    public function contactAction()
+    public function contactAction(): View
     {
-        return 'Contact Page';
+        return view('management/contact');
     }
 }

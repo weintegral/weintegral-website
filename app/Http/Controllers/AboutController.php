@@ -3,26 +3,27 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\View\View;
 
 class AboutController extends Controller
 {
-    public function aboutAction()
+    public function aboutAction(): View
     {
-        return 'About Page';
+        return view('about/index');
     }
 
-    public function servicesAction()
+    public function servicesAction(): View
     {
-        return 'Services Page';
+        return view('about/services');
     }
 
-    public function clientsAction()
+    public function clientsAction(): View
     {
-        return 'Clients Page';
+        return view('about/clients');
     }
 
-    public function industriesAction()
+    public function industriesAction(): View
     {
-        return 'Industries that we serve Page';
+        return view('about/industries');
     }
 }
