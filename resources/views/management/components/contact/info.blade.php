@@ -8,8 +8,7 @@
                     <i class="bx bx-map"></i>
                     <h3>Our Address</h3>
                     <p>
-                        25 Central Square,
-                        Bridgewater, MA 02324
+                        {{ $address }}
                     </p>
                 </div>
             </div>
@@ -18,7 +17,7 @@
                 <div class="info-box  mb-4">
                     <i class="bx bx-envelope"></i>
                     <h3>Email Us</h3>
-                    <p>admin@weintegral.com</p>
+                    <p>{{ $email  }}</p>
                 </div>
             </div>
 
@@ -26,7 +25,7 @@
                 <div class="info-box  mb-4">
                     <i class="bx bx-phone-call"></i>
                     <h3>Call Us</h3>
-                    <p>+1 (401) 218-8170</p>
+                    <p>{{ $phone }}</p>
                 </div>
             </div>
 

@@ -2,28 +2,44 @@
 
 namespace App\Http\Controllers;
 
+use App\Services\ContactInfo;
 use Illuminate\Http\Request;
-use Illuminate\View\View;
 
 class AboutController extends Controller
 {
-    public function aboutAction(): View
+    private ContactInfo $contactInfo;
+    private $basicContactData;
+    public function __construct(ContactInfo $contactInfo)
     {
-        return view('about/index');
+        $this->contactInfo = $contactInfo;
+        $this->basicContactData = [
+            'email' => $this->contactInfo->getEmailId(),
+            'phone' => $this->contactInfo->getPhoneNumber(),
+            'address' => $this->contactInfo->getAddress()
+        ];
     }
 
-    public function servicesAction(): View
+    public function aboutAction()
     {
-        return view('about/services');
+        $data = $this->basicContactData;
+        return view('about/index', $data);
     }
 
-    public function clientsAction(): View
+    public function servicesAction()
     {
-        return view('about/clients');
+        $data = $this->basicContactData;
+        return view('about/services', $data);
     }
 
-    public function industriesAction(): View
+    public function clientsAction()
     {
-        return view('about/industries');
+        $data = $this->basicContactData;
+        return view('about/clients', $data);
+    }
+
+    public function industriesAction()
+    {
+        $data = $this->basicContactData;
+        return view('about/industries', $data);
     }
 }

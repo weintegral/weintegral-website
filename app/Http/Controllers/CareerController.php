@@ -2,28 +2,44 @@
 
 namespace App\Http\Controllers;
 
+use App\Services\ContactInfo;
 use Illuminate\Http\Request;
 use Illuminate\View\View;
 
 class CareerController extends Controller
 {
+    private ContactInfo $contactInfo;
+    private $basicContactData;
+    public function __construct(ContactInfo $contactInfo)
+    {
+        $this->contactInfo = $contactInfo;
+        $this->basicContactData = [
+            'email' => $this->contactInfo->getEmailId(),
+            'phone' => $this->contactInfo->getPhoneNumber(),
+            'address' => $this->contactInfo->getAddress()
+        ];
+    }
     public function indexAction(): View
     {
-        return view('maintenance/pageUnderConstruction');
+        $data = $this->basicContactData;
+        return view('maintenance/pageUnderConstruction', $data);
     }
 
     public function cultureAction(): View
     {
-        return view('maintenance/pageUnderConstruction');
+        $data = $this->basicContactData;
+        return view('maintenance/pageUnderConstruction', $data);
     }
 
     public function benefitsAction(): View
     {
-        return view('maintenance/pageUnderConstruction');
+        $data = $this->basicContactData;
+        return view('maintenance/pageUnderConstruction', $data);
     }
 
     public function jobOpeningsAction(): View
     {
-        return view('maintenance/pageUnderConstruction');
+        $data = $this->basicContactData;
+        return view('maintenance/pageUnderConstruction', $data);
     }
 }
