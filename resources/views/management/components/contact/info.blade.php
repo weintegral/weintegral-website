@@ -7,9 +7,7 @@
                 <div class="info-box mb-4">
                     <i class="bx bx-map"></i>
                     <h3>Our Address</h3>
-                    <p>
-                        {{ $address }}
-                    </p>
+                    <p>{!!$address!!}</p>
                 </div>
             </div>
 

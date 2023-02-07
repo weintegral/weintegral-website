@@ -46,11 +46,9 @@
                 <div class="col-lg-3 col-md-6 footer-contact">
                     <h4>Contact Us</h4>
                     <p>
-                        25 Central Square<br>
-                        Bridgewater<br>
-                        MA 02324<br>
-                        <strong>Phone:</strong>+1 (401) 218-8170<br>
-                        <strong>Email:</strong> admin@weintegral.com<br>
+                        {!!$address!!}<br>
+                        <strong>Phone:</strong>{{ $phone  }}<br>
+                        <strong>Email:</strong> {{ $email }}<br>
                     </p>
 
                 </div>
