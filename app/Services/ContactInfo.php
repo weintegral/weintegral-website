@@ -17,7 +17,7 @@ class ContactInfo
     public function getAddress(): string
     {
         return <<< ADDRESS
-            16 Central Square <br>
+            16 Central Square, Suite #2 <br>
             Bridgewater, MA 02324
 ADDRESS;
 
