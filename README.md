@@ -4,8 +4,11 @@
 
 ### 🛣 RoadMap
 - [ ] Add Bootstrap Support and host home page.
+- [ ] Install failban on the server.
 - [ ] Create Layout that all pages in websites will reuse.
 - [ ] Add favicon to the Website.
+- [ ] Configure Laravel Admin panel
+- [ ] Configure Laravel Log package
 - [ ] Configure email and SMS functionality for receiving requests from clients and employees.
 - [ ] Integrate Notion with the Website.
 - [ ] Add Cron Job to the server renew SSL certificate on regular basis.
