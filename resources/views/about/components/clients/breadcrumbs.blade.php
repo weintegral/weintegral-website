@@ -3,10 +3,10 @@
     <div class="container">
 
         <ol>
-            <li><a href="index.html">Home</a></li>
-            <li>Portfolio</li>
+            <li><a href="/">Home</a></li>
+            <li>Clients</li>
         </ol>
-        <h2>Portfolio</h2>
+        <h2>Clients</h2>
 
     </div>
 </section>
