@@ -10,13 +10,13 @@
 
         <nav id="navbar" class="navbar">
             <ul>
-                <li><a class="active" href="/">Home</a></li>
-                <li><a href="/about">About</a></li>
-                <li><a href="/services">Services</a></li>
-                <li><a href="/clients">Clients</a></li>
+                <li><a class="{{ (request()->is('/')) ? 'active' : '' }}" href="/">Home</a></li>
+                <li><a class="{{ (request()->is('about')) ? 'active' : '' }}" href="/about">About</a></li>
+                <li><a class="{{ (request()->is('services')) ? 'active' : '' }}" href="/services">Services</a></li>
+                <li><a class="{{ (request()->is('clients')) ? 'active' : '' }}" href="/clients">Clients</a></li>
                 {{--<li><a href="/industries">Industries</a></li>--}}
-                <li><a href="/team">Team</a></li>
-                <li><a href="/blog">Blog</a></li>
+                <li><a class="{{ (request()->is('team')) ? 'active' : '' }}" href="/team">Team</a></li>
+                <li><a class="{{ (request()->is('blog')) ? 'active' : '' }}" href="/blog">Blog</a></li>
                 {{--
                 <li class="dropdown"><a href="#"><span>Career</span> <i class="bi bi-chevron-down"></i></a>
                     <ul>
@@ -26,7 +26,7 @@
                     </ul>
                 </li>
                 --}}
-                <li><a href="/contact">Contact</a></li>
+                <li><a class="{{ (request()->is('contact')) ? 'active' : '' }}" href="/contact">Contact</a></li>
             </ul>
             <i class="bi bi-list mobile-nav-toggle"></i>
         </nav><!-- .navbar -->
