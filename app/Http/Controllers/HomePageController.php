@@ -14,7 +14,7 @@ class HomePageController extends Controller
     {
         $this->contactInfo = $contactInfo;
         $this->basicContactData = [
-            'email' => $this->contactInfo->getEmailId(),
+            'email' => $this->contactInfo->getAdminEmailId(),
             'phone' => $this->contactInfo->getPhoneNumber(),
             'address' => $this->contactInfo->getAddress()
         ];

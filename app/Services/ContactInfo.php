@@ -6,12 +6,17 @@ class ContactInfo
 {
     public function getPhoneNumber(): string
     {
-        return '+1 (000) 000-0000';
+        return '+1 (512) 774-6595';
     }
 
-    public function getEmailId(): string
+    public function getAdminEmailId(): string
     {
         return 'admin@weintegral.com';
+    }
+
+    public function getHrEmailId(): string
+    {
+        return 'hr@weintegral.com';
     }
 
     public function getAddress(): string
