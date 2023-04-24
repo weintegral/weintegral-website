@@ -1,6 +1,6 @@
 @extends('layout.main')
 
-@section('title', 'Home')
+@section('title', 'Industries')
 
 @section('content')
     <main id="main">
