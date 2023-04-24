@@ -3,6 +3,9 @@
     <div class="container" data-aos="fade-up">
 
         <div class="row">
+            <div class="alert alert-danger text-center" role="alert">
+                ⚠️ Blog is under Construction!!
+            </div>
 
             <div class="col-lg-8 entries">
 

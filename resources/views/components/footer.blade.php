@@ -6,7 +6,7 @@
             <div class="row">
                 <div class="col-lg-6">
                     <h4>Our Newsletter</h4>
-                    <p>Tamen quem nulla quae legam multos aute sint culpa legam noster magna</p>
+                    <p>Stay up-to-date with the latest developments at WeIntegral by subscribing to our email updates</p>
                 </div>
                 <div class="col-lg-6">
                     <form action="" method="get">
@@ -55,7 +55,10 @@
 
                 <div class="col-lg-3 col-md-6 footer-info">
                     <h3>About WeIntegral</h3>
-                    <p>Cras fermentum odio eu feugiat lide par naso tierra. Justo eget nada terra videa magna derita valies darta donna mare fermentum iaculis eu non diam phasellus.</p>
+                    <p>
+                        WeIntegral is a leading IT services provider specializing in web and mobile application development.
+                        Our mission is to deliver innovative and customized solutions to businesses of all sizes.
+                    </p>
                     <div class="social-links mt-3">
                         <a href="#" class="twitter"><i class="bx bxl-twitter"></i></a>
                         <a href="#" class="facebook"><i class="bx bxl-facebook"></i></a>
