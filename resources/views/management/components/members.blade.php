@@ -3,6 +3,11 @@
     <div class="container">
 
         <div class="row">
+
+            <div class="alert alert-danger text-center" role="alert">
+                ⚠️ Page is under Construction!!
+            </div>
+
             <div class="col-lg-4 col-md-6 d-flex align-items-stretch">
                 <div class="member">
                     <img src="img/team/team-1.jpg" alt="">
