@@ -22,7 +22,7 @@ class CareerController extends Controller
     public function indexAction(): View
     {
         $data = $this->basicContactData;
-        return view('maintenance/pageUnderConstruction', $data);
+        return view('career/index', $data);
     }
 
     public function cultureAction(): View

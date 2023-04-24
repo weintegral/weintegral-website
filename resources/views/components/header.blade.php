@@ -17,15 +17,7 @@
                 {{--<li><a href="/industries">Industries</a></li>--}}
                 <li><a class="{{ (request()->is('team')) ? 'active' : '' }}" href="/team">Team</a></li>
                 <li><a class="{{ (request()->is('blog')) ? 'active' : '' }}" href="/blog">Blog</a></li>
-                {{--
-                <li class="dropdown"><a href="#"><span>Career</span> <i class="bi bi-chevron-down"></i></a>
-                    <ul>
-                        <li><a href="/career/work-culture">Work Culture</a></li>
-                        <li><a href="/career/benefits">Benefits</a></li>
-                        <li><a href="/career/openings">Job Openings</a></li>
-                    </ul>
-                </li>
-                --}}
+                <li><a class="{{ (request()->is('career')) ? 'active' : '' }}" href="/career">Career</a></li>
                 <li><a class="{{ (request()->is('contact')) ? 'active' : '' }}" href="/contact">Contact</a></li>
             </ul>
             <i class="bi bi-list mobile-nav-toggle"></i>
