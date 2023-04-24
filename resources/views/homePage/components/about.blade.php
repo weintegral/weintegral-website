@@ -4,7 +4,7 @@
 
         <div class="row">
             <div class="col-lg-6">
-                <img src="img/about.jpg" class="img-fluid" alt="">
+                <img src="img/about.jpg" class="img-fluid rounded" alt="">
             </div>
             <div class="col-lg-6 pt-4 pt-lg-0 content">
                 <h3>Customer-Centric Approach to Delivering Quality Services</h3>
