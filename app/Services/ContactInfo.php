@@ -27,4 +27,12 @@ class ContactInfo
 ADDRESS;
 
     }
+
+    public function getCorporateAddress(): string
+    {
+        return <<< ADDRESS
+            2009 Ranch Road, 620 N STE 113,<br>
+            Lakeway, TX 78734
+ADDRESS;
+    }
 }
