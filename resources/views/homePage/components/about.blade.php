@@ -7,21 +7,16 @@
                 <img src="img/about.jpg" class="img-fluid" alt="">
             </div>
             <div class="col-lg-6 pt-4 pt-lg-0 content">
-                <h3>Voluptatem dignissimos provident quasi corporis voluptates sit assumenda.</h3>
-                <p class="fst-italic">
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore
-                    magna aliqua.
+                <h3>Customer-Centric Approach to Delivering Quality Services</h3>
+                <p>
+                    At WeIntegral, we embrace diversity and believe in creating an inclusive and respectful workplace that values the unique perspectives and contributions of all employees.
+                    Our customer-centric approach means that our employees are focused on delivering high-quality services and solutions that meet our clients' unique needs.
                 </p>
                 <ul>
-                    <li><i class="bi bi-check-circle"></i> Ullamco laboris nisi ut aliquip ex ea commodo consequat.</li>
-                    <li><i class="bi bi-check-circle"></i> Duis aute irure dolor in reprehenderit in voluptate velit.</li>
-                    <li><i class="bi bi-check-circle"></i> Ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate trideta storacalaperda mastiro dolore eu fugiat nulla pariatur.</li>
+                    <li><i class="bi bi-check-circle"></i> At WeIntegral, we believe in empowering our employees through <u><strong class="text-danger">continuous learning</strong></u>  and development. We offer various opportunities for our employees to enhance their skills and stay up-to-date with the latest technologies and trends. .</li>
+                    <li><i class="bi bi-check-circle"></i> Our work culture is centered around <u><strong class="text-danger">agility and innovation</strong></u> . We encourage our employees to experiment, take risks, and explore new ideas. We foster an environment that embraces change and adapts quickly to new challenges and opportunities.</li>
+                    <li><i class="bi bi-check-circle"></i> WeIntegral is committed to creating a <u><strong class="text-danger">diverse and inclusive workplace</strong></u>  that values the unique perspectives and contributions of all employees. We promote an environment of respect, where all employees feel valued, supported, and empowered to succeed.</li>
                 </ul>
-                <p>
-                    Ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate
-                    velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in
-                    culpa qui officia deserunt mollit anim id est laborum
-                </p>
             </div>
         </div>
 

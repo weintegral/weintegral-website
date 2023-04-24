@@ -4,7 +4,9 @@
 
         <div class="section-title">
             <h2>Clients</h2>
-            <p>Magnam dolores commodi suscipit. Necessitatibus eius consequatur ex aliquid fuga eum quidem. Sit sint consectetur velit. Quisquam quos quisquam cupiditate. Et nemo qui impedit suscipit alias ea. Quia fugiat sit in iste officiis commodi quidem hic quas.</p>
+            <p>
+                At WeIntegral, we are proud to serve a diverse range of clients from various industries, including insurance, banking, news, non-profit, entertainment, and universities. Our goal is to provide tailored IT solutions that meet the unique needs of each client, helping them achieve their business objectives and succeed in their respective industries.
+            </p>
         </div>
 
         <div class="clients-slider swiper">

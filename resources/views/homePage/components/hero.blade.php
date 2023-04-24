@@ -12,33 +12,37 @@
                     <div class="carousel-container">
                         <div class="carousel-content">
                             <h2 class="animate__animated animate__fadeInDown">Welcome to <span>WeIntegral</span></h2>
-                            <p class="animate__animated animate__fadeInUp">Ut velit est quam dolor ad a aliquid qui aliquid. Sequi ea ut et est quaerat sequi nihil ut aliquam. Occaecati alias dolorem mollitia ut. Similique ea voluptatem. Esse doloremque accusamus repellendus deleniti vel. Minus et tempore modi architecto.</p>
+                            <p class="animate__animated animate__fadeInUp">
+                                WeIntegral is a dynamic IT service company that specializes in providing top-quality solutions to businesses of all sizes.
+                                Our team of experienced professionals offers a wide range of services, including web and mobile application development, testing, database management, and cloud deployment.
+                                At WeIntegral, we are committed to delivering innovative and customized solutions that meet the unique needs of our clients.
+                            </p>
                             <a href="" class="btn-get-started animate__animated animate__fadeInUp">Read More</a>
                         </div>
                     </div>
                 </div>
 
                 <!-- Slide 2 -->
-                <div class="carousel-item" style="background-image: url(resources/img/slide/slide-2.jpg)">
-                    <div class="carousel-container">
-                        <div class="carousel-content">
-                            <h2 class="animate__animated fanimate__adeInDown">Lorem <span>Ipsum Dolor</span></h2>
-                            <p class="animate__animated animate__fadeInUp">Ut velit est quam dolor ad a aliquid qui aliquid. Sequi ea ut et est quaerat sequi nihil ut aliquam. Occaecati alias dolorem mollitia ut. Similique ea voluptatem. Esse doloremque accusamus repellendus deleniti vel. Minus et tempore modi architecto.</p>
-                            <a href="" class="btn-get-started animate__animated animate__fadeInUp">Read More</a>
-                        </div>
-                    </div>
-                </div>
+{{--                <div class="carousel-item" style="background-image: url(resources/img/slide/slide-2.jpg)">--}}
+{{--                    <div class="carousel-container">--}}
+{{--                        <div class="carousel-content">--}}
+{{--                            <h2 class="animate__animated fanimate__adeInDown">Lorem <span>Ipsum Dolor</span></h2>--}}
+{{--                            <p class="animate__animated animate__fadeInUp">Ut velit est quam dolor ad a aliquid qui aliquid. Sequi ea ut et est quaerat sequi nihil ut aliquam. Occaecati alias dolorem mollitia ut. Similique ea voluptatem. Esse doloremque accusamus repellendus deleniti vel. Minus et tempore modi architecto.</p>--}}
+{{--                            <a href="" class="btn-get-started animate__animated animate__fadeInUp">Read More</a>--}}
+{{--                        </div>--}}
+{{--                    </div>--}}
+{{--                </div>--}}
 
                 <!-- Slide 3 -->
-                <div class="carousel-item" style="background-image: url(resources/img/slide/slide-3.jpg)">
-                    <div class="carousel-container">
-                        <div class="carousel-content">
-                            <h2 class="animate__animated animate__fadeInDown">Sequi ea <span>Dime Lara</span></h2>
-                            <p class="animate__animated animate__fadeInUp">Ut velit est quam dolor ad a aliquid qui aliquid. Sequi ea ut et est quaerat sequi nihil ut aliquam. Occaecati alias dolorem mollitia ut. Similique ea voluptatem. Esse doloremque accusamus repellendus deleniti vel. Minus et tempore modi architecto.</p>
-                            <a href="" class="btn-get-started animate__animated animate__fadeInUp">Read More</a>
-                        </div>
-                    </div>
-                </div>
+{{--                <div class="carousel-item" style="background-image: url(resources/img/slide/slide-3.jpg)">--}}
+{{--                    <div class="carousel-container">--}}
+{{--                        <div class="carousel-content">--}}
+{{--                            <h2 class="animate__animated animate__fadeInDown">Sequi ea <span>Dime Lara</span></h2>--}}
+{{--                            <p class="animate__animated animate__fadeInUp">Ut velit est quam dolor ad a aliquid qui aliquid. Sequi ea ut et est quaerat sequi nihil ut aliquam. Occaecati alias dolorem mollitia ut. Similique ea voluptatem. Esse doloremque accusamus repellendus deleniti vel. Minus et tempore modi architecto.</p>--}}
+{{--                            <a href="" class="btn-get-started animate__animated animate__fadeInUp">Read More</a>--}}
+{{--                        </div>--}}
+{{--                    </div>--}}
+{{--                </div>--}}
 
             </div>
 
