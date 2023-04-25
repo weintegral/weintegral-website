@@ -16,7 +16,7 @@ class CareerController extends Controller
         $this->basicContactData = [
             'email' => $this->contactInfo->getAdminEmailId(),
             'phone' => $this->contactInfo->getPhoneNumber(),
-            'address' => $this->contactInfo->getAddress()
+            'address' => $this->contactInfo->getCorporateAddress()
         ];
     }
     public function indexAction(): View
