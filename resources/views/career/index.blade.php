@@ -29,9 +29,9 @@
 @section('content')
     <div class="container mt-5 mb-5">
         <div class="row">
-            <div class="alert alert-danger text-center" role="alert">
-                ⚠️ Career page is under Construction!!
-            </div>
+
+            @include('components.underConstruction')
+
             <div class="col-md-4">
                 <div class="card p-3">
                     <div class="d-flex flex-row mb-3"><img src="https://cdn-icons-png.flaticon.com/512/2306/2306049.png" width="50" height="50" alt="php">

@@ -4,9 +4,7 @@
 
         <div class="row">
 
-            <div class="alert alert-danger text-center" role="alert">
-                ⚠️ Page is under Construction!!
-            </div>
+            @include('components.underConstruction')
 
             <div class="col-lg-4 col-md-6 d-flex align-items-stretch">
                 <div class="member">
