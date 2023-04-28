@@ -6,5 +6,6 @@
     <main id="main">
         @include('services.devops.breadcrumbs')
         @include('components.underConstruction')
+        @include('components.placeholderHeight')
     </main>
 @endsection
