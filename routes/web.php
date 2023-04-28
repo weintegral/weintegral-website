@@ -5,6 +5,7 @@ use App\Http\Controllers\BlogController;
 use App\Http\Controllers\CareerController;
 use App\Http\Controllers\HomePageController;
 use App\Http\Controllers\ManagementController;
+use App\Http\Controllers\ServiceController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -36,6 +37,21 @@ Route::get('/industries', [AboutController::class, 'industriesAction'])->name('i
 Route::get('/terms-of-service', [AboutController::class, 'termsOfServiceAction'])->name('termsOfServicePage');
 
 Route::get('/privacy-policy', [AboutController::class, 'privacyPolicyAction'])->name('privacyPolicyPage');
+
+/*
+|--------------------------------------------------------------------------
+| Services We Provide
+|--------------------------------------------------------------------------
+*/
+Route::get('/app-development', [ServiceController::class, 'appDevelopmentAction'])->name('appDevelopmentPage');
+
+Route::get('/app-support', [ServiceController::class, 'appSupportAction'])->name('appSupportPage');
+
+Route::get('/testing', [ServiceController::class, 'testingAction'])->name('testingPage');
+
+Route::get('/devops', [ServiceController::class, 'devopsAction'])->name('devopsPage');
+
+Route::get('/staffing', [ServiceController::class, 'staffingAction'])->name('staffingPage');
 
 /*
 |--------------------------------------------------------------------------
