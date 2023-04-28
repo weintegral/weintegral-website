@@ -33,6 +33,10 @@ Route::get('/clients', [AboutController::class, 'clientsAction'])->name('clients
 
 Route::get('/industries', [AboutController::class, 'industriesAction'])->name('industriesPage');
 
+Route::get('/terms-of-service', [AboutController::class, 'termsOfServiceAction'])->name('termsOfServicePage');
+
+Route::get('/privacy-policy', [AboutController::class, 'privacyPolicyAction'])->name('privacyPolicyPage');
+
 /*
 |--------------------------------------------------------------------------
 | Career & Job Openings

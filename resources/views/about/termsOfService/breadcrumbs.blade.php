@@ -4,9 +4,9 @@
 
         <ol>
             <li><a href="/">Home</a></li>
-            <li>Team</li>
+            <li>Terms of Service</li>
         </ol>
-        <h2>Team</h2>
+        <h2>Terms of Service</h2>
 
     </div>
 </section>

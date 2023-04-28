@@ -3,13 +3,13 @@
 namespace App\Http\Controllers;
 
 use App\Services\ContactInfo;
-use Illuminate\Http\Request;
 use Illuminate\View\View;
 
 class ManagementController extends Controller
 {
     private ContactInfo $contactInfo;
-    private $basicContactData;
+    private array $basicContactData;
+
     public function __construct(ContactInfo $contactInfo)
     {
         $this->contactInfo = $contactInfo;

@@ -17,7 +17,7 @@
                                 Our team of experienced professionals offers a wide range of services, including web and mobile application development, testing, database management, and cloud deployment.
                                 At WeIntegral, we are committed to delivering innovative and customized solutions that meet the unique needs of our clients.
                             </p>
-                            <a href="" class="btn-get-started animate__animated animate__fadeInUp">Read More</a>
+                            <a href="/about" class="btn-get-started animate__animated animate__fadeInUp">Read More</a>
                         </div>
                     </div>
                 </div>

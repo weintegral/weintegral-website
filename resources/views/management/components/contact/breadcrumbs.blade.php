@@ -3,7 +3,7 @@
     <div class="container">
 
         <ol>
-            <li><a href="index.html">Home</a></li>
+            <li><a href="/">Home</a></li>
             <li>Contact</li>
         </ol>
         <h2>Contact</h2>

@@ -5,7 +5,7 @@
         <div class="logo">
             <h1><a href="/">WeIntegral</a></h1>
             <!-- Uncomment below if you prefer to use an image logo -->
-            <!-- <a href="index.html"><img src="resources/img/logo.png" alt="" class="img-fluid"></a>-->
+            <!-- <a href="/"><img src="resources/img/logo.png" alt="" class="img-fluid"></a>-->
         </div>
 
         <nav id="navbar" class="navbar">
