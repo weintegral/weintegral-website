@@ -3,14 +3,18 @@
 namespace App\Http\Controllers;
 
 use App\Services\ContactInfo;
+use App\Services\JobOpportunity;
 use Illuminate\View\View;
 
 class CareerController extends Controller
 {
     private ContactInfo $contactInfo;
+
     private array $basicContactData;
 
-    public function __construct(ContactInfo $contactInfo)
+    private JobOpportunity $jobOpportunity;
+
+    public function __construct(ContactInfo $contactInfo, JobOpportunity $jobOpportunity)
     {
         $this->contactInfo = $contactInfo;
         $this->basicContactData = [
@@ -18,10 +22,14 @@ class CareerController extends Controller
             'phone' => $this->contactInfo->getPhoneNumber(),
             'address' => $this->contactInfo->getCorporateAddress()
         ];
+        $this->jobOpportunity = $jobOpportunity;
     }
+
     public function indexAction(): View
     {
-        $data = $this->basicContactData;
+        $jobOpenings = ['jobs' => $this->jobOpportunity->getLatestRequirements()];
+        $data = array_merge_recursive($this->basicContactData, $jobOpenings);
+
         return view('career/index', $data);
     }
 
