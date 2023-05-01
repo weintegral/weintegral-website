@@ -1,0 +1,39 @@
+version: "3"
+services:
+    laravel-webserver:
+        image: laravel-webserver
+        container_name: laravel-webserver
+        build:
+            context: .
+            dockerfile: docker/Dockerfile
+        env_file:
+            - docker/.docker.env
+        environment:
+            CONTAINER_ROLE: app
+            XDEBUG_CONFIG: remote_host=host.docker.internal
+        depends_on:
+            - laravel-mysql-server
+        links:
+            - laravel-mysql-server
+        volumes:
+            - .:/var/www/html
+        ports:
+            - "${APP_HOST_PORT}:80"
+    laravel-mysql-server:
+        image: laravel-mysql-server
+        container_name: laravel-mysql-server
+        build:
+            context: .
+            dockerfile: docker/MySQLDockerfile
+        volumes:
+            - laravel_mysql_data:/var/lib/mysql
+        environment:
+            MYSQL_DATABASE: ${DB_DATABASE}
+            MYSQL_ROOT_PASSWORD: ${DB_ROOT_PASSWORD}
+            MYSQL_USER: ${DB_USERNAME}
+            MYSQL_PASSWORD: ${DB_PASSWORD}
+        ports:
+            - "${DB_HOST_PORT}:3306"
+volumes:
+    laravel_mysql_data:
+        driver: "local"
