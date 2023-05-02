@@ -19,7 +19,7 @@ class ContactInfo
         return 'hr@weintegral.com';
     }
 
-    public function getAddress(): string
+    public function getExecutiveAddress(): string
     {
         return <<< ADDRESS
             16 Central Square, Suite #2 <br>
@@ -33,6 +33,15 @@ ADDRESS;
         return <<< ADDRESS
             2009 Ranch Road, 620 N STE 113,<br>
             Lakeway, TX 78734
+ADDRESS;
+    }
+
+    public function getOverseasAddress(): string
+    {
+        return <<< ADDRESS
+            VIJAYA PG, Anjaiah Road,<br>
+            Ongole,<br>
+            Andhra Pradesh, India - 523001
 ADDRESS;
     }
 }

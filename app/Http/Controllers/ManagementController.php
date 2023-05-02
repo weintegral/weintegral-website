@@ -16,7 +16,9 @@ class ManagementController extends Controller
         $this->basicContactData = [
             'email' => $this->contactInfo->getAdminEmailId(),
             'phone' => $this->contactInfo->getPhoneNumber(),
-            'address' => $this->contactInfo->getCorporateAddress()
+            'address' => $this->contactInfo->getCorporateAddress(),
+            'executiveOfficeAddress' => $this->contactInfo->getExecutiveAddress(),
+            'overseasOfficeAddress' => $this->contactInfo->getOverseasAddress()
         ];
     }
 

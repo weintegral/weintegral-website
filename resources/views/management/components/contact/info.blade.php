@@ -32,7 +32,20 @@
         <div class="row">
 
             <div class="col-lg-6 ">
-                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3441.8623710723723!2d-97.94504882311946!3d30.383265774754797!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x865b30b40ef24b1b%3A0x704b3044074a574a!2s2009%20Ranch%20Rd%20620%20N%2C%20Lakeway%2C%20TX%2078734!5e0!3m2!1sen!2sus!4v1682310115758!5m2!1sen!2sus" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                <div class="col-lg-12">
+                    <div class="info-box mb-4">
+                        <i class="bx bx-map"></i>
+                        <h3>Executive Office</h3>
+                        <p>{!!$executiveOfficeAddress!!}</p>
+                    </div>
+                </div>
+                <div class="col-lg-12">
+                    <div class="info-box mb-4">
+                        <i class="bx bx-map"></i>
+                        <h3>Overseas Office</h3>
+                        <p>{!!$overseasOfficeAddress!!}</p>
+                    </div>
+                </div>
             </div>
 
             <div class="col-lg-6">
