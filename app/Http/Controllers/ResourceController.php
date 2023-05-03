@@ -73,6 +73,16 @@ class ResourceController extends Controller
                     'title' => 'Law Bench',
                     'brief' => 'Q&A with Immigration Lawyers',
                     'url' => 'https://www.lawbench.com'
+                ],
+                [
+                    'title' => 'H-1B Electronic Registration',
+                    'brief' => 'H-1B Electronic Registration Process',
+                    'url' => 'https://www.uscis.gov/working-in-the-united-states/temporary-workers/h-1b-specialty-occupations-and-fashion-models/h-1b-electronic-registration-process'
+                ],
+                [
+                    'title' => 'Extension of OPT',
+                    'brief' => 'Extension of Post Completion Optional Practical Training (OPT)',
+                    'url' => 'https://www.uscis.gov/working-in-the-united-states/temporary-workers/h-1b-specialty-occupations-and-fashion-models/extension-of-post-completion-optional-practical-training-opt-and-f-1-status-for-eligible-students'
                 ]
             ]
         ];
