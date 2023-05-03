@@ -96,4 +96,4 @@ Route::get('/vendors', [ResourceController::class, 'vendorAction'])->name('vendo
 
 Route::get('/job-portals', [ResourceController::class, 'jobPortalAction'])->name('jobPortalsPage');
 
-Route::get('/client-list', [ResourceController::class, 'clientAction'])->name('clientsPage');
+Route::get('/client-list', [ResourceController::class, 'clientAction'])->name('clientListPage');
