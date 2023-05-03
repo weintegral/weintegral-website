@@ -91,3 +91,9 @@ Route::get('/contact', [ManagementController::class, 'contactAction'])->name('co
 |--------------------------------------------------------------------------
 */
 Route::get('/resources', [ResourceController::class, 'indexAction'])->name('resourcePage');
+
+Route::get('/vendors', [ResourceController::class, 'vendorAction'])->name('vendorsPage');
+
+Route::get('/job-portals', [ResourceController::class, 'jobPortalAction'])->name('jobPortalsPage');
+
+Route::get('/clients', [ResourceController::class, 'clientAction'])->name('clientsPage');

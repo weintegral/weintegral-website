@@ -22,6 +22,7 @@
     <link href="vendor/boxicons/css/boxicons.min.css" rel="stylesheet">
     <link href="vendor/glightbox/css/glightbox.min.css" rel="stylesheet">
     <link href="vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.13.4/css/jquery.dataTables.min.css">
 
     <!-- Template Main CSS File -->
     <link href="css/style.css" rel="stylesheet">
@@ -43,6 +44,8 @@
 <!-- Vendor JS Files -->
 <script src="vendor/purecounter/purecounter_vanilla.js"></script>
 <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+<script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+<script src="https://cdn.datatables.net/1.13.4/js/jquery.dataTables.min.js"></script>
 <script src="vendor/glightbox/js/glightbox.min.js"></script>
 <script src="vendor/isotope-layout/isotope.pkgd.min.js"></script>
 <script src="vendor/swiper/swiper-bundle.min.js"></script>
@@ -51,6 +54,7 @@
 
 <!-- Template Main JS File -->
 <script src="js/main.js"></script>
+@yield('scripts')
 
 </body>
 
