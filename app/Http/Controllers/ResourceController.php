@@ -22,7 +22,6 @@ class ResourceController extends Controller
 
     public function indexAction(): View
     {
-        $data = $this->basicContactData;
         $resources = [
             'resources' => [
                 [
