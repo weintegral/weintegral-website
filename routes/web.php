@@ -5,6 +5,7 @@ use App\Http\Controllers\BlogController;
 use App\Http\Controllers\CareerController;
 use App\Http\Controllers\HomePageController;
 use App\Http\Controllers\ManagementController;
+use App\Http\Controllers\ResourceController;
 use App\Http\Controllers\ServiceController;
 use Illuminate\Support\Facades\Route;
 
@@ -83,3 +84,10 @@ Route::get('/blog/single', [BlogController::class, 'singleArticleAction'])->name
 Route::get('/team', [ManagementController::class, 'teamAction'])->name('teamPage');
 
 Route::get('/contact', [ManagementController::class, 'contactAction'])->name('contactPage');
+
+/*
+|--------------------------------------------------------------------------
+| Useful Resources
+|--------------------------------------------------------------------------
+*/
+Route::get('/resources', [ResourceController::class, 'indexAction'])->name('resourcePage');
