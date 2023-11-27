@@ -97,3 +97,45 @@ Route::get('/vendors', [ResourceController::class, 'vendorAction'])->name('vendo
 Route::get('/job-portals', [ResourceController::class, 'jobPortalAction'])->name('jobPortalsPage');
 
 Route::get('/client-list', [ResourceController::class, 'clientAction'])->name('clientListPage');
+
+/*
+|--------------------------------------------------------------------------
+| Redirects
+|--------------------------------------------------------------------------
+*/
+Route::get('/crm', function () {
+    return redirect('https://app.hubspot.com');
+});
+
+Route::get('/kanban', function () {
+    return redirect('https://app.plane.so/weintegral');
+});
+
+Route::get('/e-sign', function () {
+    return redirect('https://app.signfree.io/home/dashboard');
+});
+
+Route::get('/accounting', function () {
+    return redirect('https://next.waveapps.com');
+});
+
+Route::get('/wiki', function () {
+    return redirect('https://docs.weintegral.com');
+});
+
+Route::get('/guides', function () {
+    return redirect('https://scribehow.com/');
+});
+
+Route::get('/feedback', function () {
+    return redirect('https://tally.so/dashboard');
+});
+
+/*
+|--------------------------------------------------------------------------
+| Fallback
+|--------------------------------------------------------------------------
+*/
+Route::fallback(function () {
+    return redirect()->route('homePage');
+});
