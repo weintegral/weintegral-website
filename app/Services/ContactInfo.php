@@ -22,8 +22,8 @@ class ContactInfo
     public function getExecutiveAddress(): string
     {
         return <<< ADDRESS
-            16 Central Square, Suite #2 <br>
-            Bridgewater, MA 02324
+            2009 Ranch Road, 620 N STE 113,<br>
+            Lakeway, TX 78734
 ADDRESS;
 
     }
