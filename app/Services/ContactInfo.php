@@ -6,7 +6,7 @@ class ContactInfo
 {
     public function getPhoneNumber(): string
     {
-        return '+1 (512) 774-6595';
+        return '+1 (512) 774-6577';
     }
 
     public function getAdminEmailId(): string
