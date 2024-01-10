@@ -103,32 +103,8 @@ Route::get('/client-list', [ResourceController::class, 'clientAction'])->name('c
 | Redirects
 |--------------------------------------------------------------------------
 */
-Route::get('/crm', function () {
-    return redirect('https://app.hubspot.com');
-});
-
-Route::get('/kanban', function () {
-    return redirect('https://app.plane.so/weintegral');
-});
-
-Route::get('/e-sign', function () {
-    return redirect('https://app.signfree.io/home/dashboard');
-});
-
-Route::get('/accounting', function () {
-    return redirect('https://next.waveapps.com');
-});
-
-Route::get('/wiki', function () {
-    return redirect('https://docs.weintegral.com');
-});
-
-Route::get('/guides', function () {
-    return redirect('https://scribehow.com/');
-});
-
-Route::get('/feedback', function () {
-    return redirect('https://tally.so/dashboard');
+Route::get('/apps', function () {
+    return redirect('https://lnk.bio/weintegral');
 });
 
 /*
