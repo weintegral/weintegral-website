@@ -72,9 +72,9 @@ Route::get('/career/openings', [CareerController::class, 'jobOpeningsAction'])->
 | Blog Posts
 |--------------------------------------------------------------------------
 */
-Route::get('/blog', [BlogController::class, 'indexAction'])->name('blogIndexPage');
-
-Route::get('/blog/single', [BlogController::class, 'singleArticleAction'])->name('singleArticlePage');
+Route::get('/blog', function () {
+    return redirect('https://blog.weintegral.com');
+});
 
 /*
 |--------------------------------------------------------------------------

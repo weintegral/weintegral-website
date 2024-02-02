@@ -8,8 +8,21 @@
 /*--------------------------------------------------------------
 # General
 --------------------------------------------------------------*/
+
 body {
-  font-family: "Open Sans", sans-serif;
+  font-family: "Roboto Flex", "Open Sans", sans-serif;
+  font-optical-sizing: auto;
+  font-variation-settings:
+    "slnt" 0,
+    "wdth" 100,
+    "GRAD" 0,
+    "XTRA" 468,
+    "YOPQ" 79,
+    "YTAS" 750,
+    "YTDE" -203,
+    "YTFI" 738,
+    "YTLC" 514,
+    "YTUC" 712;
   color: #444444;
 }
 
