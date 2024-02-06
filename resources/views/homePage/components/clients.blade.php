@@ -5,7 +5,7 @@
         <div class="section-title">
             <h2>Clients</h2>
             <p>
-                At WeIntegral, we are proud to serve a diverse range of clients from various industries, including insurance, banking, news, non-profit, entertainment, and universities with out partners. Our goal is to provide tailored IT solutions that meet the unique needs of each client, helping them achieve their business objectives and succeed in their respective industries.
+                At WeIntegral, we are proud to serve a diverse range of clients from various industries, including insurance, banking, news, non-profit, entertainment, and universities with our partners. Our goal is to provide tailored IT solutions that meet the unique needs of each client, helping them achieve their business objectives and succeed in their respective industries.
             </p>
         </div>
 
