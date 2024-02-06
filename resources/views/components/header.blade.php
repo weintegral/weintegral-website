@@ -16,7 +16,7 @@
                 <li><a class="{{ (request()->is('clients')) ? 'active' : '' }}" href="/clients">Clients</a></li>
                 {{--<li><a href="/industries">Industries</a></li>--}}
                 {{--<li><a class="{{ (request()->is('team')) ? 'active' : '' }}" href="/team">Team</a></li>--}}
-                <li><a class="{{ (request()->is('blog')) ? 'active' : '' }}" href="/blog" target="_blank">Blog</a></li>
+                <li><a class="{{ (request()->is('blog')) ? 'active' : '' }}" href="/blog">Blog</a></li>
                 <li><a class="{{ (request()->is('career')) ? 'active' : '' }}" href="/career">Career</a></li>
                 <li><a class="{{ (request()->is('contact')) ? 'active' : '' }}" href="/contact">Contact</a></li>
             </ul>
