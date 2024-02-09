@@ -33,4 +33,11 @@ class ManagementController extends Controller
         $data = $this->basicContactData;
         return view('management/contact', $data);
     }
+
+    public function marketingSubmissionAction(): View
+    {
+        $data = $this->basicContactData;
+
+        return view('management/marketingData', $data);
+    }
 }

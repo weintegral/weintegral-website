@@ -85,6 +85,8 @@ Route::get('/team', [ManagementController::class, 'teamAction'])->name('teamPage
 
 Route::get('/contact', [ManagementController::class, 'contactAction'])->name('contactPage');
 
+Route::get('/marketing-data', [ManagementController::class, 'marketingSubmissionAction'])->name('marketingSubmissionPage');
+
 /*
 |--------------------------------------------------------------------------
 | Useful Resources
