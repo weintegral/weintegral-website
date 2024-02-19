@@ -11,7 +11,7 @@ class ContactInfo
 
     public function getAdminEmailId(): string
     {
-        return 'admin@weintegral.com';
+        return 'info@weintegral.com';
     }
 
     public function getHrEmailId(): string
