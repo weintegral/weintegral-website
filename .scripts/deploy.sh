@@ -5,7 +5,8 @@ echo "Deployment started ..."
 
 # Enter maintenance mode or return true
 # if already is in maintenance mode
-(php artisan down --message 'The app is being (quickly!) updated. Please try again in a minute.') || true
+echo "The app is being (quickly!) updated. Please try again in a minute."
+(php artisan down) || true
 
 # Pull the latest version of the app
 git fetch origin main
