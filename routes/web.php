@@ -87,6 +87,8 @@ Route::get('/contact', [ManagementController::class, 'contactAction'])->name('co
 
 Route::get('/marketing-data', [ManagementController::class, 'marketingSubmissionAction'])->name('marketingSubmissionPage');
 
+Route::get('/data', [ManagementController::class, 'marketingDataAction'])->name('marketingDataPage');
+
 /*
 |--------------------------------------------------------------------------
 | Useful Resources

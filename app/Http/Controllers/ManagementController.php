@@ -40,4 +40,12 @@ class ManagementController extends Controller
 
         return view('management/marketingData', $data);
     }
+
+    public function marketingDataAction(): View
+    {
+        $data = $this->basicContactData;
+
+        return view('management/data', $data);
+    }
+
 }
