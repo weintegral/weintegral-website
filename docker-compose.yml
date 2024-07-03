@@ -1,8 +1,8 @@
 version: "3"
 services:
-    weintegral-webserver:
-        image: weintegral-webserver
-        container_name: weintegral-webserver
+    we-webserver:
+        image: we-webserver
+        container_name: we-webserver
         build:
             context: .
             dockerfile: docker/Dockerfile
@@ -12,21 +12,21 @@ services:
             CONTAINER_ROLE: app
             XDEBUG_CONFIG: remote_host=host.docker.internal
         depends_on:
-            - weintegral-mysql-server
+            - we-sql-server
         links:
-            - weintegral-mysql-server
+            - we-sql-server
         volumes:
             - .:/var/www/html
         ports:
             - "${APP_HOST_PORT}:80"
-    weintegral-mysql-server:
-        image: weintegral-mysql-server
-        container_name: weintegral-mysql-server
+    we-sql-server:
+        image: we-sql-server
+        container_name: we-sql-server
         build:
             context: .
-            dockerfile: docker/MySQLDockerfile
+            dockerfile: docker/SQLDockerfile
         volumes:
-            - weintegral-mysql-data:/var/lib/mysql
+            - we-sql-data:/var/lib/postgresql/data
         environment:
             MYSQL_DATABASE: ${DB_DATABASE}
             MYSQL_ROOT_PASSWORD: ${DB_ROOT_PASSWORD}
@@ -35,5 +35,5 @@ services:
         ports:
             - "${DB_HOST_PORT}:3306"
 volumes:
-    weintegral-mysql-data:
+    we-sql-data:
         driver: "local"
