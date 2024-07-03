@@ -28,10 +28,9 @@ services:
         volumes:
             - we-sql-data:/var/lib/postgresql/data
         environment:
-            MYSQL_DATABASE: ${DB_DATABASE}
-            MYSQL_ROOT_PASSWORD: ${DB_ROOT_PASSWORD}
-            MYSQL_USER: ${DB_USERNAME}
-            MYSQL_PASSWORD: ${DB_PASSWORD}
+            POSTGRES_DB: ${DB_DATABASE}
+            POSTGRES_USER: ${DB_USERNAME}
+            POSTGRES_PASSWORD: ${DB_PASSWORD}
         ports:
             - "${DB_HOST_PORT}:3306"
 volumes:
