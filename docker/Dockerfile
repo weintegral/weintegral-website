@@ -1,5 +1,5 @@
-FROM node:lts as nodebuild
-FROM composer:lts as composerbuild
+FROM node:lts AS nodebuild
+FROM composer:lts AS composerbuild
 FROM php:8.2.2-apache
 
 LABEL Maintainer="Gopibabu Srungavarapu <s.gopibabu@gmail.com>" \
