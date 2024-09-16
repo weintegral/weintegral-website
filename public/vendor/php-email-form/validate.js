@@ -37,7 +37,11 @@
       headers: {'X-Requested-With': 'XMLHttpRequest'}
     })
     .then(response => {
-        displaySuccess(thisForm);
+        if(response.status === 200 || response.status === 201) {
+            displaySuccess(thisForm);
+        } else {
+            displayError(thisForm, response.statusText);
+        }
     })
     .catch((error) => {
         displayError(thisForm, error);

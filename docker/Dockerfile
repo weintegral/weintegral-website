@@ -1,5 +1,5 @@
-FROM node:lts AS nodebuild
-FROM composer:lts AS composerbuild
+FROM node AS nodebuild
+FROM composer AS composerbuild
 FROM mlocati/php-extension-installer AS phpextensionbuild
 FROM php:8.2.2-apache
 
