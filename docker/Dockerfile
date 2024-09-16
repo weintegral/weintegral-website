@@ -75,6 +75,8 @@ RUN find /var/www/html -type d -exec chmod 755 {} \;
 
 WORKDIR /var/www/html
 RUN chown -R $USER:www-data .
+RUN chmod -R 775 storage
+RUN chmod -R 775 bootstrap/cache
 RUN chgrp -R www-data storage bootstrap/cache
 
 EXPOSE 80
