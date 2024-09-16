@@ -21,7 +21,7 @@ class VisitorRequestController extends Controller
             $validatedData = $request->validated();
 
             //Step2: Create the visitor request
-            $this->visitor->create($validatedData);
+            $this->visitor->createRequest($validatedData);
         } catch (RuntimeException) {
             return response()->json([
                 'message' => 'Error creating visitor request'
@@ -29,7 +29,7 @@ class VisitorRequestController extends Controller
         }
 
         return response()->json([
-            'message' => 'Customer request created successfully',
+            'message' => 'Visitor request created successfully',
             'data' => $validatedData
         ], Response::HTTP_CREATED);
     }

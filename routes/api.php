@@ -21,7 +21,7 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 
 /*
 |--------------------------------------------------------------------------
-| Customer Requests
+| Visitor Requests
 |--------------------------------------------------------------------------
 */
 Route::post('/visitor-request', [VisitorRequestController::class, 'createAction'])

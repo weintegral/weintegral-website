@@ -13,7 +13,7 @@ class Visitor
      * @return void
      * @throws DataException
      */
-    public function create(array $data): void
+    public function createRequest(array $data): void
     {
         try {
             $visitorRequest = new VisitorRequest();
