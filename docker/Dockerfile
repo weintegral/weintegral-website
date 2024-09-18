@@ -1,5 +1,6 @@
-FROM node:lts AS nodebuild
-FROM composer:lts AS composerbuild
+FROM node AS nodebuild
+FROM composer AS composerbuild
+FROM mlocati/php-extension-installer AS phpextensionbuild
 FROM php:8.2.2-apache
 
 LABEL Maintainer="Gopibabu Srungavarapu <s.gopibabu@gmail.com>" \
@@ -35,8 +36,11 @@ RUN apt-get -yqq update \
         wget \
     && docker-php-ext-configure intl \
     && docker-php-ext-configure zip \
-    && docker-php-ext-install mysqli pdo pdo_mysql pgsql pdo_pgsql pcntl intl zip sockets \
+    && docker-php-ext-install mysqli pdo pdo_mysql pgsql pdo_pgsql pcntl intl zip sockets curl \
     && a2enmod rewrite
+
+COPY --from=phpextensionbuild /usr/bin/install-php-extensions /usr/local/bin/
+RUN install-php-extensions http
 
 ###############################################################################
 # copy configuration files
@@ -71,6 +75,8 @@ RUN find /var/www/html -type d -exec chmod 755 {} \;
 
 WORKDIR /var/www/html
 RUN chown -R $USER:www-data .
+RUN chmod -R 775 storage
+RUN chmod -R 775 bootstrap/cache
 RUN chgrp -R www-data storage bootstrap/cache
 
 EXPOSE 80
