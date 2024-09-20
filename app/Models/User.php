@@ -2,17 +2,20 @@
 
 namespace App\Models;
 
-class User
+use Orchid\Platform\Models\User as Authenticatable;
+
+class User extends Authenticatable
 {
     /**
      * The attributes that are mass assignable.
      *
      * @var array
      */
-    protected array $fillable = [
+    protected $fillable = [
         'name',
         'email',
-        'password'
+        'password',
+        'permissions',
     ];
 
     /**
@@ -20,9 +23,10 @@ class User
      *
      * @var array
      */
-    protected array $hidden = [
+    protected $hidden = [
         'password',
-        'remember_token'
+        'remember_token',
+        'permissions',
     ];
 
     /**
@@ -30,7 +34,8 @@ class User
      *
      * @var array
      */
-    protected array $casts = [
+    protected $casts = [
+        'permissions'          => 'array',
         'email_verified_at'    => 'datetime',
     ];
 
@@ -39,10 +44,11 @@ class User
      *
      * @var array
      */
-    protected array $allowedFilters = [
+    protected $allowedFilters = [
         'id',
         'name',
-        'email'
+        'email',
+        'permissions',
     ];
 
     /**
@@ -50,11 +56,11 @@ class User
      *
      * @var array
      */
-    protected array $allowedSorts = [
+    protected $allowedSorts = [
         'id',
         'name',
         'email',
         'updated_at',
-        'created_at'
+        'created_at',
     ];
 }
