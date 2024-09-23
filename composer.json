@@ -10,8 +10,10 @@
         "laravel/framework": "^9.19",
         "laravel/sanctum": "^3.0",
         "laravel/tinker": "^2.7",
+        "nextapps/laravel-swagger-ui": "^0.10.1",
         "opcodesio/log-viewer": "^2.3",
-        "orchid/platform": "^13.10"
+        "orchid/platform": "^13.10",
+        "zircote/swagger-php": "^4.10"
     },
     "require-dev": {
         "fakerphp/faker": "^1.9.1",
@@ -48,7 +50,8 @@
         ],
         "post-create-project-cmd": [
             "@php artisan key:generate --ansi"
-        ]
+        ],
+        "api-docs:generate": "openapi app -f json -o resources/swagger/openapi.json -v"
     },
     "extra": {
         "laravel": {

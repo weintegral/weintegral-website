@@ -35,6 +35,19 @@ require __DIR__.'/../vendor/autoload.php';
 
 /*
 |--------------------------------------------------------------------------
+| Run Swagger Doc Generator
+|--------------------------------------------------------------------------
+|
+| It will generate the OpenAPI documentation for the application.
+|
+*/
+//$openapi = \OpenApi\Generator::scan([__DIR__.'/../app/Http/Controllers']);
+//
+//header('Content-Type: application/json');
+//echo $openapi->toJson();
+
+/*
+|--------------------------------------------------------------------------
 | Run The Application
 |--------------------------------------------------------------------------
 |
