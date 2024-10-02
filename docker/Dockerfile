@@ -4,7 +4,7 @@ FROM mlocati/php-extension-installer AS phpextensionbuild
 FROM php:8.2.2-apache
 
 LABEL Maintainer="Gopibabu Srungavarapu <s.gopibabu@gmail.com>" \
-      Description="Docker Image for raptor development environment"
+      Description="Docker Image for weintegral website development environment"
 
 ###############################################################################
 # environment variables and arguments
@@ -34,6 +34,7 @@ RUN apt-get -yqq update \
         libcurl4-openssl-dev \
         curl \
         wget \
+        vim \
     && docker-php-ext-configure intl \
     && docker-php-ext-configure zip \
     && docker-php-ext-install mysqli pdo pdo_mysql pgsql pdo_pgsql pcntl intl zip sockets curl \
