@@ -15,7 +15,10 @@ class Kernel extends ConsoleKernel
      */
     protected function schedule(Schedule $schedule): void
     {
-         $schedule->command('visitor:request-processor')->everyMinute();
+         $schedule->command('visitor:request-processor')
+             ->everyMinute()
+             ->runInBackground()
+             ->withoutOverlapping();
     }
 
     /**
