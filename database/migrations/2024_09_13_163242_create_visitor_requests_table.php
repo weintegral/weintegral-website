@@ -15,14 +15,14 @@ return new class extends Migration
     {
         Schema::create('visitor_requests', function (Blueprint $table) {
             $table->id();
-            $table->string('name')->after('id');
-            $table->string('email')->after('name');
+            $table->string('name');
+            $table->string('email');
             $table->string('subject');
             $table->text('message');
             $table->enum(
                 'status',
                 ['active', 'progress', 'resolved']
-            )->default('active')->after('message');
+            )->default('active');
 
             $table->timestamps();
         });
