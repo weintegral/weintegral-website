@@ -1,0 +1,41 @@
+FROM php:8.2.24-cli-bullseye
+
+LABEL Maintainer="Gopibabu Srungavarapu <s.gopibabu@gmail.com>" \
+      Description="Docker Image for weintegral website development environment"
+
+###############################################################################
+# configuring proxy
+###############################################################################
+RUN pear config-set php_ini "$PHP_INI_DIR"/php.ini
+
+###############################################################################
+# installing essential programs
+###############################################################################
+RUN apt-get -yqq update \
+    && apt-get -yqq install --no-install-recommends zip unzip \
+        build-essential \
+        libzip-dev \
+        libicu-dev \
+        libjpeg62-turbo-dev \
+        libfreetype6-dev \
+        libonig-dev \
+        locales \
+        libpq-dev \
+        libssl-dev \
+        libcurl4-openssl-dev \
+        curl \
+        wget \
+        vim \
+        python3-pip \
+        supervisor \
+    && docker-php-ext-configure intl \
+    && docker-php-ext-configure zip \
+    && docker-php-ext-install mysqli pdo pdo_mysql pgsql pdo_pgsql pcntl intl zip sockets curl \
+    && rm -rf /var/lib/apt/lists/*
+
+###############################################################################
+# configure supervisor
+###############################################################################
+COPY docker/supervisor.conf /etc/supervisor/conf.d/supervisor.conf
+
+CMD ["/usr/bin/supervisord", "-n"]
