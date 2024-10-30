@@ -1,7 +1,5 @@
 <?php
 
-use NextApps\SwaggerUi\Http\Middleware\EnsureUserIsAuthorized;
-
 return [
     'files' => [
         [

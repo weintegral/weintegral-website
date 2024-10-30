@@ -1,6 +1,6 @@
 <?php
 
-use Opcodes\LogViewer\Level;
+use Opcodes\LogViewer\LogLevels\LevelClass as Level;
 
 return [
 
