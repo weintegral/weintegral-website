@@ -12,7 +12,7 @@ jobs:
         image: mysql:8.0
         env:
           MYSQL_ROOT_PASSWORD: root
-          MYSQL_DATABASE: test_db
+          MYSQL_DATABASE: weintegral_website
         ports:
           - 3306:3306
         options: >-
@@ -51,7 +51,7 @@ jobs:
           DB_CONNECTION: mysql
           DB_HOST: 127.0.0.1
           DB_PORT: 3306
-          DB_DATABASE: test_db
+          DB_DATABASE: weintegral_website
           DB_USERNAME: root
           DB_PASSWORD: root
         run: vendor/bin/phpunit

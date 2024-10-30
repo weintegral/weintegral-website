@@ -1,1 +1,1 @@
-FROM postgres:latest
+FROM mysql:8.0.26
