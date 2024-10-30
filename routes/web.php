@@ -108,9 +108,10 @@ Route::get('/client-list', [ResourceController::class, 'clientAction'])->name('c
 | Sendportal
 |--------------------------------------------------------------------------
 */
-Route::middleware(['auth'])->prefix('sendportal')->group(function () {
-    Sendportal::webRoutes();
-});
+//Route::middleware(['auth'])->prefix('sendportal')->group(function () {
+//    Sendportal::webRoutes();
+//});
+Sendportal::webRoutes();
 Sendportal::publicWebRoutes();
 
 
