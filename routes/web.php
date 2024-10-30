@@ -8,6 +8,7 @@ use App\Http\Controllers\ManagementController;
 use App\Http\Controllers\ResourceController;
 use App\Http\Controllers\ServiceController;
 use Illuminate\Support\Facades\Route;
+use Sendportal\Base\Facades\Sendportal;
 
 /*
 |--------------------------------------------------------------------------
@@ -101,6 +102,17 @@ Route::get('/vendors', [ResourceController::class, 'vendorAction'])->name('vendo
 Route::get('/job-portals', [ResourceController::class, 'jobPortalAction'])->name('jobPortalsPage');
 
 Route::get('/client-list', [ResourceController::class, 'clientAction'])->name('clientListPage');
+
+/*
+|--------------------------------------------------------------------------
+| Sendportal
+|--------------------------------------------------------------------------
+*/
+Route::middleware(['auth'])->prefix('sendportal')->group(function () {
+    Sendportal::webRoutes();
+});
+Sendportal::publicWebRoutes();
+
 
 /*
 |--------------------------------------------------------------------------
