@@ -3,6 +3,7 @@
 namespace App\Providers;
 
 use Illuminate\Support\ServiceProvider;
+use Sendportal\Base\Facades\Sendportal;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -26,6 +27,8 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        //
+        Sendportal::setCurrentWorkspaceIdResolver(function () {
+            return 1;
+        });
     }
 }
