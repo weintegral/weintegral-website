@@ -69,4 +69,70 @@ class Resource
             ]
         ];
     }
+
+    public function getManagementResources(): array
+    {
+        return [
+            [
+                'title' => 'WeIntegral Docs',
+                'brief' => 'WeIntegral Documentation',
+                'url' => 'https://docs.weintegral.com'
+            ],
+            [
+                'title' => 'WeIntegral Blog',
+                'brief' => 'WeIntegral Blog',
+                'url' => 'https://blog.weintegral.com'
+            ],
+            [
+                'title' => 'WeIntegral CRM',
+                'brief' => 'WeIntegral CRM for Marketing and Sales',
+                'url' => 'https://crm.weintegral.com'
+            ],
+            [
+                'title' => 'WeIntegral Applications Status',
+                'brief' => 'WeIntegral Apps Realtime Status',
+                'url' => 'https://status.weintegral.com'
+            ],
+            [
+                'title' => 'WeIntegral Email Campaigns',
+                'brief' => 'WeIntegral Email Campaigns View',
+                'url' => 'https://weintegral.com/sendportal'
+            ],
+            [
+                'title' => 'WeIntegral Invoicing',
+                'brief' => 'WeIntegral Invoicing Dashboard',
+                'url' => 'https://app.invoicing.co/#/dashboard'
+            ],
+            [
+                'title' => 'WeIntegral ESignature',
+                'brief' => 'WeIntegral ESignature Platform',
+                'url' => 'https://docuseal.com/'
+            ],
+            [
+                'title' => 'WeIntegral Kanban',
+                'brief' => 'WeIntegral Kanban Board',
+                'url' => 'https://trello.com'
+            ],
+            [
+                'title' => 'WeIntegral Time Tracking',
+                'brief' => 'WeIntegral Time Tracking Dashboard',
+                'url' => 'https://app.clockify.me'
+            ],
+            [
+                'title' => 'WeIntegral ScreenCasts',
+                'brief' => 'WeIntegral mentoring and training videos',
+                'url' => 'https://videos.weintegral.com/'
+            ],
+            [
+                'title' => 'WeIntegral Collaboration Tool',
+                'brief' => 'WeIntegral Collaboration Platform',
+                'url' => 'https://join.slack.com/t/weintegral/shared_invite/zt-2tmagrc43-1mw89fwq3OdPUt2kcRDwBQ'
+            ],
+            [
+                'title' => 'WeIntegral Survey',
+                'brief' => 'WeIntegral Survey Platform',
+                'url' => 'https://app.formbricks.com'
+            ]
+        ];
+    }
 }

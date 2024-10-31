@@ -35,6 +35,15 @@ class ResourceController extends Controller
         return view('resources/index', $data);
     }
 
+    public function mgmtAction(): View
+    {
+        $resources = ['resources' => $this->resource->getManagementResources()];
+
+        $data = array_merge_recursive($this->basicContactData, $resources);
+
+        return view('resources/index', $data);
+    }
+
     public function vendorAction(): View
     {
         $vendors = ['vendors' => $this->jobService->getVendors()];

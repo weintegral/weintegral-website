@@ -97,6 +97,8 @@ Route::get('/data', [ManagementController::class, 'marketingDataAction'])->name(
 */
 Route::get('/resources', [ResourceController::class, 'indexAction'])->name('resourcePage');
 
+Route::get('/mgmt-resources', [ResourceController::class, 'mgmtAction'])->name('mgmtResourcePage');
+
 Route::get('/vendors', [ResourceController::class, 'vendorAction'])->name('vendorsPage');
 
 Route::get('/job-portals', [ResourceController::class, 'jobPortalAction'])->name('jobPortalsPage');

@@ -25,7 +25,7 @@
                     <h4>Useful Links</h4>
                     <ul>
                         <li><i class="bx bx-chevron-right"></i> <a href="/about">About us</a></li>
-                        <li><i class="bx bx-chevron-right"></i> <a href="/services">Services</a></li>
+                        <li><i class="bx bx-chevron-right"></i> <a href="/mgmt-resources">Mgmt Resources</a></li>
                         <li><i class="bx bx-chevron-right"></i> <a href="/terms-of-service">Terms of service</a></li>
                         <li><i class="bx bx-chevron-right"></i> <a href="/privacy-policy">Privacy policy</a></li>
                         <li><i class="bx bx-chevron-right"></i> <a href="/resources">Resources</a></li>
