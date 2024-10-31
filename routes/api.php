@@ -33,8 +33,8 @@ Route::post('/visitor-request', [VisitorRequestController::class, 'createAction'
 | Sendportal
 |--------------------------------------------------------------------------
 */
-//Route::middleware(['auth:api'])->group(function() {
-//    Sendportal::apiRoutes();
-//});
-Sendportal::apiRoutes();
+Route::middleware(['auth:api'])->group(function() {
+    Sendportal::apiRoutes();
+});
+//Sendportal::apiRoutes();
 Sendportal::publicApiRoutes();
