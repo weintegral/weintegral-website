@@ -17,11 +17,34 @@
                 </thead>
                 <tbody>
 
+                @php
+                    $pillClasses = [
+                        'text-bg-primary',
+                        'text-bg-secondary',
+                        'text-bg-success',
+                        'text-bg-danger',
+                        'text-bg-warning',
+                        'text-bg-info',
+                        'text-bg-dark'
+                    ];
+                    $pillClassIndex = 0;
+                @endphp
                 @foreach ($jobGroups as $jobGroup)
+                    @php
+                        $technologies = explode(', ', $jobGroup['tech']);
+                    @endphp
                     <tr>
-                        <td>{{$jobGroup['name']}}</td>
-                        <td>{{$jobGroup['email']}}</td>
-                        <td>{{$jobGroup['tech']}}</td>
+                        <td><strong>{{$jobGroup['name']}}</strong></td>
+                        <td><a href="mailto:{{$jobGroup['email']}}">{{$jobGroup['email']}}</a></td>
+                        <td>
+                            @foreach ($technologies as $technology)
+                                @php
+                                    $randomClass = $pillClasses[$pillClassIndex % count($pillClasses)];
+                                    $pillClassIndex++;
+                                @endphp
+                                <span class="badge rounded-pill {{ $randomClass }}">{{ $technology }}</span>
+                            @endforeach
+                        </td>
                     </tr>
                 @endforeach
                 </tbody>
@@ -34,7 +57,12 @@
     <script>
         $(document).ready(function () {
             $('#job-group-table').DataTable({
-                "pageLength": 10
+                "pageLength": 10,
+                "columnDefs": [
+                    { "width": "25%", "targets": 0 },
+                    { "width": "25%", "targets": 1 },
+                    { "width": "50%", "targets": 2 }
+                ]
             });
         });
     </script>

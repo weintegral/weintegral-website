@@ -57,6 +57,7 @@
 <script src="{{ asset('vendor/waypoints/noframework.waypoints.js') }}"></script>
 <script src="{{ asset('vendor/php-email-form/validate.js') }}"></script>
 
+
 <!-- Template Main JS File -->
 <script src="{{ asset('js/main.js') }}"></script>
 @yield('scripts')

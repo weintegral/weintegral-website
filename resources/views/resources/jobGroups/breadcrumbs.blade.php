@@ -4,9 +4,9 @@
 
         <ol>
             <li><a href="/">Home</a></li>
-            <li>Clients</li>
+            <li>Job Groups</li>
         </ol>
-        <h2>Clients</h2>
+        <h2>Job Groups</h2>
 
     </div>
 </section>
