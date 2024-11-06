@@ -105,6 +105,8 @@ Route::get('/job-portals', [ResourceController::class, 'jobPortalAction'])->name
 
 Route::get('/client-list', [ResourceController::class, 'clientAction'])->name('clientListPage');
 
+Route::get('/job-groups', [ResourceController::class, 'jobGroupsAction'])->name('jobGroupListPage');
+
 /*
 |--------------------------------------------------------------------------
 | Sendportal

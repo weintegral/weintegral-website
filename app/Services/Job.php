@@ -178,4 +178,50 @@ class Job
     {
         return [];
     }
+
+    public function getGoogleGroups(): array
+    {
+        return [
+            [
+                'name' => 'PHP Job Group',
+                'email' => 'jobs-php@weintegral.com',
+                'tech' => 'PHP, Laravel, Symfony, Drupal, Wordpress, Magento, Joomla, CodeIgniter, CakePHP, Zend, Yii, Slim, Lumen, Phalcon, FuelPHP, PHPixie'
+            ],
+            [
+                'name' => 'FrontEnd Job Group',
+                'email' => 'jobs-frontend@weintegral.com',
+                'tech' => 'HTML, CSS, JavaScript, Angular, React, Vue, Ember, Backbone, Svelte, Next, Nuxt, Gatsby, SvelteKit, Alpine, Remix'
+            ],
+            [
+                'name' => '.NET Job Group',
+                'email' => 'jobs-dotnet@weintegral.com',
+                'tech' => 'C#, VB.NET, ASP.NET, .NET Core, .NET Framework, Xamarin, Blazor, Razor, WPF, WinForms, UWP, MAUI, Uno, Avalonia'
+            ],
+            [
+                'name' => 'Java Job Group',
+                'email' => 'jobs-java@weintegral.com',
+                'tech' => 'java, Spring, Hibernate, Struts, JSP, Servlets, JSF, JPA, EJB, JMS, JAX-RS, JAX-WS, JAX-RPC, JAX-R'
+            ],
+            [
+                'name' => 'Business/Data Analyst Job Group',
+                'email' => 'jobs-ba@weintegral.com',
+                'tech' => 'SQl, Excel, PowerBI, Tableau, Qlik, Looker, Domo, Sisense, Alteryx, Talend, Informatica, SSIS, SSRS, SSAS'
+            ],
+            [
+                'name' => 'DevOps Job Group',
+                'email' => 'jobs-devops@weintegral.com',
+                'tech' => 'Cloud, AWS, Azure, GCP, Docker, Kubernetes, Jenkins, GitLab, GitHub, BitBucket, CircleCI, TravisCI, TeamCity, Bamboo'
+            ],
+            [
+                'name' => 'Node.js Job Group',
+                'email' => 'jobs-nodejs@weintegral.com',
+                'tech' => 'Node.js, Express, Koa, Hapi, Sails, Meteor, Nest, Loopback, Adonis, Strapi, Feathers, Total.js, Derby, Socket.io'
+            ],
+            [
+                'name' => 'Automation Job Group',
+                'email' => 'jobs-sdet@weintegral.com',
+                'tech' => 'Selenuim, Cypress, Puppeteer, TestCafe, WebdriverIO, Protractor, Appium, JUnit, TestNG, JBehave, Cucumber, SpecFlow'
+            ]
+        ];
+    }
 }

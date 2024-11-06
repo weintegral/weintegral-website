@@ -70,4 +70,13 @@ class ResourceController extends Controller
 
         return view('resources/clients/index', $data);
     }
+
+    public function jobGroupsAction(): View
+    {
+        $jobGroups = ['jobGroups' => $this->jobService->getGoogleGroups()];
+
+        $data = array_merge_recursive($this->basicContactData, $jobGroups);
+
+        return view('resources/jobGroups/index', $data);
+    }
 }
