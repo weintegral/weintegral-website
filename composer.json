@@ -4,13 +4,19 @@
     "description": "The WeIntegral Website.",
     "keywords": ["weintegral", "website"],
     "license": "MIT",
+    "repositories": [
+        {
+            "type": "path",
+            "url": "./packages/sendportal-core"
+        }
+    ],
     "require": {
         "php": "^8.2.2",
         "guzzlehttp/guzzle": "^7.9",
         "laravel/framework": "^12.0",
         "laravel/sanctum": "^4.0",
         "laravel/tinker": "^2.9",
-        "mettle/sendportal-core": "3.0.*",
+        "mettle/sendportal-core": "dev-master",
         "opcodesio/log-viewer": "^3.0",
         "orchid/platform": "^14.0",
         "sentry/sentry-laravel": "^4.10",
