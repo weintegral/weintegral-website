@@ -1,7 +1,7 @@
-FROM node AS nodebuild
-FROM composer AS composerbuild
-FROM mlocati/php-extension-installer AS phpextensionbuild
-FROM php:8.2.2-apache
+FROM node:26.13.1-trixie AS nodebuild
+FROM composer:2.11.3 AS composerbuild
+FROM mlocati/php-extension-installer:2.13.4 AS phpextensionbuild
+FROM php:8.5.13-apache-trixie
 
 LABEL Maintainer="Gopibabu Srungavarapu <s.gopibabu@gmail.com>" \
       Description="Docker Image for weintegral website development environment"

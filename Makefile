@@ -29,6 +29,8 @@ list:
 	@echo ''
 	@echo 'docker_rebuild_images : Rebuild Docker Images'
 	@echo ''
+	@echo 'browser_tests : Run Dusk end-to-end tests (starts Selenium)'
+	@echo ''
 #------------------------------------------------------------------------------------------#
 
 #------------------------------------------------------------------------------------------#
@@ -50,7 +52,12 @@ migrations_run:
 # Delete all images
 dependencies_install:
 	docker compose exec -it we-webserver composer install
-	docker compose exec -it we-webserver npm install
+	docker compose exec -it we-webserver npm ci
+
+# Run Dusk end-to-end tests against the we-selenium container
+browser_tests:
+	docker compose --profile testing up -d --no-deps we-webserver we-selenium
+	docker compose exec -T we-webserver php artisan dusk
 
 docker_rebuild_containers:
 	docker compose down
