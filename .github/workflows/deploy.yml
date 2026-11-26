@@ -3,13 +3,14 @@ name: TestAndDeploy
 on:
   push:
     branches: ["main"]
+  pull_request:
 
 jobs:
   executing-tests:
     runs-on: ubuntu-latest
     services:
       mysql:
-        image: mysql:9.7.2
+        image: mysql:9.7.4.1
         env:
           MYSQL_ROOT_PASSWORD: root
           MYSQL_DATABASE: weintegral_website
@@ -21,21 +22,20 @@ jobs:
           --health-timeout=5s
           --health-retries=3
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v7
       - name: Set up PHP
         uses: shivammathur/setup-php@v2
         with:
           php-version: "8.5"
+          tools: composer:2.11.3
       - name: Copy .env
         run: php -r "file_exists('.env') || copy('.env.deploy', '.env');"
-      - name: Install Dependencies
-        run: composer update && composer dump-autoload
-      - name: Install Dependencies
+      - name: Install Composer dependencies from lockfile
         run: composer install -q --no-ansi --no-interaction --no-scripts --no-progress --prefer-dist
       - name: Set up Node
-        uses: actions/setup-node@v4
+        uses: actions/setup-node@v7
         with:
-          node-version: "26"
+          node-version: "26.13.1"
       - name: Install, check and build front-end (Vite+)
         run: |
           npx vp install
@@ -63,11 +63,12 @@ jobs:
 
   deploy:
     needs: [executing-tests]
+    if: github.event_name == 'push' && github.ref == 'refs/heads/main'
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v7
       - name: Deploy to Server
-        uses: appleboy/ssh-action@master
+        uses: appleboy/ssh-action@v1.2.5
         with:
           host: ${{ secrets.HOST }}
           username: ${{ secrets.USERNAME }}
