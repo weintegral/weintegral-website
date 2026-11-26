@@ -36,7 +36,6 @@ RUN apt-get -yqq update \
     && a2enmod rewrite
 
 COPY --from=phpextensionbuild /usr/bin/install-php-extensions /usr/local/bin/
-RUN install-php-extensions http
 
 ###############################################################################
 # copy configuration files
