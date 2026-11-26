@@ -13,7 +13,6 @@
         "laravel/framework": "^13.44",
         "laravel/sanctum": "^4.5",
         "laravel/tinker": "^3.2",
-        "mettle/sendportal-core": "^4.0",
         "opcodesio/log-viewer": "^3.24",
         "orchid/platform": "^14.53",
         "sentry/sentry-laravel": "^4.31",

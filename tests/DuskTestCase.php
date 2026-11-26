@@ -14,17 +14,6 @@ abstract class DuskTestCase extends BaseTestCase
     use CreatesApplication;
 
     /**
-     * Lookup tables SendPortal fills inside its migrations; DatabaseTruncation must keep them.
-     *
-     * @var array<int, string>
-     */
-    protected $exceptTables = [
-        'sendportal_campaign_statuses',
-        'sendportal_email_service_types',
-        'sendportal_unsubscribe_event_types',
-    ];
-
-    /**
      * Prepare for Dusk test execution.
      */
     #[BeforeClass]

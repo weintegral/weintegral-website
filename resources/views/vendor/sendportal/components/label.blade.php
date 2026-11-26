@@ -1,1 +1,0 @@
-<label for="id-field-{{ str_replace('[]', '', $name) }}" class="control-label col-sm-3">{{ $slot }}</label>

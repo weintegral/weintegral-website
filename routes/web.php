@@ -8,7 +8,6 @@ use App\Http\Controllers\ManagementController;
 use App\Http\Controllers\ResourceController;
 use App\Http\Controllers\ServiceController;
 use Illuminate\Support\Facades\Route;
-use Sendportal\Base\Facades\Sendportal;
 
 /*
 |--------------------------------------------------------------------------
@@ -109,23 +108,25 @@ Route::get('/job-groups', [ResourceController::class, 'jobGroupsAction'])->name(
 
 /*
 |--------------------------------------------------------------------------
-| Sendportal
-|--------------------------------------------------------------------------
-*/
-Route::middleware([])->prefix('sendportal')->group(function () {
-    Sendportal::webRoutes();
-});
-Sendportal::publicWebRoutes();
-
-
-/*
-|--------------------------------------------------------------------------
 | Redirects
 |--------------------------------------------------------------------------
 */
 Route::get('/apps', function () {
     return redirect('https://lnk.bio/weintegral');
 });
+
+/*
+|--------------------------------------------------------------------------
+| Removed Surfaces
+|--------------------------------------------------------------------------
+|
+| These paths once served SendPortal. They return 404 rather than falling
+| through to the home page redirect, so the removal is explicit.
+|
+*/
+Route::any('/sendportal/{path?}', function () {
+    abort(404);
+})->where('path', '.*');
 
 /*
 |--------------------------------------------------------------------------
