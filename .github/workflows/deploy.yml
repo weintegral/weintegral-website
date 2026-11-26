@@ -38,7 +38,7 @@ jobs:
           node-version: "26.13.1"
       - name: Install, check and build front-end (Vite+)
         run: |
-          npx vp install
+          npm ci
           npm run check
           npm run build
       - name: Generate key
