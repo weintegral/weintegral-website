@@ -1,12 +1,7 @@
-FROM php:8.5.13-cli-trixie
+FROM php:8.6.0-cli-trixie
 
 LABEL Maintainer="Gopibabu Srungavarapu <s.gopibabu@gmail.com>" \
       Description="Docker Image for weintegral website development environment"
-
-###############################################################################
-# configuring proxy
-###############################################################################
-RUN pear config-set php_ini "$PHP_INI_DIR"/php.ini
 
 ###############################################################################
 # installing essential programs
@@ -30,7 +25,7 @@ RUN apt-get -yqq update \
         supervisor \
     && docker-php-ext-configure intl \
     && docker-php-ext-configure zip \
-    && docker-php-ext-install mysqli pdo pdo_mysql pgsql pdo_pgsql pcntl intl zip sockets curl \
+    && docker-php-ext-install mysqli pdo pdo_mysql pgsql pdo_pgsql pcntl intl zip sockets curl mbstring \
     && rm -rf /var/lib/apt/lists/*
 
 ###############################################################################
