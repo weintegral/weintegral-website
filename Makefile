@@ -52,7 +52,7 @@ migrations_run:
 # Delete all images
 dependencies_install:
 	docker compose exec -it we-webserver composer install
-	docker compose exec -it we-webserver npx vp install
+	docker compose exec -it we-webserver npm ci
 
 # Run Dusk end-to-end tests against the we-selenium container
 browser_tests:
