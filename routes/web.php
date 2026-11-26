@@ -120,11 +120,16 @@ Route::get('/apps', function () {
 | Removed Surfaces
 |--------------------------------------------------------------------------
 |
-| These paths once served SendPortal. They return 404 rather than falling
-| through to the home page redirect, so the removal is explicit.
+| These paths once served SendPortal and the Orchid admin panel. They
+| return 404 rather than falling through to the home page redirect, so the
+| removal is explicit.
 |
 */
 Route::any('/sendportal/{path?}', function () {
+    abort(404);
+})->where('path', '.*');
+
+Route::any('/admin/{path?}', function () {
     abort(404);
 })->where('path', '.*');
 
