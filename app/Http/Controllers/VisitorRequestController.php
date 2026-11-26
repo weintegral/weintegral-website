@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\VisitorApiRequest;
 use App\Services\Visitor;
-use http\Exception\RuntimeException;
+use RuntimeException;
 use Illuminate\Http\JsonResponse;
 use Symfony\Component\HttpFoundation\Response;
 use OpenApi\Annotations as OA;

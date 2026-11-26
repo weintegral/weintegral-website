@@ -4,7 +4,7 @@ namespace App\Services;
 
 use App\Models\VisitorRequest;
 use Dflydev\DotAccessData\Exception\DataException;
-use http\Exception\RuntimeException;
+use RuntimeException;
 
 class Visitor
 {
