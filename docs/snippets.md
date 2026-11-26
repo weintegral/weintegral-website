@@ -1,6 +1,5 @@
 # Snippets
 
-
 ### How to send email?
 
 ```php

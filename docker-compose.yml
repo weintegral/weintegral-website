@@ -47,7 +47,7 @@ services:
             context: .
             dockerfile: docker/SQLDockerfile
         volumes:
-            - we-sql-data:/var/lib/postgresql/data
+            - we-sql-data:/var/lib/mysql
         environment:
             MYSQL_DATABASE: ${DB_DATABASE}
             MYSQL_ROOT_PASSWORD: ${DB_ROOT_PASSWORD}
@@ -71,6 +71,15 @@ services:
             MP_DATABASE: /data/mailpit.db
             MP_SMTP_AUTH_ACCEPT_ANY: 1
             MP_SMTP_AUTH_ALLOW_INSECURE: 1
+        networks:
+            - we-network
+    we-selenium:
+        image: selenium/standalone-chromium
+        container_name: we-selenium
+        profiles: ["testing"]
+        shm_size: 2gb
+        ports:
+            - "7900:7900"
         networks:
             - we-network
 volumes:

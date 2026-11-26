@@ -2,14 +2,14 @@ name: TestAndDeploy
 
 on:
   push:
-    branches: [ "main" ]
+    branches: ["main"]
 
 jobs:
   executing-tests:
     runs-on: ubuntu-latest
     services:
       mysql:
-        image: mysql:8.0
+        image: mysql:9.7.2
         env:
           MYSQL_ROOT_PASSWORD: root
           MYSQL_DATABASE: weintegral_website
@@ -25,16 +25,21 @@ jobs:
       - name: Set up PHP
         uses: shivammathur/setup-php@v2
         with:
-          php-version: '8.2'
+          php-version: "8.5"
       - name: Copy .env
         run: php -r "file_exists('.env') || copy('.env.deploy', '.env');"
       - name: Install Dependencies
         run: composer update && composer dump-autoload
       - name: Install Dependencies
         run: composer install -q --no-ansi --no-interaction --no-scripts --no-progress --prefer-dist
-      - name: Install front-end dependencies
+      - name: Set up Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: "26"
+      - name: Install, check and build front-end (Vite+)
         run: |
-          npm install
+          npx vp install
+          npm run check
           npm run build
       - name: Generate key
         run: php artisan key:generate
