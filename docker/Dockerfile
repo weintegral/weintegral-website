@@ -1,7 +1,6 @@
 FROM node:26.13.1-trixie AS nodebuild
 FROM composer:2.11.3 AS composerbuild
-FROM mlocati/php-extension-installer:2.13.4 AS phpextensionbuild
-FROM php:8.5.13-apache-trixie
+FROM php:8.6.0-apache-trixie
 
 LABEL Maintainer="Gopibabu Srungavarapu <s.gopibabu@gmail.com>" \
       Description="Docker Image for weintegral website development environment"
@@ -11,11 +10,6 @@ LABEL Maintainer="Gopibabu Srungavarapu <s.gopibabu@gmail.com>" \
 ###############################################################################
 ENV COMPOSER_ALLOW_SUPERUSER 1
 ENV COMPOSER_PROCESS_TIMEOUT 2000
-
-###############################################################################
-# configuring proxy
-###############################################################################
-RUN pear config-set php_ini "$PHP_INI_DIR"/php.ini
 
 ###############################################################################
 # installing essential programs
@@ -37,11 +31,8 @@ RUN apt-get -yqq update \
         vim \
     && docker-php-ext-configure intl \
     && docker-php-ext-configure zip \
-    && docker-php-ext-install mysqli pdo pdo_mysql pgsql pdo_pgsql pcntl intl zip sockets curl \
+    && docker-php-ext-install mysqli pdo pdo_mysql pgsql pdo_pgsql pcntl intl zip sockets curl mbstring \
     && a2enmod rewrite
-
-COPY --from=phpextensionbuild /usr/bin/install-php-extensions /usr/local/bin/
-RUN install-php-extensions http
 
 ###############################################################################
 # copy configuration files

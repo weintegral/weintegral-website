@@ -3,15 +3,14 @@
 namespace App\Services;
 
 use App\Models\VisitorRequest;
-use Dflydev\DotAccessData\Exception\DataException;
-use http\Exception\RuntimeException;
+use RuntimeException;
 
 class Visitor
 {
     /**
      * @param array $data
      * @return void
-     * @throws DataException
+     * @throws RuntimeException
      */
     public function createRequest(array $data): void
     {
@@ -22,8 +21,8 @@ class Visitor
             $visitorRequest->subject = $data['subject'];
             $visitorRequest->message = $data['message'];
             $visitorRequest->save();
-        } catch (\Throwable) {
-            throw new RuntimeException('Error creating visitor request');
+        } catch (\Throwable $exception) {
+            throw new RuntimeException('Error creating visitor request', previous: $exception);
         }
     }
 }

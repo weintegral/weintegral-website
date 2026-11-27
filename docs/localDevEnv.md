@@ -18,11 +18,11 @@ queued jobs, mail, notifications, cache operations, scheduled tasks, variable du
 The development environment pins every image to an exact tag. These are the versions it provides, taken from
 `docker/Dockerfile`, `docker/SchedulerDockerfile`, `docker/SQLDockerfile` and `docker-compose.yml`.
 
-| Tool     | Version        | Image tag                                                                    |
-| -------- | -------------- | ---------------------------------------------------------------------------- |
-| PHP      | 8.5.13         | `php:8.5.13-apache-trixie` (web server), `php:8.5.13-cli-trixie` (scheduler) |
-| Node     | 26.13.1        | `node:26.13.1-trixie`                                                        |
-| MySQL    | 9.7.4.1        | `mysql:9.7.4.1`                                                              |
-| Composer | 2.11.3         | `composer:2.11.3`                                                            |
-| Mailpit  | v1.34.0        | `axllent/mailpit:v1.34.0`                                                    |
-| Selenium | 156.0.8078.108 | `selenium/standalone-chromium:156.0.8078.108`                                |
+| Tool     | Version        | Image tag                                                                  |
+| -------- | -------------- | -------------------------------------------------------------------------- |
+| PHP      | 8.6.0          | `php:8.6.0-apache-trixie` (web server), `php:8.6.0-cli-trixie` (scheduler) |
+| Node     | 26.13.1        | `node:26.13.1-trixie`                                                      |
+| MySQL    | 9.7.4.1        | `mysql:9.7.4.1`                                                            |
+| Composer | 2.11.3         | `composer:2.11.3`                                                          |
+| Mailpit  | v1.34.0        | `axllent/mailpit:v1.34.0`                                                  |
+| Selenium | 156.0.8078.108 | `selenium/standalone-chromium:156.0.8078.108`                              |

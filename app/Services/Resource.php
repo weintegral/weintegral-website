@@ -94,11 +94,6 @@ class Resource
                 'url' => 'https://status.weintegral.com'
             ],
             [
-                'title' => 'WeIntegral Email Campaigns',
-                'brief' => 'WeIntegral Email Campaigns View',
-                'url' => 'https://weintegral.com/sendportal'
-            ],
-            [
                 'title' => 'WeIntegral Invoicing',
                 'brief' => 'WeIntegral Invoicing Dashboard',
                 'url' => 'https://app.invoicing.co/#/dashboard'

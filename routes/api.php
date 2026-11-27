@@ -3,7 +3,6 @@
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\VisitorRequestController;
-use Sendportal\Base\Facades\Sendportal;
 
 /*
 |--------------------------------------------------------------------------
@@ -27,14 +26,3 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 */
 Route::post('/visitor-request', [VisitorRequestController::class, 'createAction'])
     ->name('createCustomerRequest');
-
-/*
-|--------------------------------------------------------------------------
-| Sendportal
-|--------------------------------------------------------------------------
-*/
-Route::middleware(['auth:api'])->group(function() {
-    Sendportal::apiRoutes();
-});
-//Sendportal::apiRoutes();
-Sendportal::publicApiRoutes();

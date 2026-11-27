@@ -4,60 +4,63 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\VisitorApiRequest;
 use App\Services\Visitor;
-use http\Exception\RuntimeException;
+use RuntimeException;
 use Illuminate\Http\JsonResponse;
 use Symfony\Component\HttpFoundation\Response;
-use OpenApi\Annotations as OA;
+use OpenApi\Spec as OA;
 
-
-/**
- * @OA\Info(title="My First API", version="0.1")
- */
+#[OA\Info(title: 'WeIntegral Website API', version: '0.1')]
 class VisitorRequestController extends Controller
 {
     public function __construct(
         private Visitor $visitor
     ){}
 
-    /**
-     * @OA\Post(
-     *     path="/api/visitor-request",
-     *     summary="Create a new visitor request",
-     *     tags={"Visitor Request"},
-     *     @OA\RequestBody(
-     *         required=true,
-     *         @OA\JsonContent(
-     *             type="object",
-     *             @OA\Property(property="name", type="string", example="John Doe"),
-     *             @OA\Property(property="email", type="string", example="john.doe@example.com"),
-     *             @OA\Property(property="subject", type="string", example="Email Subject"),
-     *             @OA\Property(property="message", type="string", example="Email Message content")
-     *         )
-     *     ),
-     *     @OA\Response(
-     *         response=201,
-     *         description="Visitor request created successfully",
-     *         @OA\JsonContent(
-     *             type="object",
-     *             @OA\Property(property="message", type="string", example="Visitor request created successfully"),
-     *             @OA\Property(property="data", type="object",
-     *                 @OA\Property(property="name", type="string", example="John Doe"),
-     *                 @OA\Property(property="email", type="string", example="john.doe@example.com"),
-     *                 @OA\Property(property="subjectOfEmail", type="string", example="Subject"),
-     *                 @OA\Property(property="messageOfEmail", type="string", example="Message content")
-     *             )
-     *         )
-     *     ),
-     *     @OA\Response(
-     *         response=500,
-     *         description="Error creating visitor request",
-     *         @OA\JsonContent(
-     *             type="object",
-     *             @OA\Property(property="message", type="string", example="Error creating visitor request")
-     *         )
-     *     )
-     * )
-     */
+    #[OA\Operation\Post(
+        path: '/api/visitor-request',
+        summary: 'Create a new visitor request',
+        tags: ['Visitor Request'],
+        requestBody: new OA\RequestBody(
+            required: true,
+            content: new OA\MediaType\Json(
+                type: 'object',
+                properties: [
+                    'name' => new OA\Schema(type: 'string', example: 'John Doe'),
+                    'email' => new OA\Schema(type: 'string', example: 'john.doe@example.com'),
+                    'subject' => new OA\Schema(type: 'string', example: 'Email Subject'),
+                    'message' => new OA\Schema(type: 'string', example: 'Email Message content'),
+                ],
+            ),
+        ),
+        responses: [
+            new OA\Response(
+                response: 201,
+                description: 'Visitor request created successfully',
+                content: new OA\MediaType\Json(
+                    type: 'object',
+                    properties: [
+                        'message' => new OA\Schema(type: 'string', example: 'Visitor request created successfully'),
+                        'data' => new OA\Schema(type: 'object', properties: [
+                            'name' => new OA\Schema(type: 'string', example: 'John Doe'),
+                            'email' => new OA\Schema(type: 'string', example: 'john.doe@example.com'),
+                            'subjectOfEmail' => new OA\Schema(type: 'string', example: 'Subject'),
+                            'messageOfEmail' => new OA\Schema(type: 'string', example: 'Message content'),
+                        ]),
+                    ],
+                ),
+            ),
+            new OA\Response(
+                response: 500,
+                description: 'Error creating visitor request',
+                content: new OA\MediaType\Json(
+                    type: 'object',
+                    properties: [
+                        'message' => new OA\Schema(type: 'string', example: 'Error creating visitor request'),
+                    ],
+                ),
+            ),
+        ],
+    )]
     public function createAction(VisitorApiRequest $request): JsonResponse
     {
         try {
