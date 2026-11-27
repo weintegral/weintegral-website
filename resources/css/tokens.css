@@ -1,0 +1,155 @@
+/*
+ * WeIntegral design tokens (see DESIGN.md).
+ *
+ * Variable names follow shadcn/ui's theme variables so the foundation can map
+ * them with `@theme inline`. Brand extras (cta, emphasis, success, inverse,
+ * type, spacing, elevation, motion) follow the shadcn ones.
+ *
+ * Light is the default. The dark palette follows the system preference; the
+ * `.dark` class forces it (previews and tests only, there is no site toggle).
+ * Not imported anywhere yet: the site shell wires it in.
+ */
+
+:root {
+    color-scheme: light;
+
+    /* shadcn/ui theme variables */
+    --background: #ffffff;
+    --foreground: #0b1730;
+    --card: #ffffff;
+    --card-foreground: #0b1730;
+    --popover: #ffffff;
+    --popover-foreground: #0b1730;
+    --primary: #13294b;
+    --primary-foreground: #ffffff;
+    --secondary: #eef2f7;
+    --secondary-foreground: #13294b;
+    --muted: #f3f5f8;
+    --muted-foreground: #4f5d73;
+    --accent: #eef2f7;
+    --accent-foreground: #13294b;
+    --destructive: #c62f3a;
+    --destructive-foreground: #ffffff;
+    --border: #dde3eb;
+    --input: #7d8aa0;
+    --ring: #c4503b;
+    --radius: 0.5rem;
+
+    /* Brand extras */
+    --brand-navy: #13294b;
+    --brand-coral: #e96b56;
+    --cta: #e96b56;
+    --cta-foreground: #0b1730;
+    --cta-hover: #f08068;
+    --emphasis: #b5412e;
+    --success: #1f7a4d;
+    --success-foreground: #ffffff;
+    --inverse: #0f2140;
+    --inverse-foreground: #ffffff;
+    --inverse-muted: #b4c2d9;
+    --inverse-border: #2a4069;
+
+    /* Typography */
+    --font-sans:
+        "Inter", ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue",
+        Arial, sans-serif;
+    --font-logo: "Poppins", var(--font-sans);
+    --text-display: clamp(2.5rem, 1.6rem + 3.6vw, 4.5rem);
+    --text-h1: clamp(2.25rem, 1.75rem + 2vw, 3.5rem);
+    --text-h2: clamp(1.75rem, 1.45rem + 1.2vw, 2.5rem);
+    --text-h3: clamp(1.25rem, 1.15rem + 0.4vw, 1.5rem);
+    --text-h4: 1.125rem;
+    --text-lead: clamp(1.125rem, 1.08rem + 0.2vw, 1.25rem);
+    --text-body: 1rem;
+    --text-small: 0.875rem;
+    --text-caption: 0.8125rem;
+
+    /* Layout and spacing */
+    --container-max: 77.5rem;
+    --gutter: clamp(1rem, 4vw, 2rem);
+    --section-space: clamp(4rem, 3rem + 5vw, 7.5rem);
+
+    /* Elevation (navy-tinted, always offset and blurred) */
+    --shadow-sm: 0 1px 2px rgb(11 23 48 / 0.06);
+    --shadow-md: 0 4px 12px -2px rgb(11 23 48 / 0.1), 0 2px 4px -2px rgb(11 23 48 / 0.06);
+    --shadow-lg: 0 24px 48px -16px rgb(11 23 48 / 0.24), 0 4px 12px -4px rgb(11 23 48 / 0.08);
+
+    /* Motion */
+    --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+    --duration-fast: 120ms;
+    --duration-base: 200ms;
+    --duration-slow: 320ms;
+    --duration-draw: 1200ms;
+}
+
+@media (prefers-color-scheme: dark) {
+    :root {
+        color-scheme: dark;
+
+        --background: #0a1322;
+        --foreground: #e6ecf4;
+        --card: #101c30;
+        --card-foreground: #e6ecf4;
+        --popover: #101c30;
+        --popover-foreground: #e6ecf4;
+        --primary: #d5e0f0;
+        --primary-foreground: #0b1730;
+        --secondary: #1a2840;
+        --secondary-foreground: #e6ecf4;
+        --muted: #152238;
+        --muted-foreground: #9aa9bf;
+        --accent: #1a2840;
+        --accent-foreground: #e6ecf4;
+        --destructive: #f0727c;
+        --destructive-foreground: #0b1730;
+        --border: #24344d;
+        --input: #5b6d8a;
+        --ring: #f08a78;
+
+        --cta-hover: #f08a78;
+        --emphasis: #f29482;
+        --success: #5cc48f;
+        --success-foreground: #0b1730;
+        --inverse: #13294b;
+        --inverse-border: #2f4a78;
+
+        --shadow-sm: 0 1px 2px rgb(0 0 0 / 0.4);
+        --shadow-md: 0 4px 12px -2px rgb(0 0 0 / 0.45), 0 2px 4px -2px rgb(0 0 0 / 0.3);
+        --shadow-lg: 0 24px 48px -16px rgb(0 0 0 / 0.6), 0 4px 12px -4px rgb(0 0 0 / 0.35);
+    }
+}
+
+.dark {
+    color-scheme: dark;
+
+    --background: #0a1322;
+    --foreground: #e6ecf4;
+    --card: #101c30;
+    --card-foreground: #e6ecf4;
+    --popover: #101c30;
+    --popover-foreground: #e6ecf4;
+    --primary: #d5e0f0;
+    --primary-foreground: #0b1730;
+    --secondary: #1a2840;
+    --secondary-foreground: #e6ecf4;
+    --muted: #152238;
+    --muted-foreground: #9aa9bf;
+    --accent: #1a2840;
+    --accent-foreground: #e6ecf4;
+    --destructive: #f0727c;
+    --destructive-foreground: #0b1730;
+    --border: #24344d;
+    --input: #5b6d8a;
+    --ring: #f08a78;
+
+    --cta-hover: #f08a78;
+    --emphasis: #f29482;
+    --success: #5cc48f;
+    --success-foreground: #0b1730;
+    --inverse: #13294b;
+    --inverse-border: #2f4a78;
+
+    --shadow-sm: 0 1px 2px rgb(0 0 0 / 0.4);
+    --shadow-md: 0 4px 12px -2px rgb(0 0 0 / 0.45), 0 2px 4px -2px rgb(0 0 0 / 0.3);
+    --shadow-lg: 0 24px 48px -16px rgb(0 0 0 / 0.6), 0 4px 12px -4px rgb(0 0 0 / 0.35);
+}
