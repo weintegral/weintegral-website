@@ -41,6 +41,16 @@ class CareersPagesTest extends DuskTestCase
         ];
     }
 
+    /**
+     * The paths from pages(), for tests that only need the URL.
+     *
+     * @return array<string, array{string}>
+     */
+    public static function paths(): array
+    {
+        return array_map(fn (array $page): array => [$page[0]], self::pages());
+    }
+
     private function visitAt(Browser $browser, string $path): Browser
     {
         return $browser->resize(1440, 900)->visit($path)->waitFor(self::HYDRATED);
@@ -63,7 +73,7 @@ class CareersPagesTest extends DuskTestCase
         });
     }
 
-    #[DataProvider('pages')]
+    #[DataProvider('paths')]
     public function test_page_passes_axe(string $path): void
     {
         $this->browse(function (Browser $browser) use ($path) {
