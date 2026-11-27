@@ -23,6 +23,7 @@ import {
     TableHeader,
     TableRow,
 } from "@/components/ui/table";
+import { typeRoles } from "@/lib/typography";
 
 /** One job from App\Services\Job, as CareerController::openPosition() shapes it. */
 export interface OpenPosition {
@@ -160,9 +161,7 @@ export function OpenPositionsTable({
                     data-empty-state=""
                     className="mt-4 rounded-xl border border-dashed p-10 text-center"
                 >
-                    <h3 className="text-(length:--text-h4) font-semibold">
-                        No positions match your search
-                    </h3>
+                    <h3 className={typeRoles.subtitle}>No positions match your search</h3>
                     <p className="mt-2 text-muted-foreground">
                         Try another role, technology or skill, or{" "}
                         <a href={`mailto:${careersEmail}`} className="underline">

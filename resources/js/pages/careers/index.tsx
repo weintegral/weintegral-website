@@ -1,6 +1,8 @@
 import { ArrowRight } from "lucide-react";
 
 import { Placeholder } from "@/components/site/placeholder";
+import { PageIntro } from "@/components/site/page-intro";
+import { SectionHeading } from "@/components/site/section-heading";
 import { SiteLayout } from "@/components/site/site-layout";
 import {
     candidateResourcesHref,
@@ -8,12 +10,8 @@ import {
     openPositionsLink,
 } from "@/components/site/site-navigation";
 import { Button } from "@/components/ui/button";
-import {
-    CareersPageIntro,
-    CareersSection,
-    PillarList,
-    SectionHeading,
-} from "@/features/careers/careers-page-intro";
+import { typeRoles } from "@/lib/typography";
+import { CareersSection, PillarList } from "@/features/careers/careers-section";
 
 /** Props from CareerController::indexAction. */
 export interface CareersIndexProps {
@@ -28,24 +26,22 @@ export default function CareersIndex({ openPositionCount, careersEmail }: Career
 
     return (
         <SiteLayout>
-            <CareersPageIntro
+            <PageIntro
                 title="Careers"
                 lead="Grow your career with WeIntegral. We offer our employees and consultants room to grow, real support and a voice in how we work."
             >
-                <div className="mt-8 flex flex-wrap items-center gap-x-6 gap-y-4">
-                    <Button asChild size="brand">
-                        <a href={openPositionsLink.href}>
-                            Browse open positions
-                            <ArrowRight aria-hidden="true" />
-                        </a>
-                    </Button>
-                    <span className="text-sm text-muted-foreground" data-open-position-count="">
-                        {openPositionCount > 0
-                            ? `${positions} right now`
-                            : "No open positions right now"}
-                    </span>
-                </div>
-            </CareersPageIntro>
+                <Button asChild size="brand" className="mr-3">
+                    <a href={openPositionsLink.href}>
+                        Browse open positions
+                        <ArrowRight aria-hidden="true" />
+                    </a>
+                </Button>
+                <span className="text-sm text-muted-foreground" data-open-position-count="">
+                    {openPositionCount > 0
+                        ? `${positions} right now`
+                        : "No open positions right now"}
+                </span>
+            </PageIntro>
 
             <CareersSection labelledBy="expect-heading">
                 <SectionHeading id="expect-heading">What you can expect</SectionHeading>
@@ -86,7 +82,7 @@ export default function CareersIndex({ openPositionCount, careersEmail }: Career
                                 href={link.href}
                                 className="group flex h-full flex-col rounded-lg border bg-background p-6 transition-shadow hover:border-input hover:shadow-md"
                             >
-                                <span className="text-(length:--text-h4) font-semibold group-hover:underline">
+                                <span className={`${typeRoles.subtitle} group-hover:underline`}>
                                     {link.label}
                                 </span>
                                 <span className="mt-2 text-sm text-muted-foreground">
@@ -163,7 +159,7 @@ function HowToApplyStep({
                 {number}
             </span>
             <div>
-                <h3 className="text-(length:--text-h4) font-semibold">{title}</h3>
+                <h3 className={typeRoles.subtitle}>{title}</h3>
                 <p className="mt-1 text-muted-foreground">{children}</p>
             </div>
         </li>

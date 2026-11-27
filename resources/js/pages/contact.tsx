@@ -2,9 +2,11 @@ import { usePage } from "@inertiajs/react";
 import { Mail, MapPin, Phone, type LucideIcon } from "lucide-react";
 import type { ReactNode } from "react";
 
+import { PageIntro } from "@/components/site/page-intro";
 import { SiteLayout } from "@/components/site/site-layout";
 import { telHref } from "@/components/site/site-navigation";
 import { VisitorRequestForm } from "@/features/visitor-request/visitor-request-form";
+import { typeRoles } from "@/lib/typography";
 
 /** Props from ManagementController::contactAction; contact details and offices are shared site props. */
 export interface ContactPageProps {
@@ -16,27 +18,12 @@ export default function Contact({ visitorRequestUrl }: ContactPageProps) {
 
     return (
         <SiteLayout>
+            <PageIntro
+                title="Contact"
+                lead="Talk to an Expert. Send us a message and we will get back to you, or reach us directly."
+            />
             <div className="mx-auto max-w-(--container-max) px-(--gutter) py-12 lg:py-16">
-                <nav aria-label="Breadcrumb" className="text-sm text-muted-foreground">
-                    <ol className="flex gap-2">
-                        <li>
-                            <a href="/" className="hover:text-foreground hover:underline">
-                                Home
-                            </a>
-                        </li>
-                        <li aria-hidden="true">/</li>
-                        <li aria-current="page">Contact</li>
-                    </ol>
-                </nav>
-                <h1 className="mt-4 text-(length:--text-h1) leading-tight font-semibold tracking-tight">
-                    Contact
-                </h1>
-                <p className="mt-3 max-w-2xl text-muted-foreground">
-                    Talk to an Expert. Send us a message and we will get back to you, or reach us
-                    directly.
-                </p>
-
-                <div className="mt-10 grid gap-10 lg:grid-cols-[1fr_1.25fr]">
+                <div className="grid gap-10 lg:grid-cols-[1fr_1.25fr]">
                     <section aria-labelledby="contact-details-heading" className="space-y-6">
                         <h2 id="contact-details-heading" className="sr-only">
                             Contact details
@@ -73,7 +60,7 @@ export default function Contact({ visitorRequestUrl }: ContactPageProps) {
                         aria-labelledby="visitor-request-heading"
                         className="rounded-xl border bg-card p-6 shadow-sm"
                     >
-                        <h2 id="visitor-request-heading" className="text-xl font-semibold">
+                        <h2 id="visitor-request-heading" className={typeRoles.title}>
                             Send us a message
                         </h2>
                         <div className="mt-6">

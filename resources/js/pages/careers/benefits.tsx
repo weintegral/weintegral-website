@@ -1,14 +1,13 @@
 import { ArrowRight } from "lucide-react";
 
 import { Placeholder } from "@/components/site/placeholder";
+import { PageIntro } from "@/components/site/page-intro";
+import { SectionHeading } from "@/components/site/section-heading";
 import { SiteLayout } from "@/components/site/site-layout";
-import { openPositionsLink } from "@/components/site/site-navigation";
+import { careersLink, openPositionsLink } from "@/components/site/site-navigation";
 import { Button } from "@/components/ui/button";
-import {
-    CareersPageIntro,
-    CareersSection,
-    SectionHeading,
-} from "@/features/careers/careers-page-intro";
+import { CareersSection } from "@/features/careers/careers-section";
+import { typeRoles } from "@/lib/typography";
 
 /** Benefit groups. Every specific awaits the owner (launch checklist). */
 const benefitGroups: { title: string; detail: React.ReactNode }[] = [
@@ -43,9 +42,9 @@ const benefitGroups: { title: string; detail: React.ReactNode }[] = [
 export default function Benefits() {
     return (
         <SiteLayout>
-            <CareersPageIntro
+            <PageIntro
                 title="Benefits"
-                withinCareers
+                trail={[careersLink]}
                 lead="We look after the people who do the work. Here's what we offer our employees and consultants."
             />
 
@@ -55,9 +54,7 @@ export default function Benefits() {
                     {benefitGroups.map((group) => (
                         <li key={group.title} className="border-t pt-6">
                             <span aria-hidden="true" className="block h-0.5 w-6 bg-brand-coral" />
-                            <h3 className="mt-4 text-(length:--text-h3) font-semibold">
-                                {group.title}
-                            </h3>
+                            <h3 className={`mt-4 ${typeRoles.title}`}>{group.title}</h3>
                             <p className="mt-2 text-pretty text-muted-foreground">{group.detail}</p>
                         </li>
                     ))}

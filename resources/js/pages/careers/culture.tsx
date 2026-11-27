@@ -1,22 +1,19 @@
 import { ArrowRight } from "lucide-react";
 
 import { Placeholder } from "@/components/site/placeholder";
+import { PageIntro } from "@/components/site/page-intro";
+import { SectionHeading } from "@/components/site/section-heading";
 import { SiteLayout } from "@/components/site/site-layout";
-import { openPositionsLink } from "@/components/site/site-navigation";
+import { careersLink, openPositionsLink } from "@/components/site/site-navigation";
 import { Button } from "@/components/ui/button";
-import {
-    CareersPageIntro,
-    CareersSection,
-    PillarList,
-    SectionHeading,
-} from "@/features/careers/careers-page-intro";
+import { CareersSection, PillarList } from "@/features/careers/careers-section";
 
 export default function Culture() {
     return (
         <SiteLayout>
-            <CareersPageIntro
+            <PageIntro
                 title="Culture"
-                withinCareers
+                trail={[careersLink]}
                 lead="People are our business. We build long-lasting relationships with our employees and consultants, and we give everyone room to learn, try new ideas and be heard."
             />
 

@@ -1,13 +1,16 @@
 import { ArrowRight } from "lucide-react";
 
 import { ClosingBand } from "@/components/site/closing-band";
-import { PageBreadcrumbs } from "@/components/site/page-breadcrumbs";
+import { PageIntro } from "@/components/site/page-intro";
+import { ProcessBand } from "@/components/site/process-band";
+import { SectionHeading, sectionHeadingGap } from "@/components/site/section-heading";
 import { SiteLayout } from "@/components/site/site-layout";
 import { contactHref } from "@/components/site/site-navigation";
 import { Button } from "@/components/ui/button";
 import { PlaceholderBlock } from "@/features/services/copy-text";
 import { FaqList, type Faq } from "@/features/services/faq-list";
 import type { ServiceSummary } from "@/features/services/service";
+import { typeRoles } from "@/lib/typography";
 
 /** Props from ServiceController::indexAction. */
 export interface ServicesOverviewProps {
@@ -15,26 +18,6 @@ export interface ServicesOverviewProps {
 }
 
 const container = "mx-auto max-w-(--container-max) px-(--gutter)";
-const h2 = "text-(length:--text-h2) leading-tight font-semibold tracking-tight";
-
-/** Discover, Build, Run: the engagement process confirmed by the owner. */
-const stages = [
-    {
-        title: "Discover",
-        description:
-            "We learn your goals, systems and constraints, then agree on scope, team and timeline with you.",
-    },
-    {
-        title: "Build",
-        description:
-            "We design, develop and test in short cycles, with working software you can review along the way.",
-    },
-    {
-        title: "Run",
-        description:
-            "We deploy and support what we built, and adjust the team as your needs change.",
-    },
-];
 
 const faqs: Faq[] = [
     {
@@ -56,31 +39,17 @@ const faqs: Faq[] = [
 export default function ServicesOverview({ services }: ServicesOverviewProps) {
     return (
         <SiteLayout>
-            <section
-                aria-labelledby="services-heading"
-                className="border-b border-border pt-[clamp(2.5rem,2rem+3vw,5rem)] pb-[clamp(3rem,2rem+4vw,5.5rem)]"
+            <PageIntro
+                title="Services"
+                lead="Five Services, one accountable team. Start with the Service you need today. Because we cover build, testing, deployment and support, you never have to hand your application to another vendor."
             >
-                <div className={container}>
-                    <PageBreadcrumbs trail={[]} current="Services" />
-                    <h1
-                        id="services-heading"
-                        className="mt-8 text-(length:--text-h1) leading-[1.1] font-semibold tracking-tight"
-                    >
-                        Services
-                    </h1>
-                    <p className="mt-5 max-w-[56ch] text-(length:--text-lead) text-muted-foreground">
-                        Five Services, one accountable team. Start with the Service you need today.
-                        Because we cover build, testing, deployment and support, you never have to
-                        hand your application to another vendor.
-                    </p>
-                    <Button asChild variant="cta" size="brand-lg" className="mt-8">
-                        <a href={contactHref}>
-                            Talk to an Expert
-                            <ArrowRight className="size-4" aria-hidden="true" />
-                        </a>
-                    </Button>
-                </div>
-            </section>
+                <Button asChild variant="cta" size="brand-lg">
+                    <a href={contactHref}>
+                        Talk to an Expert
+                        <ArrowRight className="size-4" aria-hidden="true" />
+                    </a>
+                </Button>
+            </PageIntro>
 
             <section aria-labelledby="service-list-heading" className="py-(--section-space)">
                 <div className={container}>
@@ -95,7 +64,9 @@ export default function ServicesOverview({ services }: ServicesOverviewProps) {
                                     className="group grid items-start gap-x-8 gap-y-3 border-b border-border px-3 py-7 transition-colors duration-(--duration-base) ease-brand hover:bg-muted md:grid-cols-[minmax(0,1fr)_minmax(0,1.25fr)_2.75rem]"
                                 >
                                     <div>
-                                        <h3 className="text-(length:--text-h3) leading-snug font-[620] tracking-[-0.015em] transition-colors group-hover:text-emphasis">
+                                        <h3
+                                            className={`${typeRoles.title} transition-colors group-hover:text-emphasis`}
+                                        >
                                             {service.name}
                                         </h3>
                                         <p className="mt-1 text-muted-foreground">
@@ -125,36 +96,7 @@ export default function ServicesOverview({ services }: ServicesOverviewProps) {
                 </div>
             </section>
 
-            <section
-                aria-labelledby="process-heading"
-                className="bg-inverse py-(--section-space) text-inverse-foreground"
-            >
-                <div className={container}>
-                    <h2 id="process-heading" className={h2}>
-                        From first conversation to running software
-                    </h2>
-                    <p className="mt-4 max-w-[52ch] text-inverse-muted">
-                        Every engagement follows the same three stages, whether you need a full
-                        product team or one specialist.
-                    </p>
-                    <ol className="mt-[clamp(2rem,1.5rem+2vw,3.5rem)] grid gap-8 md:grid-cols-3">
-                        {stages.map((stage, index) => (
-                            <li
-                                key={stage.title}
-                                className="border-t-[3px] border-brand-coral pt-6"
-                            >
-                                <span className="text-sm font-semibold text-inverse-muted">
-                                    Stage {index + 1}
-                                </span>
-                                <h3 className="mt-1 text-(length:--text-h3) font-[620]">
-                                    {stage.title}
-                                </h3>
-                                <p className="mt-2 text-inverse-muted">{stage.description}</p>
-                            </li>
-                        ))}
-                    </ol>
-                </div>
-            </section>
+            <ProcessBand heading="From first conversation to running software" />
 
             <div className="py-(--section-space)">
                 <div className={container}>
@@ -169,9 +111,9 @@ export default function ServicesOverview({ services }: ServicesOverviewProps) {
 
             <section aria-labelledby="faq-heading" className="bg-muted py-(--section-space)">
                 <div className={container}>
-                    <h2 id="faq-heading" className={`${h2} mb-[clamp(2rem,1.5rem+2vw,3.5rem)]`}>
+                    <SectionHeading id="faq-heading" className={sectionHeadingGap}>
                         Questions Clients ask
-                    </h2>
+                    </SectionHeading>
                     <FaqList faqs={faqs} />
                 </div>
             </section>

@@ -1,8 +1,10 @@
 import { ArrowUpRight } from "lucide-react";
 
+import { PageIntro } from "@/components/site/page-intro";
 import { SiteLayout } from "@/components/site/site-layout";
 import { openPositionsLink } from "@/components/site/site-navigation";
-import { CareersPageIntro, CareersSection } from "@/features/careers/careers-page-intro";
+import { CareersSection } from "@/features/careers/careers-section";
+import { typeRoles } from "@/lib/typography";
 
 /** One link from App\Services\Resource::getResources(). */
 export interface CandidateResource {
@@ -23,7 +25,7 @@ function hostOf(url: string): string {
 export default function CandidateResources({ candidateResources }: CandidateResourcesProps) {
     return (
         <SiteLayout>
-            <CareersPageIntro
+            <PageIntro
                 title="Candidate resources"
                 lead="Working through a visa, H-1B or green card process? These official and third-party tools can help you check a case, research wages and plan appointments."
             />
@@ -70,7 +72,7 @@ export default function CandidateResources({ candidateResources }: CandidateReso
             </CareersSection>
 
             <CareersSection labelledBy="roles-heading" muted>
-                <h2 id="roles-heading" className="text-(length:--text-h3) font-semibold">
+                <h2 id="roles-heading" className={typeRoles.title}>
                     Looking for your next role?
                 </h2>
                 <p className="mt-2 text-muted-foreground">

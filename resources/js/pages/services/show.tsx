@@ -3,6 +3,7 @@ import { useMemo } from "react";
 
 import { ClosingBand } from "@/components/site/closing-band";
 import { PageBreadcrumbs } from "@/components/site/page-breadcrumbs";
+import { SectionHeading, sectionHeadingGap } from "@/components/site/section-heading";
 import { SiteLayout } from "@/components/site/site-layout";
 import { contactHref, servicesHref } from "@/components/site/site-navigation";
 import { Button } from "@/components/ui/button";
@@ -10,6 +11,7 @@ import { CopyText, PlaceholderBlock } from "@/features/services/copy-text";
 import { FaqList } from "@/features/services/faq-list";
 import { ServiceAnchorNav } from "@/features/services/service-anchor-nav";
 import { isPending, type Service } from "@/features/services/service";
+import { typeRoles } from "@/lib/typography";
 
 /** Props from ServiceController::showAction. */
 export interface ServicePageProps {
@@ -18,8 +20,7 @@ export interface ServicePageProps {
 
 const container = "mx-auto max-w-(--container-max) px-(--gutter)";
 const section = "scroll-mt-16 py-(--section-space)";
-const h2 = "text-(length:--text-h2) leading-tight font-semibold tracking-tight";
-const h3 = "text-(length:--text-h3) leading-snug font-[620] tracking-[-0.015em]";
+const { section: h2, title: h3 } = typeRoles;
 
 /** Sections listed in the in-page navigation, in page order. */
 const anchors = [
@@ -58,7 +59,7 @@ export default function ServicePage({ service }: ServicePageProps) {
                         {service.overview.paragraphs.map((paragraph, index) => (
                             <p
                                 key={index}
-                                className={`max-w-[60ch] text-(length:--text-lead) leading-relaxed ${index > 0 ? "text-muted-foreground" : ""}`}
+                                className={`max-w-[60ch] ${typeRoles.lead} ${index > 0 ? "text-muted-foreground" : ""}`}
                             >
                                 <CopyText copy={paragraph} />
                             </p>
@@ -73,12 +74,9 @@ export default function ServicePage({ service }: ServicePageProps) {
                 className={`${section} bg-muted`}
             >
                 <div className={container}>
-                    <h2
-                        id="what-you-get-heading"
-                        className={`${h2} mb-[clamp(2rem,1.5rem+2vw,3.5rem)]`}
-                    >
+                    <SectionHeading id="what-you-get-heading" className={sectionHeadingGap}>
                         What you get
-                    </h2>
+                    </SectionHeading>
                     <div className="grid gap-10 md:grid-cols-3 md:gap-0">
                         {service.pillars.map((pillar) => (
                             <div
@@ -108,14 +106,13 @@ export default function ServicePage({ service }: ServicePageProps) {
                 className={section}
             >
                 <div className={container}>
-                    <div className="mb-[clamp(2rem,1.5rem+2vw,3.5rem)]">
-                        <h2 id="how-we-deliver-heading" className={h2}>
-                            How we deliver
-                        </h2>
-                        <p className="mt-4 max-w-[52ch] text-muted-foreground">
-                            {service.delivery.intro}
-                        </p>
-                    </div>
+                    <SectionHeading
+                        id="how-we-deliver-heading"
+                        intro={service.delivery.intro}
+                        className={sectionHeadingGap}
+                    >
+                        How we deliver
+                    </SectionHeading>
                     <ol className="max-w-4xl">
                         {service.delivery.steps.map((step, index) => (
                             <li
@@ -129,7 +126,7 @@ export default function ServicePage({ service }: ServicePageProps) {
                                     {index + 1}
                                 </span>
                                 <div>
-                                    <h3 className="mb-1.5 pt-2 text-(length:--text-h4) font-semibold">
+                                    <h3 className={`mb-1.5 pt-2 ${typeRoles.subtitle}`}>
                                         {step.title}
                                     </h3>
                                     <p className="max-w-[60ch] text-muted-foreground">
@@ -156,9 +153,9 @@ export default function ServicePage({ service }: ServicePageProps) {
 
             <section id="faq" aria-labelledby="faq-heading" className={section}>
                 <div className={container}>
-                    <h2 id="faq-heading" className={`${h2} mb-[clamp(2rem,1.5rem+2vw,3.5rem)]`}>
+                    <SectionHeading id="faq-heading" className={sectionHeadingGap}>
                         Questions Clients ask
-                    </h2>
+                    </SectionHeading>
                     <FaqList faqs={service.faqs} />
                 </div>
             </section>
@@ -208,13 +205,10 @@ function ServiceHero({ service }: ServicePageProps) {
                 />
                 <div className="mt-8 grid items-start gap-[clamp(2rem,1rem+4vw,5rem)] lg:grid-cols-[minmax(0,1.35fr)_minmax(0,1fr)]">
                     <div>
-                        <h1
-                            id="service-heading"
-                            className="max-w-[14ch] text-(length:--text-h1) leading-[1.1] font-semibold tracking-tight"
-                        >
+                        <h1 id="service-heading" className={`max-w-[14ch] ${typeRoles.headline}`}>
                             {service.name}
                         </h1>
-                        <p className="mt-5 max-w-[50ch] text-(length:--text-lead) text-muted-foreground">
+                        <p className={`mt-5 max-w-[50ch] text-muted-foreground ${typeRoles.lead}`}>
                             {service.summary}
                         </p>
                         <div className="mt-8 flex flex-wrap gap-3">

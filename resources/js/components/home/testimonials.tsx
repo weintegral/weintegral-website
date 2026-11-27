@@ -1,3 +1,5 @@
+import { typeRoles } from "@/lib/typography";
+
 /**
  * A Client testimonial. Publish only real quotes with the person's written consent;
  * the old site's testimonials are template placeholders and must never be used.
@@ -19,10 +21,7 @@ export function Testimonials({ testimonials }: { testimonials: Testimonial[] }) 
     return (
         <section aria-labelledby="testimonials-heading" className="py-(--section-space)">
             <div className="mx-auto max-w-(--container-max) px-(--gutter)">
-                <h2
-                    id="testimonials-heading"
-                    className="text-(length:--text-h2) leading-[1.15] font-semibold tracking-[-0.025em]"
-                >
+                <h2 id="testimonials-heading" className={typeRoles.section}>
                     What our Clients say
                 </h2>
                 <ul className="mt-10 grid gap-8 md:grid-cols-2 lg:grid-cols-3">

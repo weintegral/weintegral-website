@@ -1,20 +1,45 @@
+import { Fragment } from "react";
+
+import {
+    Breadcrumb,
+    BreadcrumbItem,
+    BreadcrumbLink,
+    BreadcrumbList,
+    BreadcrumbPage,
+    BreadcrumbSeparator,
+} from "@/components/ui/breadcrumb";
+
 import type { NavLink } from "./site-navigation";
 
-/** A breadcrumb trail from Home; the last crumb is the current page and is not a link. */
-export function PageBreadcrumbs({ trail, current }: { trail: NavLink[]; current: string }) {
+/**
+ * The breadcrumb trail every inner page opens with: Home, then the page's ancestors,
+ * then the current page (not a link).
+ */
+export function PageBreadcrumbs({
+    trail = [],
+    current,
+}: {
+    /** Ancestors between Home and the current page, outermost first. */
+    trail?: NavLink[];
+    current: string;
+}) {
     return (
-        <nav aria-label="Breadcrumb" className="text-sm text-muted-foreground">
-            <ol className="flex flex-wrap gap-2">
+        <Breadcrumb aria-label="Breadcrumb">
+            <BreadcrumbList className="gap-2">
                 {[{ label: "Home", href: "/" }, ...trail].map((crumb) => (
-                    <li key={crumb.href} className="flex gap-2">
-                        <a href={crumb.href} className="hover:text-foreground hover:underline">
-                            {crumb.label}
-                        </a>
-                        <span aria-hidden="true">/</span>
-                    </li>
+                    <Fragment key={crumb.href}>
+                        <BreadcrumbItem>
+                            <BreadcrumbLink href={crumb.href} className="hover:underline">
+                                {crumb.label}
+                            </BreadcrumbLink>
+                        </BreadcrumbItem>
+                        <BreadcrumbSeparator>/</BreadcrumbSeparator>
+                    </Fragment>
                 ))}
-                <li aria-current="page">{current}</li>
-            </ol>
-        </nav>
+                <BreadcrumbItem>
+                    <BreadcrumbPage>{current}</BreadcrumbPage>
+                </BreadcrumbItem>
+            </BreadcrumbList>
+        </Breadcrumb>
     );
 }

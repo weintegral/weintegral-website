@@ -1,9 +1,11 @@
 import { Placeholder } from "@/components/site/placeholder";
+import { PageIntro } from "@/components/site/page-intro";
 import { SiteLayout } from "@/components/site/site-layout";
-import { candidateResourcesHref } from "@/components/site/site-navigation";
+import { careersLink, candidateResourcesHref } from "@/components/site/site-navigation";
 import { Button } from "@/components/ui/button";
-import { CareersPageIntro, CareersSection } from "@/features/careers/careers-page-intro";
+import { CareersSection } from "@/features/careers/careers-section";
 import { OpenPositionsTable, type OpenPosition } from "@/features/careers/open-positions-table";
+import { typeRoles } from "@/lib/typography";
 
 /** Props from CareerController::jobOpeningsAction. */
 export interface OpenPositionsProps {
@@ -15,9 +17,9 @@ export interface OpenPositionsProps {
 export default function OpenPositions({ openPositions, careersEmail }: OpenPositionsProps) {
     return (
         <SiteLayout>
-            <CareersPageIntro
+            <PageIntro
                 title="Open positions"
-                withinCareers
+                trail={[careersLink]}
                 lead="Find your next role. Search by title, technology or skill, then apply by email with the role's reference."
             />
 
@@ -30,9 +32,7 @@ export default function OpenPositions({ openPositions, careersEmail }: OpenPosit
                         data-empty-state=""
                         className="rounded-xl border border-dashed p-10 text-center"
                     >
-                        <h3 className="text-(length:--text-h3) font-semibold">
-                            No open positions right now
-                        </h3>
+                        <h3 className={typeRoles.title}>No open positions right now</h3>
                         <p className="mx-auto mt-2 max-w-xl text-muted-foreground">
                             We don't have openings at the moment, but we're always glad to hear from
                             skilled people. Send us your résumé and the kind of work you're looking
@@ -50,7 +50,7 @@ export default function OpenPositions({ openPositions, careersEmail }: OpenPosit
             <CareersSection labelledBy="fit-heading" muted>
                 <div className="grid gap-8 lg:grid-cols-2">
                     <div>
-                        <h2 id="fit-heading" className="text-(length:--text-h3) font-semibold">
+                        <h2 id="fit-heading" className={typeRoles.title}>
                             Don't see a fit?
                         </h2>
                         <p className="mt-2 text-pretty text-muted-foreground">

@@ -3,6 +3,7 @@ import type { ReactNode } from "react";
 
 import { SiteFooter } from "@/components/site/site-footer";
 import { SiteHeader } from "@/components/site/site-header";
+import { typeRoles } from "@/lib/typography";
 
 /**
  * The shell for an Internal Tools page: the public header and footer around a plain
@@ -31,9 +32,7 @@ export function InternalToolLayout({
             <main id="main-content" tabIndex={-1} className="outline-none">
                 <div className="mx-auto max-w-(--container-max) px-(--gutter) py-12 lg:py-16">
                     <p className="text-sm text-muted-foreground">Internal Tools</p>
-                    <h1 className="mt-2 text-(length:--text-h2) leading-tight font-semibold tracking-tight">
-                        {title}
-                    </h1>
+                    <h1 className={`mt-2 ${typeRoles.section}`}>{title}</h1>
                     {intro ? <p className="mt-3 max-w-2xl text-muted-foreground">{intro}</p> : null}
                     <div className="mt-8">{children}</div>
                 </div>

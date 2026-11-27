@@ -4,7 +4,10 @@ import type { ReactNode } from "react";
 
 import { IntegralLine, type Station } from "@/components/home/integral-line";
 import { Testimonials, type Testimonial } from "@/components/home/testimonials";
+import { ClosingBand } from "@/components/site/closing-band";
 import { Placeholder } from "@/components/site/placeholder";
+import { ProcessBand } from "@/components/site/process-band";
+import { SectionHeading, sectionHeadingGap } from "@/components/site/section-heading";
 import { SiteLayout } from "@/components/site/site-layout";
 import {
     careersLinks,
@@ -16,6 +19,7 @@ import {
     telHref,
 } from "@/components/site/site-navigation";
 import { Button } from "@/components/ui/button";
+import { typeRoles } from "@/lib/typography";
 import type { ServiceListing } from "@/types/inertia";
 
 /** A figure shown in "Why WeIntegral", awaiting owner confirmation. */
@@ -40,10 +44,7 @@ export interface HomePageProps {
     insights: Insight[];
 }
 
-const h2 = "text-(length:--text-h2) leading-[1.15] font-[650] tracking-[-0.025em]";
-const h3 = "text-(length:--text-h3) leading-[1.3] font-[620] tracking-[-0.015em]";
-const h4 = "text-lg leading-[1.4] font-[620] tracking-[-0.01em]";
-const lead = "text-(length:--text-lead) leading-[1.55]";
+const { section: h2, title: h3, subtitle: h4, lead } = typeRoles;
 const container = "mx-auto max-w-(--container-max) px-(--gutter)";
 const section = "py-(--section-space)";
 const linkArrow =
@@ -114,21 +115,6 @@ const differentiators: { title: string; body: ReactNode }[] = [
     },
 ];
 
-const stages = [
-    {
-        name: "Discover",
-        body: "We learn your goals, systems and constraints, then agree on scope, team and timeline with you.",
-    },
-    {
-        name: "Build",
-        body: "We design, develop and test in short cycles, with working software you can review along the way.",
-    },
-    {
-        name: "Run",
-        body: "We deploy, monitor and support what we built, and adjust the team as your needs change.",
-    },
-];
-
 const careerPillars = [
     {
         title: "People first",
@@ -162,10 +148,7 @@ export default function Home({ statistics, testimonials, insights }: HomePagePro
                     className={`${container} grid items-center gap-8 py-[clamp(3.5rem,2rem+6vw,7rem)] min-[52rem]:grid-cols-[minmax(0,1.05fr)_minmax(0,0.95fr)]`}
                 >
                     <div>
-                        <h1
-                            id="home-heading"
-                            className="max-w-[13ch] text-(length:--text-display) leading-[1.03] font-[680] tracking-[-0.035em]"
-                        >
+                        <h1 id="home-heading" className={`max-w-[13ch] ${typeRoles.display}`}>
                             One team for the software your business runs on.
                         </h1>
                         <p className={`${lead} mt-6 max-w-[46ch] text-inverse-muted`}>
@@ -210,12 +193,14 @@ export default function Home({ statistics, testimonials, insights }: HomePagePro
             {/* Services */}
             <section aria-labelledby="services-heading" className={section}>
                 <div className={container}>
-                    <SectionHead
+                    <SectionHeading
                         id="services-heading"
-                        title="Five Services. One accountable team."
                         intro="Start with the Service you need today. Because we cover build, testing, deployment and support, you never have to hand your application to another vendor."
-                        link={{ label: "All Services", href: servicesHref }}
-                    />
+                        action={<SeeAllLink label="All Services" href={servicesHref} />}
+                        className={sectionHeadingGap}
+                    >
+                        Five Services. One accountable team.
+                    </SectionHeading>
                     <ul className="border-t border-border">
                         {services.map((service) => (
                             <li key={service.href}>
@@ -280,9 +265,7 @@ export default function Home({ statistics, testimonials, insights }: HomePagePro
                                     <dt className="text-sm text-muted-foreground">
                                         {statistic.label}
                                     </dt>
-                                    <dd className="text-(length:--text-h2) leading-[1.1] font-[650] tracking-[-0.025em]">
-                                        {statistic.value}
-                                    </dd>
+                                    <dd className={`${h2} tabular-nums`}>{statistic.value}</dd>
                                 </div>
                             ))}
                         </dl>
@@ -299,12 +282,14 @@ export default function Home({ statistics, testimonials, insights }: HomePagePro
             {/* Industries */}
             <section aria-labelledby="industries-heading" className={section}>
                 <div className={container}>
-                    <SectionHead
+                    <SectionHeading
                         id="industries-heading"
-                        title="Industries we serve"
                         intro="Domain knowledge shortens every project. These are the sectors our teams work in."
-                        link={{ label: "All Industries", href: industriesHref }}
-                    />
+                        action={<SeeAllLink label="All Industries" href={industriesHref} />}
+                        className={sectionHeadingGap}
+                    >
+                        Industries we serve
+                    </SectionHeading>
                     <ul className="grid border-t border-foreground min-[52rem]:grid-cols-3">
                         {industries.map((industry) => (
                             <li
@@ -342,46 +327,21 @@ export default function Home({ statistics, testimonials, insights }: HomePagePro
                 </div>
             </section>
 
-            {/* Engagement process */}
-            <section
-                aria-labelledby="process-heading"
-                className={`${section} bg-inverse text-inverse-foreground`}
-            >
-                <div className={container}>
-                    <div className="mb-[clamp(2rem,1.5rem+2vw,3.5rem)]">
-                        <h2 id="process-heading" className={h2}>
-                            From first conversation to running software
-                        </h2>
-                        <p className="mt-4 max-w-[52ch] text-inverse-muted">
-                            Every engagement follows the same three stages, whether you need a full
-                            product team or one specialist.
-                        </p>
-                    </div>
-                    <ol className="relative grid gap-9 pl-11 before:absolute before:top-2.5 before:bottom-0 before:left-[0.55rem] before:w-0.5 before:bg-linear-to-b before:from-cta before:from-75% before:to-transparent min-[52rem]:grid-cols-3 min-[52rem]:gap-10 min-[52rem]:pt-11 min-[52rem]:pl-0 min-[52rem]:before:top-2.5 min-[52rem]:before:right-0 min-[52rem]:before:bottom-auto min-[52rem]:before:left-2.5 min-[52rem]:before:h-0.5 min-[52rem]:before:w-auto min-[52rem]:before:bg-linear-to-r min-[52rem]:before:from-70%">
-                        {stages.map((stage) => (
-                            <li
-                                key={stage.name}
-                                className="relative before:absolute before:top-0 before:-left-11 before:size-5 before:rounded-full before:border-3 before:border-cta before:bg-inverse min-[52rem]:before:-top-11 min-[52rem]:before:left-0"
-                            >
-                                <h3 className={`${h3} mb-2.5`}>{stage.name}</h3>
-                                <p className="max-w-[34ch] text-inverse-muted">{stage.body}</p>
-                            </li>
-                        ))}
-                    </ol>
-                </div>
-            </section>
+            <ProcessBand heading="From first conversation to running software" />
 
             <Testimonials testimonials={testimonials} />
 
             {/* Latest Insights */}
             <section aria-labelledby="insights-heading" className={section}>
                 <div className={container}>
-                    <SectionHead
+                    <SectionHeading
                         id="insights-heading"
-                        title="Latest Insights"
                         intro="Notes from our team on building, testing and running software."
-                        link={{ label: "Visit the blog", href: insightsHref, external: true }}
-                    />
+                        action={<SeeAllLink label="Visit the blog" href={insightsHref} external />}
+                        className={sectionHeadingGap}
+                    >
+                        Latest Insights
+                    </SectionHeading>
                     <ul className="grid gap-8 min-[52rem]:grid-cols-3">
                         {insights.length > 0
                             ? insights.map((insight) => (
@@ -488,87 +448,32 @@ export default function Home({ statistics, testimonials, insights }: HomePagePro
                 </div>
             </section>
 
-            {/* Closing CTA */}
-            <section aria-labelledby="closing-heading" className="bg-cta text-cta-foreground">
-                <div
-                    className={`${container} grid items-end gap-8 py-[clamp(3.5rem,2.5rem+4vw,6rem)] min-[52rem]:grid-cols-[minmax(0,1.4fr)_minmax(0,1fr)]`}
-                >
-                    <div>
-                        <h2
-                            id="closing-heading"
-                            className="max-w-[18ch] text-(length:--text-h1) leading-[1.08] font-[650] tracking-[-0.03em]"
-                        >
-                            Have a project or a role to fill? Let&rsquo;s talk.
-                        </h2>
-                        <p className={`${lead} mt-4 max-w-[48ch]`}>
-                            Tell us what you need and the right person from our team will follow up.{" "}
-                            <Placeholder className="border-cta-foreground bg-white/45 text-cta-foreground">
-                                Reply-time commitment, e.g. &ldquo;within N business days&rdquo;,
-                                owner to confirm
-                            </Placeholder>
-                        </p>
-                    </div>
-                    <div className="flex flex-col items-start gap-4 min-[52rem]:justify-self-end">
-                        <Button
-                            asChild
-                            size="brand-lg"
-                            className="group/btn bg-[#0b1730] font-semibold text-white hover:bg-[#13294b]"
-                        >
-                            <a href={contactHref}>
-                                Talk to an Expert
-                                <ArrowRight
-                                    aria-hidden="true"
-                                    className="transition-transform duration-(--duration-slow) ease-brand group-hover/btn:translate-x-[3px]"
-                                />
-                            </a>
-                        </Button>
-                        <a
-                            href={`mailto:${contact.email}`}
-                            className="font-semibold underline-offset-4 hover:underline"
-                        >
-                            Or email {contact.email}
-                        </a>
-                    </div>
-                </div>
-            </section>
+            <ClosingBand />
         </SiteLayout>
     );
 }
 
-/** A section's heading and intro, with an optional "see all" link to the right. */
-function SectionHead({
-    id,
-    title,
-    intro,
-    link,
+/** A section's "see all" link, shown to the right of its heading. */
+function SeeAllLink({
+    label,
+    href,
+    external = false,
 }: {
-    id: string;
-    title: string;
-    intro: string;
-    link?: { label: string; href: string; external?: boolean };
+    label: string;
+    href: string;
+    external?: boolean;
 }) {
-    return (
-        <div className="mb-[clamp(2rem,1.5rem+2vw,3.5rem)] flex flex-wrap items-end justify-between gap-8">
-            <div>
-                <h2 id={id} className={h2}>
-                    {title}
-                </h2>
-                <p className="mt-4 max-w-[52ch] text-muted-foreground">{intro}</p>
-            </div>
-            {link &&
-                (link.external ? (
-                    <a href={link.href} target="_blank" rel="noopener" className={linkArrow}>
-                        {link.label}
-                        <ArrowUpRight className="size-4" aria-hidden="true" />
-                        <span className="sr-only">(opens in a new tab)</span>
-                    </a>
-                ) : (
-                    <a href={link.href} className={linkArrow}>
-                        {link.label}
-                        <ArrowRight className="size-4" aria-hidden="true" />
-                    </a>
-                ))}
-        </div>
+    return external ? (
+        <a href={href} target="_blank" rel="noopener" className={linkArrow}>
+            {label}
+            <ArrowUpRight className="size-4" aria-hidden="true" />
+            <span className="sr-only">(opens in a new tab)</span>
+        </a>
+    ) : (
+        <a href={href} className={linkArrow}>
+            {label}
+            <ArrowRight className="size-4" aria-hidden="true" />
+        </a>
     );
 }
 

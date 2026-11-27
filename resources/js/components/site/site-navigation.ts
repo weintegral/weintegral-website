@@ -23,6 +23,8 @@ export const aboutLinks: NavLink[] = [
     { label: "Leadership", href: "/team" },
 ];
 
+export const careersLink: NavLink = { label: "Careers", href: careersHref };
+
 export const openPositionsLink: NavLink = { label: "Open Positions", href: "/career/openings" };
 
 export const careersLinks: NavLink[] = [
