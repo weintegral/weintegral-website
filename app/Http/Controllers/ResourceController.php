@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Services\ContactInfo;
 use App\Services\Resource;
 use Illuminate\View\View;
+use Inertia\Inertia;
+use Inertia\Response;
 
 class ResourceController extends Controller
 {
@@ -23,12 +25,11 @@ class ResourceController extends Controller
         $this->resource = $resource;
     }
 
-    public function indexAction(): View
+    /** Candidate Resources: the public visa and H-1B links. */
+    public function indexAction(): Response
     {
-        $resources = ['resources' => $this->resource->getResources()];
-
-        $data = array_merge_recursive($this->basicContactData, $resources);
-
-        return view('resources/index', $data);
+        return Inertia::render('candidate-resources', [
+            'candidateResources' => $this->resource->getResources(),
+        ]);
     }
 }

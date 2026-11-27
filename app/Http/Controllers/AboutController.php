@@ -29,13 +29,6 @@ class AboutController extends Controller
         return view('about/index', $data);
     }
 
-    public function servicesAction(): View
-    {
-        $data = $this->basicContactData;
-
-        return view('about/services', $data);
-    }
-
     public function clientsAction(): View
     {
         $data = $this->basicContactData;

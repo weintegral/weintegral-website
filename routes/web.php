@@ -32,7 +32,7 @@ Route::get('/', [HomePageController::class, 'indexAction'])->name('homePage');
 
 Route::get('/about', [AboutController::class, 'aboutAction'])->name('aboutCompanyPage');
 
-Route::get('/services', [AboutController::class, 'servicesAction'])->name('servicesPage');
+Route::get('/services', [ServiceController::class, 'indexAction'])->name('servicesPage');
 
 Route::get('/clients', [AboutController::class, 'clientsAction'])->name('clientsPage');
 
@@ -47,15 +47,15 @@ Route::get('/privacy-policy', [AboutController::class, 'privacyPolicyAction'])->
 | Services We Provide
 |--------------------------------------------------------------------------
 */
-Route::get('/app-development', [ServiceController::class, 'appDevelopmentAction'])->name('appDevelopmentPage');
+Route::get('/app-development', [ServiceController::class, 'showAction'])->defaults('service', 'app-development')->name('appDevelopmentPage');
 
-Route::get('/app-support', [ServiceController::class, 'appSupportAction'])->name('appSupportPage');
+Route::get('/app-support', [ServiceController::class, 'showAction'])->defaults('service', 'app-support')->name('appSupportPage');
 
-Route::get('/testing', [ServiceController::class, 'testingAction'])->name('testingPage');
+Route::get('/testing', [ServiceController::class, 'showAction'])->defaults('service', 'testing')->name('testingPage');
 
-Route::get('/devops', [ServiceController::class, 'devopsAction'])->name('devopsPage');
+Route::get('/devops', [ServiceController::class, 'showAction'])->defaults('service', 'devops')->name('devopsPage');
 
-Route::get('/staffing', [ServiceController::class, 'staffingAction'])->name('staffingPage');
+Route::get('/staffing', [ServiceController::class, 'showAction'])->defaults('service', 'staffing')->name('staffingPage');
 
 /*
 |--------------------------------------------------------------------------
