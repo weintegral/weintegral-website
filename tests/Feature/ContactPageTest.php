@@ -6,8 +6,8 @@ use Inertia\Testing\AssertableInertia;
 use Tests\TestCase;
 
 /**
- * The Contact page is the first page served through Inertia: Laravel owns the
- * contact details and hands them to the React page component as props.
+ * The Contact page: the Visitor Request form beside the firm's contact details,
+ * which every page already receives as shared site props.
  */
 class ContactPageTest extends TestCase
 {
@@ -19,22 +19,28 @@ class ContactPageTest extends TestCase
         $this->withoutVite();
     }
 
-    public function test_contact_page_renders_the_contact_component_with_contact_details(): void
+    public function test_contact_page_renders_the_contact_component_with_the_visitor_request_endpoint(): void
     {
         $this->get('/contact')
             ->assertOk()
             ->assertInertia(fn (AssertableInertia $page) => $page
                 ->component('contact')
-                ->where('contactDetails', [
-                    'email' => 'info@weintegral.com',
-                    'phone' => '+1 (512) 774-6577',
-                ])
-                ->where('offices', [
-                    ['name' => 'Corporate Address', 'addressLines' => ['2009 Ranch Road, 620 N STE 113,', 'Lakeway, TX 78734']],
-                    ['name' => 'Executive Office', 'addressLines' => ['2009 Ranch Road, 620 N STE 113,', 'Lakeway, TX 78734']],
-                    ['name' => 'Overseas Office', 'addressLines' => ['VIJAYA PG, Anjaiah Road,', 'Ongole,', 'Andhra Pradesh, India - 523001']],
-                ])
                 ->where('visitorRequestUrl', '/api/visitor-request')
+            );
+    }
+
+    /**
+     * Contact details and offices come from the shared site props (SiteShellPropsTest),
+     * built once for the whole site rather than again for this page.
+     */
+    public function test_contact_page_reuses_the_shared_contact_details_and_offices(): void
+    {
+        $this->get('/contact')
+            ->assertInertia(fn (AssertableInertia $page) => $page
+                ->missing('contactDetails')
+                ->missing('offices')
+                ->has('site.contact')
+                ->has('site.offices', 2)
             );
     }
 }

@@ -1,18 +1,12 @@
 /**
- * The site's information architecture, shared by the header, mobile menu and footer.
- *
- * Every href is a plain path: pages not yet migrated to Inertia are still Blade pages,
- * so the shell links with ordinary anchors (full page loads) rather than Inertia visits.
+ * The site's fixed information architecture, shared by the header, mobile menu and footer.
+ * The Services and Industries lists come from Laravel as shared props (`site.services`,
+ * `site.industries`); see resources/js/types/inertia.d.ts.
  */
 
 export interface NavLink {
     label: string;
     href: string;
-}
-
-export interface ServiceLink extends NavLink {
-    /** One-line outcome shown under the Service name in the menus. */
-    outcome: string;
 }
 
 export const contactHref = "/contact";
@@ -23,34 +17,6 @@ export const candidateResourcesHref = "/resources";
 
 /** Insights is the external blog. */
 export const insightsHref = "https://blog.weintegral.com";
-
-export const services: ServiceLink[] = [
-    {
-        label: "Application Development",
-        href: "/app-development",
-        outcome: "Web and mobile applications built around your process",
-    },
-    {
-        label: "Application Support",
-        href: "/app-support",
-        outcome: "Maintenance and production support for critical systems",
-    },
-    {
-        label: "Quality Assurance & Testing",
-        href: "/testing",
-        outcome: "Testing focused on deployment readiness",
-    },
-    {
-        label: "DevOps & Cloud",
-        href: "/devops",
-        outcome: "Pipelines and cloud deployment, commit to production",
-    },
-    {
-        label: "IT Staffing",
-        href: "/staffing",
-        outcome: "Skilled IT professionals for the roles you need",
-    },
-];
 
 export const aboutLinks: NavLink[] = [
     { label: "Who We Are", href: "/about" },
@@ -63,14 +29,6 @@ export const careersLinks: NavLink[] = [
     openPositionsLink,
     { label: "Culture", href: "/career/work-culture" },
     { label: "Benefits", href: "/career/benefits" },
-];
-
-/** Industries named in the footer. Awaiting owner confirmation (launch checklist). */
-export const footerIndustries: NavLink[] = [
-    { label: "Banking", href: industriesHref },
-    { label: "Insurance", href: industriesHref },
-    { label: "Ecommerce", href: industriesHref },
-    { label: "All Industries", href: industriesHref },
 ];
 
 export const companyLinks: NavLink[] = [

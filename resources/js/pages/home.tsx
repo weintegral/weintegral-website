@@ -9,15 +9,14 @@ import { SiteLayout } from "@/components/site/site-layout";
 import {
     careersLinks,
     contactHref,
-    footerIndustries,
     industriesHref,
     insightsHref,
     openPositionsLink,
-    services,
     servicesHref,
     telHref,
 } from "@/components/site/site-navigation";
 import { Button } from "@/components/ui/button";
+import type { ServiceListing } from "@/types/inertia";
 
 /** A figure shown in "Why WeIntegral", awaiting owner confirmation. */
 export interface Statistic {
@@ -81,11 +80,15 @@ const serviceDetails: Record<string, { summary: string; role: string }> = {
 /** The line runs build, test, deploy, run, with staffing alongside every stage. */
 const stationOrder = ["/app-development", "/testing", "/devops", "/app-support", "/staffing"];
 
-const stations: Station[] = stationOrder.flatMap((href) => {
-    const service = services.find((candidate) => candidate.href === href);
+function stationsFor(services: ServiceListing[]): Station[] {
+    return stationOrder.flatMap((href) => {
+        const service = services.find((candidate) => candidate.href === href);
 
-    return service ? [{ ...service, role: serviceDetails[href]?.role ?? "" }] : [];
-});
+        return service
+            ? [{ label: service.name, href, role: serviceDetails[href]?.role ?? "" }]
+            : [];
+    });
+}
 
 const differentiators: { title: string; body: ReactNode }[] = [
     {
@@ -110,9 +113,6 @@ const differentiators: { title: string; body: ReactNode }[] = [
         body: "We invest in continuous learning, so our people stay current with the technologies your project needs.",
     },
 ];
-
-/** Industries from the footer list (awaiting owner confirmation), without "All Industries". */
-const industries = footerIndustries.filter((industry) => industry.label !== "All Industries");
 
 const stages = [
     {
@@ -149,7 +149,7 @@ const cultureLink = careersLinks.find((link) => link.label === "Culture");
 const insightDate = new Intl.DateTimeFormat("en-US", { dateStyle: "medium", timeZone: "UTC" });
 
 export default function Home({ statistics, testimonials, insights }: HomePageProps) {
-    const { contact } = usePage().props.site;
+    const { contact, services, industries } = usePage().props.site;
 
     return (
         <SiteLayout
@@ -209,7 +209,7 @@ export default function Home({ statistics, testimonials, insights }: HomePagePro
                             .
                         </p>
                     </div>
-                    <IntegralLine stations={stations} />
+                    <IntegralLine stations={stationsFor(services)} />
                 </div>
             </section>
 
@@ -232,7 +232,7 @@ export default function Home({ statistics, testimonials, insights }: HomePagePro
                                     <h3
                                         className={`${h3} transition-colors group-hover/svc:text-emphasis`}
                                     >
-                                        {service.label}
+                                        {service.name}
                                     </h3>
                                     <p className="col-start-1 row-start-2 max-w-[56ch] text-muted-foreground min-[52rem]:col-start-auto min-[52rem]:row-start-auto">
                                         {serviceDetails[service.href]?.summary}
@@ -314,23 +314,26 @@ export default function Home({ statistics, testimonials, insights }: HomePagePro
                     <ul className="grid border-t border-foreground min-[52rem]:grid-cols-3">
                         {industries.map((industry) => (
                             <li
-                                key={industry.label}
+                                key={industry.name}
                                 className="border-b border-border min-[52rem]:border-r min-[52rem]:border-b-0 min-[52rem]:not-first:pl-6 min-[52rem]:last:border-r-0"
                             >
                                 <a
-                                    href={industry.href}
+                                    href={industriesHref}
                                     className="group/ind flex flex-col gap-3 py-6 min-[52rem]:pt-7 min-[52rem]:pr-6 min-[52rem]:pb-8"
                                 >
                                     <h3
                                         className={`${h2} transition-colors group-hover/ind:text-emphasis`}
                                     >
-                                        {industry.label}
+                                        {industry.name}
                                     </h3>
                                     <span className="text-sm text-muted-foreground">
-                                        <Placeholder>
-                                            One line on WeIntegral&rsquo;s{" "}
-                                            {industry.label.toLowerCase()} work, supplied by owner
-                                        </Placeholder>
+                                        {industry.summary ?? (
+                                            <Placeholder>
+                                                One line on WeIntegral&rsquo;s{" "}
+                                                {industry.name.toLowerCase()} work, supplied by
+                                                owner
+                                            </Placeholder>
+                                        )}
                                     </span>
                                 </a>
                             </li>

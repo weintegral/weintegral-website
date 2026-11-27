@@ -1,3 +1,4 @@
+import { usePage } from "@inertiajs/react";
 import { Mail, MapPin, Phone, type LucideIcon } from "lucide-react";
 import type { ReactNode } from "react";
 
@@ -5,14 +6,14 @@ import { SiteLayout } from "@/components/site/site-layout";
 import { telHref } from "@/components/site/site-navigation";
 import { VisitorRequestForm } from "@/features/visitor-request/visitor-request-form";
 
-/** Props from ManagementController::contactAction. */
+/** Props from ManagementController::contactAction; contact details and offices are shared site props. */
 export interface ContactPageProps {
-    contactDetails: { email: string; phone: string };
-    offices: { name: string; addressLines: string[] }[];
     visitorRequestUrl: string;
 }
 
-export default function Contact({ contactDetails, offices, visitorRequestUrl }: ContactPageProps) {
+export default function Contact({ visitorRequestUrl }: ContactPageProps) {
+    const { contact: contactDetails, offices } = usePage().props.site;
+
     return (
         <SiteLayout
             seo={{

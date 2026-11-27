@@ -3,23 +3,13 @@
 namespace App\Http\Controllers;
 
 use App\Services\ContactInfo;
-use Illuminate\View\View;
 use Inertia\Inertia;
 use Inertia\Response;
 
 class AboutController extends Controller
 {
-    private ContactInfo $contactInfo;
-    private array $basicContactData;
-
-    public function __construct(ContactInfo $contactInfo)
+    public function __construct(private readonly ContactInfo $contactInfo)
     {
-        $this->contactInfo = $contactInfo;
-        $this->basicContactData = [
-            'email' => $this->contactInfo->getAdminEmailId(),
-            'phone' => $this->contactInfo->getPhoneNumber(),
-            'address' => $this->contactInfo->getCorporateAddress()
-        ];
     }
 
     /**
@@ -39,19 +29,11 @@ class AboutController extends Controller
     }
 
     /**
-     * Industries. The names come from the previous Industries page, which was
-     * otherwise lorem ipsum: each awaits owner confirmation and a one-line
-     * summary (null until supplied).
+     * Industries. The page lists the shared `site.industries` (App\Content\IndustryCatalog).
      */
     public function industriesAction(): Response
     {
-        return Inertia::render('industries', [
-            'industries' => [
-                ['name' => 'Banking', 'summary' => null],
-                ['name' => 'Insurance', 'summary' => null],
-                ['name' => 'Ecommerce', 'summary' => null],
-            ],
-        ]);
+        return Inertia::render('industries');
     }
 
     public function termsOfServiceAction(): Response

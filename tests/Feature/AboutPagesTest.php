@@ -63,7 +63,8 @@ class AboutPagesTest extends TestCase
             ->assertOk()
             ->assertInertia(fn (AssertableInertia $page) => $page
                 ->component('industries')
-                ->where('industries', [
+                ->missing('industries')
+                ->where('site.industries', [
                     ['name' => 'Banking', 'summary' => null],
                     ['name' => 'Insurance', 'summary' => null],
                     ['name' => 'Ecommerce', 'summary' => null],

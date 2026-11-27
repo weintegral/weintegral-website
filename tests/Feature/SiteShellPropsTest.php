@@ -34,6 +34,32 @@ class SiteShellPropsTest extends TestCase
             );
     }
 
+    public function test_inertia_pages_share_the_services_from_the_service_catalog(): void
+    {
+        $this->get('/contact')
+            ->assertInertia(fn (AssertableInertia $page) => $page
+                ->has('site.services', 5)
+                ->where('site.services.0', [
+                    'name' => 'Application Development',
+                    'href' => '/app-development',
+                    'outcome' => 'Web and mobile applications built around your process',
+                ])
+                ->where('site.services.4.name', 'IT Staffing')
+            );
+    }
+
+    public function test_inertia_pages_share_the_industries(): void
+    {
+        $this->get('/contact')
+            ->assertInertia(fn (AssertableInertia $page) => $page
+                ->where('site.industries', [
+                    ['name' => 'Banking', 'summary' => null],
+                    ['name' => 'Insurance', 'summary' => null],
+                    ['name' => 'Ecommerce', 'summary' => null],
+                ])
+            );
+    }
+
     public function test_inertia_pages_share_their_canonical_url_without_the_query_string(): void
     {
         $this->get('/contact?utm_source=newsletter')

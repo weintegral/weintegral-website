@@ -5,11 +5,10 @@ import { Placeholder } from "./placeholder";
 import {
     candidateResourcesHref,
     companyLinks,
-    footerIndustries,
+    industriesHref,
     insightsHref,
     legalLinks,
     openPositionsLink,
-    services,
     telHref,
     type NavLink,
 } from "./site-navigation";
@@ -21,7 +20,13 @@ const linkClass = "hover:text-inverse-foreground hover:underline";
 
 /** The four-column footer: Services, Industries, Company, Resources, then offices, contact, social and legal. */
 export function SiteFooter() {
-    const { contact, offices } = usePage().props.site;
+    const { contact, offices, services, industries } = usePage().props.site;
+    const serviceLinks = services.map((service) => ({ label: service.name, href: service.href }));
+    // Every Industry links to the Industries page until each has its own page.
+    const industryLinks = [
+        ...industries.map((industry) => ({ label: industry.name, href: industriesHref })),
+        { label: "All Industries", href: industriesHref },
+    ];
 
     return (
         <footer className="bg-inverse text-sm text-inverse-muted">
@@ -34,8 +39,8 @@ export function SiteFooter() {
                             businesses of all sizes.
                         </p>
                     </div>
-                    <FooterColumn title="Services" links={services} />
-                    <FooterColumn title="Industries" links={footerIndustries} />
+                    <FooterColumn title="Services" links={serviceLinks} />
+                    <FooterColumn title="Industries" links={industryLinks} />
                     <FooterColumn title="Company" links={companyLinks} />
                     <nav aria-labelledby="footer-resources">
                         <h2

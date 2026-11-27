@@ -1,3 +1,4 @@
+import { usePage } from "@inertiajs/react";
 import { ArrowUpRight, Mail, Menu, Phone, X } from "lucide-react";
 import type { ReactNode } from "react";
 
@@ -24,7 +25,6 @@ import {
     contactHref,
     industriesHref,
     insightsHref,
-    services,
     servicesHref,
     telHref,
     type NavLink,
@@ -39,6 +39,8 @@ const rowClass =
  * (Services starts expanded) and the CTA, email and phone are pinned to the bottom.
  */
 export function MobileMenu({ contact }: { contact: SiteProps["contact"] }) {
+    const { services } = usePage().props.site;
+
     return (
         <Sheet>
             <SheetTrigger asChild>
@@ -74,7 +76,7 @@ export function MobileMenu({ contact }: { contact: SiteProps["contact"] }) {
                                 <SubLink
                                     key={service.href}
                                     href={service.href}
-                                    label={service.label}
+                                    label={service.name}
                                 >
                                     {service.outcome}
                                 </SubLink>

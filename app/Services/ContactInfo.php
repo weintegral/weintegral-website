@@ -2,6 +2,10 @@
 
 namespace App\Services;
 
+/**
+ * The firm's contact details and offices, in one place for the whole site: the
+ * shared Inertia props (HandleInertiaRequests), the Careers pages and the emails.
+ */
 class ContactInfo
 {
     public function getPhoneNumber(): string
@@ -19,39 +23,22 @@ class ContactInfo
         return 'hr@weintegral.com';
     }
 
-    public function getExecutiveAddress(): string
-    {
-        return <<< ADDRESS
-            2009 Ranch Road, 620 N STE 113,<br>
-            Lakeway, TX 78734
-ADDRESS;
-
-    }
-
-    public function getCorporateAddress(): string
-    {
-        return <<< ADDRESS
-            2009 Ranch Road, 620 N STE 113,<br>
-            Lakeway, TX 78734
-ADDRESS;
-    }
-
-    public function getOverseasAddress(): string
-    {
-        return <<< ADDRESS
-            VIJAYA PG, Anjaiah Road,<br>
-            Ongole,<br>
-            Andhra Pradesh, India - 523001
-ADDRESS;
-    }
-
     /**
-     * The addresses above are formatted as HTML for the Blade views; React renders plain lines.
+     * Each office with its postal address as display lines.
      *
-     * @return list<string>
+     * @return list<array{name: string, addressLines: list<string>}>
      */
-    public function addressLines(string $htmlAddress): array
+    public function offices(): array
     {
-        return array_values(array_filter(array_map('trim', explode('<br>', $htmlAddress))));
+        return [
+            [
+                'name' => 'Corporate office',
+                'addressLines' => ['2009 Ranch Road, 620 N STE 113,', 'Lakeway, TX 78734'],
+            ],
+            [
+                'name' => 'Overseas office',
+                'addressLines' => ['VIJAYA PG, Anjaiah Road,', 'Ongole,', 'Andhra Pradesh, India - 523001'],
+            ],
+        ];
     }
 }

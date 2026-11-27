@@ -2,12 +2,14 @@
 
 namespace App\Http\Middleware;
 
+use App\Content\IndustryCatalog;
+use App\Content\ServiceCatalog;
 use App\Services\ContactInfo;
 use Illuminate\Http\Request;
 use Inertia\Middleware;
 
 /**
- * Serves Inertia page responses. Blade responses pass through untouched.
+ * Sets up Inertia page responses and the props every page shares.
  */
 class HandleInertiaRequests extends Middleware
 {
@@ -20,12 +22,16 @@ class HandleInertiaRequests extends Middleware
      */
     protected $rootView = 'app';
 
-    public function __construct(private readonly ContactInfo $contactInfo)
-    {
+    public function __construct(
+        private readonly ContactInfo $contactInfo,
+        private readonly ServiceCatalog $serviceCatalog,
+        private readonly IndustryCatalog $industryCatalog,
+    ) {
     }
 
     /**
-     * Props every page receives for the shared site shell (header, footer, SEO head).
+     * Props every page receives for the shared site shell (header, footer, SEO head)
+     * and the pages that reuse its data (Contact, Industries, the homepage).
      *
      * @return array<string, mixed>
      */
@@ -38,10 +44,9 @@ class HandleInertiaRequests extends Middleware
                     'email' => $this->contactInfo->getAdminEmailId(),
                     'phone' => $this->contactInfo->getPhoneNumber(),
                 ],
-                'offices' => [
-                    ['name' => 'Corporate office', 'addressLines' => $this->contactInfo->addressLines($this->contactInfo->getCorporateAddress())],
-                    ['name' => 'Overseas office', 'addressLines' => $this->contactInfo->addressLines($this->contactInfo->getOverseasAddress())],
-                ],
+                'offices' => $this->contactInfo->offices(),
+                'services' => $this->serviceCatalog->listings(),
+                'industries' => $this->industryCatalog->all(),
                 'canonicalUrl' => $request->url(),
             ],
         ];

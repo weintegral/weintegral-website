@@ -3,6 +3,8 @@
  * Laravel owns the copy; these types mirror its shape.
  */
 
+import type { ServiceListing } from "@/types/inertia";
+
 /** Copy awaiting the owner: rendered in the visible placeholder style and listed in the launch checklist. */
 export interface PendingCopy {
     placeholder: string;
@@ -11,15 +13,14 @@ export interface PendingCopy {
 /** A piece of copy that is either confirmed text or a placeholder. */
 export type Copy = string | PendingCopy;
 
-export interface ServiceLink {
+/** Another Service, linked from the "Related Services" row. */
+export interface RelatedService {
     name: string;
     href: string;
 }
 
-export interface Service extends ServiceLink {
+export interface Service extends ServiceListing {
     slug: string;
-    /** One-line outcome, as in the Services menu. */
-    outcome: string;
     seo: { title: string; description: string };
     /** Hero lead: the problem the Service solves. */
     summary: string;
@@ -33,12 +34,11 @@ export interface Service extends ServiceLink {
     technologies: { heading: string; items: string[]; note: Copy };
     caseStory: PendingCopy;
     faqs: { question: string; answer: Copy }[];
-    relatedServices: ServiceLink[];
+    relatedServices: RelatedService[];
 }
 
 /** A Service as listed on the Services overview. */
-export interface ServiceSummary extends ServiceLink {
-    outcome: string;
+export interface ServiceSummary extends ServiceListing {
     /** The headings of the Service's pillars. */
     highlights: string[];
 }

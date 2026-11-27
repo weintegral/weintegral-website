@@ -1,3 +1,4 @@
+import { usePage } from "@inertiajs/react";
 import { ArrowRight, ArrowUpRight } from "lucide-react";
 import type { PointerEvent } from "react";
 
@@ -18,7 +19,6 @@ import {
     contactHref,
     industriesHref,
     insightsHref,
-    services,
     servicesHref,
     type NavLink,
 } from "./site-navigation";
@@ -95,6 +95,8 @@ export function DesktopNavigation({
 }
 
 function ServicesMegaMenu() {
+    const { services } = usePage().props.site;
+
     return (
         <div className="mx-auto grid max-w-(--container-max) grid-cols-[minmax(0,1fr)_20rem] gap-10 px-(--gutter) pt-8 pb-9">
             <div>
@@ -119,7 +121,7 @@ function ServicesMegaMenu() {
                                 className="group/link px-4 py-3.5"
                             >
                                 <span className="flex items-center gap-1.5 text-[0.9375rem] font-[620]">
-                                    {service.label}
+                                    {service.name}
                                     <ArrowRight
                                         className="size-3.5 -translate-x-1 text-emphasis opacity-0 transition duration-(--duration-slow) ease-brand group-hover/link:translate-x-0 group-hover/link:opacity-100 group-focus-visible/link:translate-x-0 group-focus-visible/link:opacity-100"
                                         aria-hidden="true"

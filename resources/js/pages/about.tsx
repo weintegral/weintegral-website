@@ -5,7 +5,7 @@ import { ClosingBand } from "@/components/about/closing-band";
 import { PageIntro, SectionHeading } from "@/components/about/page-intro";
 import { Placeholder } from "@/components/site/placeholder";
 import { SiteLayout } from "@/components/site/site-layout";
-import { contactHref, services } from "@/components/site/site-navigation";
+import { contactHref } from "@/components/site/site-navigation";
 import { Button } from "@/components/ui/button";
 
 /** One headline figure. Values are display strings, already formatted by the server. */
@@ -54,7 +54,7 @@ const stages = [
 ];
 
 export default function About({ stats }: AboutPageProps) {
-    const { offices } = usePage().props.site;
+    const { offices, services } = usePage().props.site;
 
     return (
         <SiteLayout
@@ -106,7 +106,7 @@ export default function About({ stats }: AboutPageProps) {
                                         href={service.href}
                                         className="inline-flex items-center gap-1.5 font-semibold text-emphasis hover:underline"
                                     >
-                                        {service.label}
+                                        {service.name}
                                         <ArrowRight className="size-4" aria-hidden="true" />
                                     </a>
                                 </li>

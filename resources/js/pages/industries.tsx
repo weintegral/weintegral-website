@@ -1,25 +1,17 @@
+import { usePage } from "@inertiajs/react";
 import { ArrowRight } from "lucide-react";
 
 import { ClosingBand } from "@/components/about/closing-band";
 import { PageIntro, SectionHeading } from "@/components/about/page-intro";
 import { Placeholder } from "@/components/site/placeholder";
 import { SiteLayout } from "@/components/site/site-layout";
-import { contactHref, services } from "@/components/site/site-navigation";
+import { contactHref } from "@/components/site/site-navigation";
 import { Button } from "@/components/ui/button";
 
-/** An Industry WeIntegral serves. */
-export interface Industry {
-    name: string;
-    /** One line on WeIntegral's work in this Industry; null until the owner supplies it. */
-    summary: string | null;
-}
+/** The Industries page lists the shared `site.industries` (App\Content\IndustryCatalog). */
+export default function Industries() {
+    const { industries, services } = usePage().props.site;
 
-/** Props from AboutController::industriesAction. */
-export interface IndustriesPageProps {
-    industries: Industry[];
-}
-
-export default function Industries({ industries }: IndustriesPageProps) {
     return (
         <SiteLayout
             seo={{
@@ -89,7 +81,7 @@ export default function Industries({ industries }: IndustriesPageProps) {
                                     className="group grid items-center gap-2 border-b border-border px-1 py-6 transition-colors hover:bg-background md:grid-cols-[minmax(0,1fr)_minmax(0,1.25fr)_2.75rem] md:gap-8 md:px-3"
                                 >
                                     <span className="text-(length:--text-h3) font-semibold group-hover:text-emphasis">
-                                        {service.label}
+                                        {service.name}
                                     </span>
                                     <span className="text-muted-foreground">{service.outcome}</span>
                                     <span

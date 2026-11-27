@@ -6,7 +6,8 @@ use InvalidArgumentException;
 
 /**
  * The five Services and the content of their pages, owned by Laravel and handed
- * to the shared React page (resources/js/pages/services/show.tsx) as props.
+ * to the shared React page (resources/js/pages/services/show.tsx) as props. It
+ * is also the one Services list the whole site shows (listings(), `site.services`).
  *
  * Copy uses only facts from the previous site or supplied by the owner. Anything
  * unconfirmed is a placeholder, ['placeholder' => '...'], which the page renders
@@ -37,6 +38,21 @@ class ServiceCatalog
         ));
 
         return [...$services[$slug], 'relatedServices' => $related];
+    }
+
+    /**
+     * Every Service as the site shell lists it (header menus, footer, homepage),
+     * shared with every page as `site.services`.
+     *
+     * @return list<array{name: string, href: string, outcome: string}>
+     */
+    public function listings(): array
+    {
+        return array_values(array_map(fn (array $service) => [
+            'name' => $service['name'],
+            'href' => $service['href'],
+            'outcome' => $service['outcome'],
+        ], $this->services()));
     }
 
     /**
