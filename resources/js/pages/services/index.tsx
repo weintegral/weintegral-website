@@ -26,7 +26,7 @@ const faqs: Faq[] = [
     },
     {
         question: "Can one firm cover build, testing, deployment and support?",
-        answer: "Yes. All five are WeIntegral Services, so you can start with one and add others as the work grows, without handing your application to another vendor.",
+        answer: "Yes. All five are WeIntegral Services, so you can start with one and add others as the work grows.",
     },
     {
         question: "How is pricing structured?",
@@ -41,7 +41,7 @@ export default function ServicesOverview({ services }: ServicesOverviewProps) {
         <SiteLayout>
             <PageIntro
                 title="Services"
-                lead="Five Services, one accountable team. Start with the Service you need today. Because we cover build, testing, deployment and support, you never have to hand your application to another vendor."
+                lead="Five Services, one accountable team. Start with the Service you need today. Because we cover build, testing, deployment and support, one firm can carry your application from first release to day-to-day support."
             >
                 <Button asChild variant="cta" size="brand-lg">
                     <a href={contactHref}>

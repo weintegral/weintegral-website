@@ -86,4 +86,19 @@ class ServicePagesTest extends TestCase
         $seo->pluck('description')->each(fn (string $description) => $this->assertGreaterThanOrEqual(110, strlen($description), $description));
         $seo->pluck('description')->each(fn (string $description) => $this->assertLessThanOrEqual(165, strlen($description), $description));
     }
+
+    /**
+     * The homepage promises that every engagement follows Discover, Build, Run
+     * (owner-confirmed), so each Service's delivery steps sit under those stages,
+     * in that order, and use all three.
+     */
+    #[DataProvider('servicePages')]
+    public function test_service_delivery_steps_map_onto_discover_build_run(string $path, string $name, string $seoTitle): void
+    {
+        $steps = $this->get($path)->viewData('page')['props']['service']['delivery']['steps'];
+        $stages = array_column($steps, 'stage');
+
+        $this->assertCount(count($steps), $stages, 'Every step names its stage');
+        $this->assertSame(['Discover', 'Build', 'Run'], array_values(array_unique($stages)));
+    }
 }

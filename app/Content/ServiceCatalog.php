@@ -162,12 +162,12 @@ class ServiceCatalog
                 ]],
             ],
             'delivery' => [
-                'intro' => 'Four steps, with working software you can review at every stage.',
+                'intro' => 'Four steps across the Discover, Build and Run stages every engagement follows.',
                 'steps' => [
-                    ['title' => 'Discover', 'description' => 'We map your goals, users and current systems, and agree on scope, team and timeline.'],
-                    ['title' => 'Design', 'description' => 'We plan the architecture, data model and screens, and confirm them with you before we build.'],
-                    ['title' => 'Build and test', 'description' => 'We develop in short cycles, testing as we go, and demo progress at the end of each one.'],
-                    ['title' => 'Launch and support', 'description' => 'We deploy to the cloud and either hand over to your team or stay on to run it with you.'],
+                    ['stage' => 'Discover', 'title' => 'Discover', 'description' => 'We map your goals, users and current systems, and agree on scope, team and timeline.'],
+                    ['stage' => 'Discover', 'title' => 'Design', 'description' => 'We plan the architecture, data model and screens of your application.'],
+                    ['stage' => 'Build', 'title' => 'Build and test', 'description' => 'We develop the application and test it before release.'],
+                    ['stage' => 'Run', 'title' => 'Launch and support', 'description' => 'We deploy your application to the cloud and support it after launch.'],
                 ],
             ],
             'technologies' => [
@@ -213,7 +213,7 @@ class ServiceCatalog
             'pillars' => [
                 ['heading' => 'Fewer fire drills', 'capabilities' => [
                     'Production issue diagnosis and fixes',
-                    'Root-cause follow-up, so problems stay fixed',
+                    self::placeholder('Root-cause follow-up on recurring issues, confirm'),
                     self::placeholder('Monitoring and alerting, confirm'),
                 ]],
                 ['heading' => 'Software that stays current', 'capabilities' => [
@@ -228,12 +228,12 @@ class ServiceCatalog
                 ]],
             ],
             'delivery' => [
-                'intro' => 'Four steps from first look to steady, predictable support.',
+                'intro' => 'Four steps across the Discover, Build and Run stages every engagement follows, from first look to ongoing support.',
                 'steps' => [
-                    ['title' => 'Assess', 'description' => 'We review the application, its environments and known issues, and agree on what support covers.'],
-                    ['title' => 'Stabilize', 'description' => 'We address the most urgent defects and risks first, so day-to-day operation calms down.'],
-                    ['title' => 'Maintain', 'description' => 'We handle fixes, updates and small enhancements on an agreed cadence.'],
-                    ['title' => 'Review', 'description' => 'We go through open issues and upcoming changes with you regularly, and plan the next round.'],
+                    ['stage' => 'Discover', 'title' => 'Assess', 'description' => 'We review the application, its environments and known issues, and agree on what support covers.'],
+                    ['stage' => 'Build', 'title' => 'Stabilize', 'description' => 'We fix the most urgent defects first.'],
+                    ['stage' => 'Run', 'title' => 'Maintain', 'description' => 'We handle fixes, updates and small enhancements to keep the application running.'],
+                    ['stage' => 'Run', 'title' => 'Plan ahead', 'description' => 'We plan upcoming fixes and changes with you.'],
                 ],
             ],
             'technologies' => [
@@ -280,7 +280,7 @@ class ServiceCatalog
                 ['heading' => 'Catch defects early', 'capabilities' => [
                     'Test planning alongside each feature',
                     'Functional testing',
-                    'Regression testing before every release',
+                    'Regression testing',
                 ]],
                 ['heading' => 'Confidence under load', 'capabilities' => [
                     'Performance testing',
@@ -294,12 +294,12 @@ class ServiceCatalog
                 ]],
             ],
             'delivery' => [
-                'intro' => 'Four steps that tie testing to each release.',
+                'intro' => 'Four steps across the Discover, Build and Run stages every engagement follows, tied to each release.',
                 'steps' => [
-                    ['title' => 'Plan', 'description' => 'We learn what the application must do and agree on what to test, how, and what "ready" means.'],
-                    ['title' => 'Test', 'description' => 'We test features as they are built, then run the full regression suite before each release.'],
-                    ['title' => 'Report', 'description' => 'We log each defect with the steps to reproduce it and work with your developers until it is fixed.'],
-                    ['title' => 'Confirm', 'description' => 'We verify fixes and confirm the release is ready to deploy.'],
+                    ['stage' => 'Discover', 'title' => 'Plan', 'description' => 'We learn what the application must do and agree on what to test, how, and what "ready" means.'],
+                    ['stage' => 'Build', 'title' => 'Test', 'description' => "We test the application's features before release."],
+                    ['stage' => 'Build', 'title' => 'Report', 'description' => 'We log each defect with the steps to reproduce it and work with your developers until it is fixed.'],
+                    ['stage' => 'Run', 'title' => 'Confirm', 'description' => 'We verify fixes and confirm the release is ready to deploy.'],
                 ],
             ],
             'technologies' => [
@@ -350,7 +350,7 @@ class ServiceCatalog
                 ]],
                 ['heading' => 'Environments you can rebuild', 'capabilities' => [
                     'Cloud environment setup',
-                    'Infrastructure as code: environments defined in versioned files, not configured by hand',
+                    self::placeholder('Infrastructure as code (environments defined in versioned files), confirm'),
                     self::placeholder('Migrating existing systems to the cloud, confirm'),
                 ]],
                 ['heading' => 'Visibility after release', 'capabilities' => [
@@ -360,12 +360,12 @@ class ServiceCatalog
                 ]],
             ],
             'delivery' => [
-                'intro' => 'Four steps from manual releases to an automated path to production.',
+                'intro' => 'Four steps across the Discover, Build and Run stages every engagement follows, from manual releases to an automated path to production.',
                 'steps' => [
-                    ['title' => 'Assess', 'description' => 'We review how code is built, tested and released today, and where it slows down or breaks.'],
-                    ['title' => 'Automate', 'description' => 'We build the pipeline that compiles, tests and packages every change.'],
-                    ['title' => 'Deploy', 'description' => 'We set up the cloud environments and automate deployment to each of them.'],
-                    ['title' => 'Hand over', 'description' => 'We document the setup and walk your team through it, or stay on to run it with you.'],
+                    ['stage' => 'Discover', 'title' => 'Assess', 'description' => 'We review how code is built, tested and released today, and where it slows down or breaks.'],
+                    ['stage' => 'Build', 'title' => 'Automate', 'description' => 'We build the pipeline that compiles, tests and packages every change.'],
+                    ['stage' => 'Run', 'title' => 'Deploy', 'description' => 'We set up the cloud environments and automate deployment to each of them.'],
+                    ['stage' => 'Run', 'title' => 'Document', 'description' => 'We document the setup so your team can work with it.'],
                 ],
             ],
             'technologies' => [
@@ -426,12 +426,12 @@ class ServiceCatalog
                 ]],
             ],
             'delivery' => [
-                'intro' => 'Four steps from an open role to a new team member.',
+                'intro' => 'Four steps across the Discover, Build and Run stages every engagement follows, from an open role to a new team member.',
                 'steps' => [
-                    ['title' => 'Brief', 'description' => 'We learn the role, the skills it needs, your team and your timeline.'],
-                    ['title' => 'Search and screen', 'description' => 'We find candidates and screen them for the skills the work requires.'],
-                    ['title' => 'Interview', 'description' => 'You meet a shortlist of candidates and choose who joins your team.'],
-                    ['title' => 'Start', 'description' => 'We agree on a start date, and your new team member joins your team.'],
+                    ['stage' => 'Discover', 'title' => 'Brief', 'description' => 'We learn the role, the skills it needs, your team and your timeline.'],
+                    ['stage' => 'Build', 'title' => 'Search and screen', 'description' => 'We find candidates and screen them for the skills the work requires.'],
+                    ['stage' => 'Build', 'title' => 'Interview', 'description' => 'You meet a shortlist of candidates and choose who joins your team.'],
+                    ['stage' => 'Run', 'title' => 'Start', 'description' => 'We agree on a start date, and your new team member joins your team.'],
                 ],
             ],
             'technologies' => [

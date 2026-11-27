@@ -126,9 +126,11 @@ export default function ServicePage({ service }: ServicePageProps) {
                                     {index + 1}
                                 </span>
                                 <div>
-                                    <h3 className={`mb-1.5 pt-2 ${typeRoles.subtitle}`}>
-                                        {step.title}
-                                    </h3>
+                                    <p className="pt-0.5 text-caption font-semibold text-emphasis">
+                                        <span className="sr-only">Stage: </span>
+                                        {step.stage}
+                                    </p>
+                                    <h3 className={`mb-1.5 ${typeRoles.subtitle}`}>{step.title}</h3>
                                     <p className="max-w-[60ch] text-muted-foreground">
                                         {step.description}
                                     </p>

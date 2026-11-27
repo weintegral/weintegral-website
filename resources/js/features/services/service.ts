@@ -3,6 +3,7 @@
  * Laravel owns the copy; these types mirror its shape.
  */
 
+import type { EngagementStage } from "@/components/site/process-band";
 import type { ServiceListing } from "@/types/inertia";
 
 /** Copy awaiting the owner: rendered in the visible placeholder style and listed in the launch checklist. */
@@ -28,7 +29,11 @@ export interface Service extends ServiceListing {
     overview: { heading: string; paragraphs: Copy[] };
     /** "What you get": three outcome-led pillars, each with its capabilities. */
     pillars: { heading: string; capabilities: Copy[] }[];
-    delivery: { intro: string; steps: { title: string; description: string }[] };
+    /** Delivery steps, each under one of the Discover, Build, Run stages, in stage order. */
+    delivery: {
+        intro: string;
+        steps: { stage: EngagementStage; title: string; description: string }[];
+    };
     engagementOptions: PendingCopy;
     /** Technologies, tools or (IT Staffing) skills; an empty list shows only the note. */
     technologies: { heading: string; items: string[]; note: Copy };

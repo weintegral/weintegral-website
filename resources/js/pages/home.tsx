@@ -195,7 +195,7 @@ export default function Home({ statistics, testimonials, insights }: HomePagePro
                 <div className={container}>
                     <SectionHeading
                         id="services-heading"
-                        intro="Start with the Service you need today. Because we cover build, testing, deployment and support, you never have to hand your application to another vendor."
+                        intro="Start with the Service you need today. Because we cover build, testing, deployment and support, one firm can carry your application from first release to day-to-day support."
                         action={<SeeAllLink label="All Services" href={servicesHref} />}
                         className={sectionHeadingGap}
                     >
