@@ -9,7 +9,7 @@ use Illuminate\Http\JsonResponse;
 use Symfony\Component\HttpFoundation\Response;
 use OpenApi\Spec as OA;
 
-#[OA\Info(title: 'My First API', version: '0.1')]
+#[OA\Info(title: 'WeIntegral Website API', version: '0.1')]
 class VisitorRequestController extends Controller
 {
     public function __construct(

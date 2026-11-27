@@ -19,7 +19,7 @@ class ApiDocsTest extends TestCase
     {
         $this->get('/swagger/v1')
             ->assertOk()
-            ->assertJsonPath('info.title', 'My First API')
+            ->assertJsonPath('info.title', 'WeIntegral Website API')
             ->assertJsonPath('paths./api/visitor-request.post.summary', 'Create a new visitor request')
             ->assertJsonPath('paths./api/visitor-request.post.responses.201.description', 'Visitor request created successfully');
     }
