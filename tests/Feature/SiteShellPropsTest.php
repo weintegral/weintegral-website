@@ -52,11 +52,10 @@ class SiteShellPropsTest extends TestCase
     {
         $this->get('/contact')
             ->assertInertia(fn (AssertableInertia $page) => $page
-                ->where('site.industries', [
-                    ['name' => 'Banking', 'summary' => null],
-                    ['name' => 'Insurance', 'summary' => null],
-                    ['name' => 'Ecommerce', 'summary' => null],
-                ])
+                ->has('site.industries', 3)
+                ->where('site.industries.0.name', 'Banking')
+                ->where('site.industries.1.name', 'Insurance')
+                ->where('site.industries.2.name', 'Ecommerce')
             );
     }
 

@@ -1,4 +1,3 @@
-import { Placeholder } from "@/components/site/placeholder";
 import { PageIntro } from "@/components/site/page-intro";
 import { SiteLayout } from "@/components/site/site-layout";
 import { careersLink, candidateResourcesHref } from "@/components/site/site-navigation";
@@ -66,11 +65,12 @@ export default function OpenPositions({ openPositions, careersEmail }: OpenPosit
                             collect useful links.
                         </p>
                     </div>
+                    {/* Draft wording: legal review required before launch (launch checklist). */}
                     <p className="text-sm text-pretty text-muted-foreground">
-                        <Placeholder>
-                            Equal employment opportunity statement, owner and counsel to confirm
-                            wording
-                        </Placeholder>
+                        West East Integral Inc. (WeIntegral) is an equal opportunity employer. We
+                        consider all qualified applicants without regard to race, color, religion,
+                        sex, sexual orientation, gender identity, national origin, age, disability,
+                        veteran status or any other characteristic protected by law.
                     </p>
                 </div>
             </CareersSection>

@@ -74,6 +74,23 @@ class SeoFallbackTest extends TestCase
         $response->assertSee('<meta property="og:url" content="'.url('/about').'" data-inertia="og:url">', escape: false);
     }
 
+    public function test_every_page_shares_a_default_social_image_as_a_large_card(): void
+    {
+        $image = url('/img/social/default-share.jpg');
+
+        $this->get('/about')
+            ->assertInertia(fn (AssertableInertia $page) => $page->where('site.shareImage', [
+                'url' => $image,
+                'width' => 1200,
+                'height' => 630,
+                'alt' => 'A team working on laptops around a shared table',
+            ]))
+            ->assertSee('<meta property="og:image" content="'.$image.'" data-inertia="og:image">', escape: false)
+            ->assertSee('<meta name="twitter:card" content="summary_large_image" data-inertia="twitter:card">', escape: false);
+
+        $this->assertFileExists(public_path('img/social/default-share.jpg'));
+    }
+
     public function test_without_ssr_the_fallback_escapes_the_copy(): void
     {
         $this->get('/services')

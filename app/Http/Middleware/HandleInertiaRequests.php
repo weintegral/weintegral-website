@@ -48,6 +48,13 @@ class HandleInertiaRequests extends Middleware
                 'services' => $this->serviceCatalog->listings(),
                 'industries' => $this->industryCatalog->all(),
                 'canonicalUrl' => $request->url(),
+                // Default Open Graph / Twitter image (Unsplash stock, docs/image-credits.md).
+                'shareImage' => [
+                    'url' => url('/img/social/default-share.jpg'),
+                    'width' => 1200,
+                    'height' => 630,
+                    'alt' => 'A team working on laptops around a shared table',
+                ],
             ],
         ];
     }

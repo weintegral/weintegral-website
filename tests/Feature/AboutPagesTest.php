@@ -56,6 +56,7 @@ class AboutPagesTest extends TestCase
     /**
      * The Industry names come from the previous (lorem-ipsum) Industries page and
      * await owner confirmation; their lorem-ipsum bullet points are not carried over.
+     * Each has a generic one-line summary of what WeIntegral offers that sector.
      */
     public function test_industries_page_renders_the_industries_component_with_each_industry(): void
     {
@@ -65,9 +66,9 @@ class AboutPagesTest extends TestCase
                 ->component('industries')
                 ->missing('industries')
                 ->where('site.industries', [
-                    ['name' => 'Banking', 'summary' => null],
-                    ['name' => 'Insurance', 'summary' => null],
-                    ['name' => 'Ecommerce', 'summary' => null],
+                    ['name' => 'Banking', 'summary' => 'Applications, testing and support for banks and credit unions, where security, accuracy and audit trails come first.'],
+                    ['name' => 'Insurance', 'summary' => 'Software and IT staff for insurers, from policy and claims systems to the integrations between them.'],
+                    ['name' => 'Ecommerce', 'summary' => 'Storefronts, integrations and the back-office systems behind them, tested to hold up when traffic peaks.'],
                 ])
             )
             ->assertDontSee('adipiscing');

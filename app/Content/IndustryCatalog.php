@@ -7,20 +7,20 @@ namespace App\Content;
  * homepage Industries strip and the footer (shared as `site.industries`).
  *
  * The names come from the previous Industries page, which was otherwise lorem
- * ipsum: each awaits owner confirmation and a one-line summary (null until
- * supplied), both tracked in the launch checklist.
+ * ipsum, and await owner confirmation (launch checklist). Each summary says what
+ * WeIntegral offers the sector, without claiming specific past work.
  */
 class IndustryCatalog
 {
     /**
-     * @return list<array{name: string, summary: string|null}>
+     * @return list<array{name: string, summary: string}>
      */
     public function all(): array
     {
         return [
-            ['name' => 'Banking', 'summary' => null],
-            ['name' => 'Insurance', 'summary' => null],
-            ['name' => 'Ecommerce', 'summary' => null],
+            ['name' => 'Banking', 'summary' => 'Applications, testing and support for banks and credit unions, where security, accuracy and audit trails come first.'],
+            ['name' => 'Insurance', 'summary' => 'Software and IT staff for insurers, from policy and claims systems to the integrations between them.'],
+            ['name' => 'Ecommerce', 'summary' => 'Storefronts, integrations and the back-office systems behind them, tested to hold up when traffic peaks.'],
         ];
     }
 }

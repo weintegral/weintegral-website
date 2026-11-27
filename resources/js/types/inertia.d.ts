@@ -17,8 +17,16 @@ export interface ServiceListing {
 /** An Industry WeIntegral serves, from App\Content\IndustryCatalog. */
 export interface Industry {
     name: string;
-    /** One line on WeIntegral's work in this Industry; null until the owner supplies it. */
-    summary: string | null;
+    /** One line on what WeIntegral offers this Industry. */
+    summary: string;
+}
+
+/** The default Open Graph and Twitter image. */
+export interface ShareImage {
+    url: string;
+    width: number;
+    height: number;
+    alt: string;
 }
 
 /** Props HandleInertiaRequests::share() gives every page, for the site shell. */
@@ -29,6 +37,7 @@ export interface SiteProps {
     industries: Industry[];
     /** Absolute URL of the current page without its query string. */
     canonicalUrl: string;
+    shareImage: ShareImage;
 }
 
 declare module "@inertiajs/core" {

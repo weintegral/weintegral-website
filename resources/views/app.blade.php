@@ -26,6 +26,7 @@
         @if ($seo)
         @php($fullTitle = $seo['title'].' | WeIntegral')
         @php($canonicalUrl = $page['props']['site']['canonicalUrl'])
+        @php($shareImage = $page['props']['site']['shareImage'])
         <title data-inertia="">{{ $fullTitle }}</title>
         <meta name="description" content="{{ $seo['description'] }}" data-inertia="description">
         <link rel="canonical" href="{{ $canonicalUrl }}" data-inertia="canonical">
@@ -35,7 +36,11 @@
         <meta property="og:title" content="{{ $fullTitle }}" data-inertia="og:title">
         <meta property="og:description" content="{{ $seo['description'] }}" data-inertia="og:description">
         <meta property="og:url" content="{{ $canonicalUrl }}" data-inertia="og:url">
-        <meta name="twitter:card" content="summary" data-inertia="twitter:card">
+        <meta property="og:image" content="{{ $shareImage['url'] }}" data-inertia="og:image">
+        <meta property="og:image:width" content="{{ $shareImage['width'] }}" data-inertia="og:image:width">
+        <meta property="og:image:height" content="{{ $shareImage['height'] }}" data-inertia="og:image:height">
+        <meta property="og:image:alt" content="{{ $shareImage['alt'] }}" data-inertia="og:image:alt">
+        <meta name="twitter:card" content="summary_large_image" data-inertia="twitter:card">
         <meta name="twitter:title" content="{{ $fullTitle }}" data-inertia="twitter:title">
         <meta name="twitter:description" content="{{ $seo['description'] }}" data-inertia="twitter:description">
         @else

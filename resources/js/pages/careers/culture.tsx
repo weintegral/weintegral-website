@@ -1,6 +1,5 @@
 import { ArrowRight } from "lucide-react";
 
-import { Placeholder } from "@/components/site/placeholder";
 import { PageIntro } from "@/components/site/page-intro";
 import { SectionHeading } from "@/components/site/section-heading";
 import { SiteLayout } from "@/components/site/site-layout";
@@ -50,15 +49,13 @@ export default function Culture() {
                     </div>
                     <dl className="divide-y border-y">
                         <SupportItem term="Your point of contact">
-                            <Placeholder>
-                                How consultants on assignment are supported (named contact, check-in
-                                cadence), owner to confirm
-                            </Placeholder>
+                            On a Client assignment you are still part of WeIntegral. Our team stays
+                            in touch, and you can come to us with questions about the work, the
+                            assignment or what comes next.
                         </SupportItem>
                         <SupportItem term="Learning and certifications">
-                            <Placeholder>
-                                Training or certification support offered, owner to confirm
-                            </Placeholder>
+                            We talk with you about the skills and certifications that fit your
+                            goals, and we encourage learning on the job as well as off it.
                         </SupportItem>
                         <SupportItem term="Where we work">
                             Our offices are in Lakeway, Texas and Ongole, Andhra Pradesh, India.
@@ -69,15 +66,18 @@ export default function Culture() {
 
             <CareersSection labelledBy="team-heading">
                 <div className="grid items-center gap-10 lg:grid-cols-2">
-                    <div
-                        role="img"
-                        aria-label="Team photo placeholder"
-                        className="flex aspect-[4/3] items-center justify-center rounded-xl border border-dashed border-cta bg-muted p-8 text-center text-sm text-muted-foreground"
-                    >
-                        <Placeholder>
-                            Team photo, WeIntegral's own or licensed stock with credit
-                        </Placeholder>
-                    </div>
+                    {/* Unsplash stock (docs/image-credits.md) until WeIntegral's own team photo is available. */}
+                    <img
+                        src="/img/careers/culture-team-800.webp"
+                        srcSet="/img/careers/culture-team-480.webp 480w, /img/careers/culture-team-800.webp 800w, /img/careers/culture-team-1200.webp 1200w"
+                        sizes="(min-width: 64rem) 45vw, 100vw"
+                        width={800}
+                        height={600}
+                        loading="lazy"
+                        decoding="async"
+                        alt="Four colleagues gathered around a computer screen, one pointing at the work"
+                        className="aspect-4/3 h-auto w-full rounded-xl object-cover"
+                    />
                     <div>
                         <SectionHeading id="team-heading">Grow with us</SectionHeading>
                         <p className="mt-4 text-pretty text-muted-foreground">

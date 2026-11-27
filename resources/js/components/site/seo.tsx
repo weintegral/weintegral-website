@@ -12,13 +12,13 @@ export interface SeoProps {
 
 /**
  * The page's search and sharing metadata, from its `seo` prop: title, description,
- * canonical URL, Open Graph and Twitter tags. Rendered into <head> during SSR by
+ * canonical URL, Open Graph and Twitter tags (with the default share image). Rendered into <head> during SSR by
  * Inertia; resources/views/app.blade.php renders the same tags when SSR is down.
  */
 export function Seo() {
     const { props } = usePage<{ seo: SeoProps }>();
     const { title, description } = props.seo;
-    const { canonicalUrl } = props.site;
+    const { canonicalUrl, shareImage } = props.site;
     const fullTitle = pageTitle(title);
 
     return (
@@ -32,8 +32,20 @@ export function Seo() {
             <meta head-key="og:title" property="og:title" content={fullTitle} />
             <meta head-key="og:description" property="og:description" content={description} />
             <meta head-key="og:url" property="og:url" content={canonicalUrl} />
+            <meta head-key="og:image" property="og:image" content={shareImage.url} />
+            <meta
+                head-key="og:image:width"
+                property="og:image:width"
+                content={String(shareImage.width)}
+            />
+            <meta
+                head-key="og:image:height"
+                property="og:image:height"
+                content={String(shareImage.height)}
+            />
+            <meta head-key="og:image:alt" property="og:image:alt" content={shareImage.alt} />
 
-            <meta head-key="twitter:card" name="twitter:card" content="summary" />
+            <meta head-key="twitter:card" name="twitter:card" content="summary_large_image" />
             <meta head-key="twitter:title" name="twitter:title" content={fullTitle} />
             <meta head-key="twitter:description" name="twitter:description" content={description} />
         </Head>
