@@ -10,7 +10,7 @@ export function Placeholder({ children, className }: { children: ReactNode; clas
         <em
             data-placeholder=""
             className={cn(
-                "rounded-sm border border-dashed border-cta bg-[rgb(233_107_86/0.16)] px-[0.35em] py-[0.05em] not-italic [box-decoration-break:clone]",
+                "rounded-sm border border-dashed border-cta bg-cta/16 px-[0.35em] py-[0.05em] not-italic [box-decoration-break:clone]",
                 className,
             )}
         >

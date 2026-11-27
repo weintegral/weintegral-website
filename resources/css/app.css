@@ -90,8 +90,8 @@
         font-optical-sizing: auto;
     }
     ::selection {
-        background: var(--brand-coral);
-        color: #0b1730;
+        background: var(--cta);
+        color: var(--cta-foreground);
     }
     a:focus-visible,
     button:focus-visible,

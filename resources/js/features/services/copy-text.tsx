@@ -30,7 +30,7 @@ export function PlaceholderBlock({
             id={id}
             data-placeholder=""
             className={cn(
-                "scroll-mt-20 rounded-lg border-[1.5px] border-dashed border-emphasis bg-[rgb(233_107_86/0.08)] px-6 py-5",
+                "scroll-mt-20 rounded-lg border-[1.5px] border-dashed border-emphasis bg-cta/8 px-6 py-5",
                 className,
             )}
         >

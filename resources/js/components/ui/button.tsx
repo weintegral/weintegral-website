@@ -9,8 +9,9 @@ const buttonVariants = cva(
         variants: {
             variant: {
                 default: "bg-primary text-primary-foreground hover:bg-primary/80",
+                // DESIGN.md, Buttons: a --input border on light surfaces (bands override it).
                 outline:
-                    "border-border bg-background hover:bg-muted hover:text-foreground aria-expanded:bg-muted aria-expanded:text-foreground dark:border-input dark:bg-input/30 dark:hover:bg-input/50",
+                    "border-input bg-background hover:bg-muted hover:text-foreground aria-expanded:bg-muted aria-expanded:text-foreground dark:bg-input/30 dark:hover:bg-input/50",
                 secondary:
                     "bg-secondary text-secondary-foreground hover:bg-[color-mix(in_oklch,var(--secondary),var(--foreground)_5%)] aria-expanded:bg-secondary aria-expanded:text-secondary-foreground",
                 ghost: "hover:bg-muted hover:text-foreground aria-expanded:bg-muted aria-expanded:text-foreground dark:hover:bg-muted/50",
@@ -19,6 +20,8 @@ const buttonVariants = cva(
                 link: "text-primary underline-offset-4 hover:underline",
                 // "Talk to an Expert" only (DESIGN.md, Buttons): coral with ink text.
                 cta: "bg-cta font-semibold text-cta-foreground hover:bg-cta-hover",
+                // The coral closing band only (DESIGN.md, Buttons): ink fill with white text.
+                ink: "bg-cta-foreground font-semibold text-inverse-foreground hover:bg-brand-navy",
             },
             size: {
                 default:
