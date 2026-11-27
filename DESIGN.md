@@ -153,7 +153,7 @@ components:
 
 # Design System: WeIntegral
 
-Status: comps approved (spec #54). Tokens live in `resources/css/tokens.css`; `resources/css/app.css` imports them and maps them onto the Tailwind/shadcn theme (#57), so utilities such as `bg-primary`, `bg-inverse` and `text-cta-foreground` resolve to them. Fonts are self-hosted with `@fontsource`.
+Status: comps approved by the owner on 2026-11-27 (spec #54): build to the comp A (homepage) direction, with comps B (Service page) and C (menus) as templates. The header uses the Poppins wordmark alone (no monogram) in navy ink, the "Organizations we've worked with" client-logo wall is removed everywhere, and the Clients page is dropped (`/clients` redirects to `/about`). Tokens live in `resources/css/tokens.css`; `resources/css/app.css` imports them and maps them onto the Tailwind/shadcn theme (#57), so utilities such as `bg-primary`, `bg-inverse` and `text-cta-foreground` resolve to them. Fonts are self-hosted with `@fontsource`.
 
 ## Overview
 
@@ -358,7 +358,7 @@ Fallback stack: `Inter, ui-sans-serif, system-ui, -apple-system, "Segoe UI", Rob
 | Small    | `--text-small`   | 0.875rem                                  | 400    | 1.5         | 0        | Descriptions, footer, breadcrumbs |
 | Label    | `--text-caption` | 0.8125rem                                 | 600    | 1.4         | 0        | Utility bar, meta, captions       |
 
-The scale steps by roughly 1.25 at desktop and compresses on small screens through `clamp()`. Headings use `text-wrap: balance` and paragraphs use `text-wrap: pretty`. Figures in stats and tables use `font-variant-numeric: tabular-nums`.
+`resources/js/lib/typography.ts` exposes these roles as `typeRoles` (display, headline, section, title, subtitle, lead); headings use them rather than setting weight and leading per page. The scale steps by roughly 1.25 at desktop and compresses on small screens through `clamp()`. Headings use `text-wrap: balance` and paragraphs use `text-wrap: pretty`. Figures in stats and tables use `font-variant-numeric: tabular-nums`.
 
 ### Named rules
 
@@ -402,7 +402,7 @@ Map these onto shadcn/ui components where one exists: Button, NavigationMenu (me
 - **CTA** (`--cta`, `--cta-foreground`): "Talk to an Expert" only, used once per viewport region. Hover uses `--cta-hover`.
 - **Primary** (navy): secondary conversions such as "Browse open positions".
 - **Outline:** a `--input` border on light surfaces, or an `--inverse-border` border on navy bands ("Find a role").
-- **Ink:** ink fill with white text, used only on the coral closing band.
+- **Ink** (`variant="ink"`: `--cta-foreground` fill, `--inverse-foreground` text, `--brand-navy` hover): used only on the coral closing band.
 - **Arrow behaviour:** a trailing arrow nudges 3px right on hover (320ms ease-out).
 - **Focus:** a 2px `--ring` outline with a 3px offset.
 
