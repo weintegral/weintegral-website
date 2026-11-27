@@ -13,7 +13,6 @@
                 <li><a class="{{ (request()->is('/')) ? 'active' : '' }}" href="/">Home</a></li>
                 <li><a class="{{ (request()->is('about')) ? 'active' : '' }}" href="/about">About</a></li>
                 <li><a class="{{ (request()->is('services')) ? 'active' : '' }}" href="/services">Services</a></li>
-                <li><a class="{{ (request()->is('clients')) ? 'active' : '' }}" href="/clients">Clients</a></li>
                 {{--<li><a href="/industries">Industries</a></li>--}}
                 {{--<li><a class="{{ (request()->is('team')) ? 'active' : '' }}" href="/team">Team</a></li>--}}
                 <li><a class="{{ (request()->is('blog')) ? 'active' : '' }}" href="/blog">Blog</a></li>

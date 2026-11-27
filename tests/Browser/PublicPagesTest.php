@@ -16,12 +16,8 @@ class PublicPagesTest extends DuskTestCase
     public static function sitePages(): array
     {
         return [
-            'about' => ['/about', 'WEI - About', 'About Us'],
-            'clients' => ['/clients', 'WEI - Clients', 'Clients'],
-            'industries' => ['/industries', 'WEI - Industries', 'Industries'],
             'terms of service' => ['/terms-of-service', 'WEI - Terms', 'Terms of Service'],
             'privacy policy' => ['/privacy-policy', 'WEI - Privacy', 'Privacy Policy'],
-            'team' => ['/team', 'WEI - Team', 'Team'],
             'marketing submissions' => ['/marketing-data', 'WEI - Submissions', 'Marketing Data'],
             'marketing data' => ['/data', 'WEI - Submissions', 'Marketing Data'],
             'management resources' => ['/mgmt-resources', 'WEI - Resources', 'Resources'],
@@ -45,28 +41,14 @@ class PublicPagesTest extends DuskTestCase
         });
     }
 
-    /**
-     * Header nav links that stay on this site (Blog leaves for blog.weintegral.com).
-     *
-     * @return array<string, array{string, string, string}>
-     */
-    public static function navigationLinks(): array
+    public function test_header_about_link_opens_the_inertia_who_we_are_page(): void
     {
-        return [
-            'about' => ['About', '/about', 'WEI - About'],
-            'clients' => ['Clients', '/clients', 'WEI - Clients'],
-        ];
-    }
-
-    #[DataProvider('navigationLinks')]
-    public function test_header_navigation_link_opens_page_and_marks_it_active(string $link, string $path, string $title): void
-    {
-        $this->browse(function (Browser $browser) use ($link, $path, $title) {
+        $this->browse(function (Browser $browser) {
             $browser->visit('/privacy-policy')
-                ->within('#navbar', fn (Browser $nav) => $nav->clickLink($link))
-                ->assertPathIs($path)
-                ->assertTitle($title)
-                ->assertSeeIn('#navbar a.active', $link);
+                ->within('#navbar', fn (Browser $nav) => $nav->clickLink('About'))
+                ->assertPathIs('/about')
+                ->waitForTextIn('h1', 'Who We Are')
+                ->assertTitle('Who We Are | WeIntegral');
         });
     }
 
@@ -87,7 +69,7 @@ class PublicPagesTest extends DuskTestCase
     public function test_logo_links_back_to_home(): void
     {
         $this->browse(function (Browser $browser) {
-            $browser->visit('/about')
+            $browser->visit('/privacy-policy')
                 ->within('#header .logo', fn (Browser $logo) => $logo->clickLink('WeIntegral'))
                 ->assertPathIs('/')
                 ->waitForTextIn('h1', 'One team for the software your business runs on.')

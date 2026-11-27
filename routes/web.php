@@ -32,7 +32,8 @@ Route::get('/about', [AboutController::class, 'aboutAction'])->name('aboutCompan
 
 Route::get('/services', [ServiceController::class, 'indexAction'])->name('servicesPage');
 
-Route::get('/clients', [AboutController::class, 'clientsAction'])->name('clientsPage');
+// The Clients page (and any client detail URL) was dropped by owner decision.
+Route::permanentRedirect('/clients/{path?}', '/about')->where('path', '.*');
 
 Route::get('/industries', [AboutController::class, 'industriesAction'])->name('industriesPage');
 

@@ -24,10 +24,16 @@ class ManagementController extends Controller
         ];
     }
 
-    public function teamAction(): View
+    /**
+     * Leadership. Each leader is {name, title, bio, photoUrl, linkedInUrl}. The list
+     * is empty until the owner supplies real profiles: the previous Team page only
+     * showed the template's sample people.
+     */
+    public function teamAction(): Response
     {
-        $data = $this->basicContactData;
-        return view('management/team', $data);
+        return Inertia::render('leadership', [
+            'leaders' => [],
+        ]);
     }
 
     public function contactAction(): Response
