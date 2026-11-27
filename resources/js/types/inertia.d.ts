@@ -21,6 +21,25 @@ export interface Industry {
     summary: string;
 }
 
+/** A link to one of the firm's social profiles. */
+export interface SocialLink {
+    label: string;
+    href: string;
+}
+
+/**
+ * Sample content for the site shell, from App\Content\SampleContent::shell(). Present
+ * only when SITE_SAMPLE_CONTENT is on (never in production): every page then shows
+ * the `notice` banner, and the values here stand in for facts the owner has not supplied.
+ */
+export interface SampleShell {
+    /** "Sample content — not for publication". */
+    notice: string;
+    /** The closing band's reply-time promise. */
+    replyTime: string;
+    socialLinks: SocialLink[];
+}
+
 /** The default Open Graph and Twitter image. */
 export interface ShareImage {
     url: string;
@@ -38,6 +57,8 @@ export interface SiteProps {
     /** Absolute URL of the current page without its query string. */
     canonicalUrl: string;
     shareImage: ShareImage;
+    /** Null unless sample content is on. */
+    sample: SampleShell | null;
 }
 
 declare module "@inertiajs/core" {

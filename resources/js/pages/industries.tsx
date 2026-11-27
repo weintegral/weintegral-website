@@ -12,7 +12,7 @@ import { typeRoles } from "@/lib/typography";
 
 /** The Industries page lists the shared `site.industries` (App\Content\IndustryCatalog). */
 export default function Industries() {
-    const { industries, services } = usePage().props.site;
+    const { industries, services, sample } = usePage().props.site;
 
     return (
         <SiteLayout>
@@ -40,23 +40,18 @@ export default function Industries() {
                                 className="flex flex-col gap-3 border-b border-border py-7 md:border-r md:border-b-0 md:px-6 md:first:pl-0 md:last:border-r-0"
                             >
                                 <h3 className={typeRoles.section}>{industry.name}</h3>
-                                <p className="text-sm text-muted-foreground">
-                                    {industry.summary ?? (
-                                        <Placeholder>
-                                            One line on our {industry.name.toLowerCase()} work, to
-                                            confirm
-                                        </Placeholder>
-                                    )}
-                                </p>
+                                <p className="text-sm text-muted-foreground">{industry.summary}</p>
                             </li>
                         ))}
                     </ul>
-                    <p className="mt-6 text-sm">
-                        <Placeholder>
-                            Industry list carried over from the previous Industries page, to confirm
-                            or extend
-                        </Placeholder>
-                    </p>
+                    {!sample && (
+                        <p className="mt-6 text-sm">
+                            <Placeholder>
+                                Industry list carried over from the previous Industries page, to
+                                confirm or extend
+                            </Placeholder>
+                        </p>
+                    )}
                 </div>
             </section>
 

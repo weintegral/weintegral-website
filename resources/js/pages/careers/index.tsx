@@ -11,6 +11,7 @@ import {
 } from "@/components/site/site-navigation";
 import { Button } from "@/components/ui/button";
 import { typeRoles } from "@/lib/typography";
+import type { CareersSample } from "@/features/careers/careers-sample";
 import { CareersSection, PillarList } from "@/features/careers/careers-section";
 
 /** Props from CareerController::indexAction. */
@@ -18,9 +19,14 @@ export interface CareersIndexProps {
     openPositionCount: number;
     /** Where candidates send a résumé (ContactInfo::getHrEmailId). */
     careersEmail: string;
+    sample: CareersSample | null;
 }
 
-export default function CareersIndex({ openPositionCount, careersEmail }: CareersIndexProps) {
+export default function CareersIndex({
+    openPositionCount,
+    careersEmail,
+    sample,
+}: CareersIndexProps) {
     const positions =
         openPositionCount === 1 ? "1 open position" : `${openPositionCount} open positions`;
 
@@ -124,9 +130,11 @@ export default function CareersIndex({ openPositionCount, careersEmail }: Career
                         </HowToApplyStep>
                         <HowToApplyStep number={3} title="Talk with our team">
                             If your experience fits, we'll be in touch to talk it through.{" "}
-                            <Placeholder>
-                                Hiring steps and response time, owner to confirm
-                            </Placeholder>
+                            {sample?.hiringSteps ?? (
+                                <Placeholder>
+                                    Hiring steps and response time, owner to confirm
+                                </Placeholder>
+                            )}
                         </HowToApplyStep>
                     </ol>
                 </div>

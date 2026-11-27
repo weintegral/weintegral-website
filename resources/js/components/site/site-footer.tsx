@@ -20,7 +20,7 @@ const linkClass = "hover:text-inverse-foreground hover:underline";
 
 /** The four-column footer: Services, Industries, Company, Resources, then offices, contact, social and legal. */
 export function SiteFooter() {
-    const { contact, offices, services, industries } = usePage().props.site;
+    const { contact, offices, services, industries, sample } = usePage().props.site;
     const serviceLinks = services.map((service) => ({ label: service.name, href: service.href }));
     // Every Industry links to the Industries page until each has its own page.
     const industryLinks = [
@@ -114,9 +114,25 @@ export function SiteFooter() {
                     </div>
                     <div>
                         <h2 className="mb-2 font-semibold text-inverse-foreground">Follow</h2>
-                        <p className="text-inverse-foreground">
-                            <Placeholder>Social profiles, owner to supply</Placeholder>
-                        </p>
+                        {sample ? (
+                            <ul className="space-y-1">
+                                {sample.socialLinks.map((link) => (
+                                    <li key={link.href}>
+                                        <a
+                                            href={link.href}
+                                            rel="noopener"
+                                            className={`inline-block py-0.5 ${linkClass}`}
+                                        >
+                                            {link.label}
+                                        </a>
+                                    </li>
+                                ))}
+                            </ul>
+                        ) : (
+                            <p className="text-inverse-foreground">
+                                <Placeholder>Social profiles, owner to supply</Placeholder>
+                            </p>
+                        )}
                     </div>
                 </div>
 

@@ -12,12 +12,18 @@ use InvalidArgumentException;
  * Copy uses only facts from the previous site or supplied by the owner. Anything
  * unconfirmed is a placeholder, ['placeholder' => '...'], which the page renders
  * with the visible placeholder style; every one is listed in the launch checklist.
+ * When sample content is on, each placeholder is filled from App\Content\SampleContent
+ * under its key ("<service>.<item>") instead.
  * The shape is mirrored by the Service type in resources/js/features/services/service.ts.
  */
 class ServiceCatalog
 {
     /** Display order, as in the navigation. */
     private const SLUGS = ['app-development', 'app-support', 'testing', 'devops', 'staffing'];
+
+    public function __construct(private readonly SampleContent $sampleContent)
+    {
+    }
 
     /**
      * The full content of one Service page, including its related Services.
@@ -89,12 +95,16 @@ class ServiceCatalog
                 'slug' => $slug,
                 'href' => '/'.$slug,
                 ...$services[$slug],
-                'engagementOptions' => self::placeholder(
-                    "Which engagement models WeIntegral offers for {$services[$slug]['name']} is awaiting owner confirmation. Planned format: a short comparison of who manages the work, typical duration and best fit."
-                ),
-                'caseStory' => self::placeholder(
-                    "One real {$services[$slug]['name']} engagement in a Challenge, What we did and Result format, published only with the Client's consent."
-                ),
+                'engagementOptions' => $this->sampleContent->enabled()
+                    ? $this->sampleContent->engagementOptions($slug)
+                    : self::placeholder(
+                        "Which engagement models WeIntegral offers for {$services[$slug]['name']} is awaiting owner confirmation. Planned format: a short comparison of who manages the work, typical duration and best fit."
+                    ),
+                'caseStory' => $this->sampleContent->enabled()
+                    ? $this->sampleContent->caseStory($slug)
+                    : self::placeholder(
+                        "One real {$services[$slug]['name']} engagement in a Challenge, What we did and Result format, published only with the Client's consent."
+                    ),
             ];
         }
 
@@ -107,6 +117,33 @@ class ServiceCatalog
     private static function placeholder(string $text): array
     {
         return ['placeholder' => $text];
+    }
+
+    /**
+     * Copy awaiting the owner: a placeholder, or its sample value (SampleContent,
+     * under "<service>.<item>") when sample content is on.
+     *
+     * @return string|array{placeholder: string}
+     */
+    private function pending(string $sampleKey, string $placeholder): string|array
+    {
+        return $this->sampleContent->enabled()
+            ? $this->sampleContent->serviceCopy($sampleKey)
+            : self::placeholder($placeholder);
+    }
+
+    /**
+     * The technologies block: confirmed items with a note awaiting the owner, or the
+     * sample list (and no note) when sample content is on.
+     *
+     * @param  list<string>  $items
+     * @return array{heading: string, items: list<string>, note: string|array{placeholder: string}|null}
+     */
+    private function technologies(string $slug, string $heading, array $items, string $placeholder): array
+    {
+        return $this->sampleContent->enabled()
+            ? ['heading' => $heading, 'items' => $this->sampleContent->technologies($slug), 'note' => null]
+            : ['heading' => $heading, 'items' => $items, 'note' => self::placeholder($placeholder)];
     }
 
     /** The first FAQ on every Service page: how to get started. */
@@ -135,7 +172,7 @@ class ServiceCatalog
                 ['term' => 'We build', 'detail' => 'Web applications, mobile applications and the databases behind them'],
                 ['term' => 'We ship to', 'detail' => 'The cloud, with testing built into every release'],
                 ['term' => 'Pairs with', 'detail' => 'Quality Assurance & Testing, DevOps & Cloud, Application Support'],
-                ['term' => 'Engagement', 'detail' => self::placeholder('Models offered, owner to confirm')],
+                ['term' => 'Engagement', 'detail' => $this->pending('app-development.engagement', 'Models offered, owner to confirm')],
             ],
             'overview' => [
                 'heading' => 'Software shaped around your business',
@@ -153,7 +190,7 @@ class ServiceCatalog
                 ['heading' => 'Data you can rely on', 'capabilities' => [
                     'Database design',
                     'Database management',
-                    self::placeholder('Integration with existing systems, confirm'),
+                    $this->pending('app-development.integration', 'Integration with existing systems, confirm'),
                 ]],
                 ['heading' => 'A clear path to production', 'capabilities' => [
                     'Testing built into every release',
@@ -170,16 +207,17 @@ class ServiceCatalog
                     ['stage' => 'Run', 'title' => 'Launch and support', 'description' => 'We deploy your application to the cloud and support it after launch.'],
                 ],
             ],
-            'technologies' => [
-                'heading' => 'Technologies',
-                'items' => ['PHP and Laravel', 'JavaScript', 'React', 'Angular', 'Vue.js', 'Node.js', 'Java', 'React Native (mobile)'],
-                'note' => self::placeholder('List taken from the current Services page; owner to confirm, and add databases'),
-            ],
+            'technologies' => $this->technologies(
+                'app-development',
+                'Technologies',
+                ['PHP and Laravel', 'JavaScript', 'React', 'Angular', 'Vue.js', 'Node.js', 'Java', 'React Native (mobile)'],
+                'List taken from the current Services page; owner to confirm, and add databases',
+            ),
             'faqs' => [
                 self::howToStart("what you're building"),
                 ['question' => 'Can you also test and support what you build?', 'answer' => 'Yes. Quality Assurance & Testing, DevOps & Cloud and Application Support are all WeIntegral Services, so one firm can carry your application from first release to day-to-day operation.'],
-                ['question' => 'Can you work alongside our in-house developers?', 'answer' => self::placeholder('Answer to be supplied by owner')],
-                ['question' => 'Who owns the code you write?', 'answer' => self::placeholder('Answer to be supplied by owner (contract terms)')],
+                ['question' => 'Can you work alongside our in-house developers?', 'answer' => 'Yes. We agree up front who builds what, then work in your repositories and follow the conventions your team already uses, so the work fits alongside theirs.'],
+                ['question' => 'Who owns the code you write?', 'answer' => $this->pending('app-development.code-ownership', 'Answer to be supplied by owner (contract terms)')],
             ],
         ];
     }
@@ -199,22 +237,22 @@ class ServiceCatalog
             'summary' => 'Launch is where an application starts its working life. We maintain, fix and improve the applications your business runs on, so your team spends less time on fire drills.',
             'atAGlance' => [
                 ['term' => 'We support', 'detail' => 'Web and mobile applications in production'],
-                ['term' => 'Coverage', 'detail' => self::placeholder('Support hours and service levels, owner to confirm')],
+                ['term' => 'Coverage', 'detail' => $this->pending('app-support.coverage', 'Support hours and service levels, owner to confirm')],
                 ['term' => 'Pairs with', 'detail' => 'Application Development, DevOps & Cloud, Quality Assurance & Testing'],
-                ['term' => 'Engagement', 'detail' => self::placeholder('Models offered, owner to confirm')],
+                ['term' => 'Engagement', 'detail' => $this->pending('app-support.engagement', 'Models offered, owner to confirm')],
             ],
             'overview' => [
                 'heading' => 'Stability after launch',
                 'paragraphs' => [
                     'Software keeps changing after release: users find defects, libraries need updates and the business asks for small improvements. Support is the steady work that keeps an application healthy through all of it.',
-                    self::placeholder('Banking experience: the current site says WeIntegral has provided mission-critical solutions and services to banks worldwide. Owner to confirm before publishing.'),
+                    $this->pending('app-support.experience', 'Banking experience: the current site says WeIntegral has provided mission-critical solutions and services to banks worldwide. Owner to confirm before publishing.'),
                 ],
             ],
             'pillars' => [
                 ['heading' => 'Fewer fire drills', 'capabilities' => [
                     'Production issue diagnosis and fixes',
-                    self::placeholder('Root-cause follow-up on recurring issues, confirm'),
-                    self::placeholder('Monitoring and alerting, confirm'),
+                    $this->pending('app-support.root-cause', 'Root-cause follow-up on recurring issues, confirm'),
+                    $this->pending('app-support.monitoring', 'Monitoring and alerting, confirm'),
                 ]],
                 ['heading' => 'Software that stays current', 'capabilities' => [
                     'Framework and dependency updates',
@@ -236,16 +274,12 @@ class ServiceCatalog
                     ['stage' => 'Run', 'title' => 'Plan ahead', 'description' => 'We plan upcoming fixes and changes with you.'],
                 ],
             ],
-            'technologies' => [
-                'heading' => 'Technologies',
-                'items' => [],
-                'note' => self::placeholder('Platforms and tools the support team works with, supplied by the owner'),
-            ],
+            'technologies' => $this->technologies('app-support', 'Technologies', [], 'Platforms and tools the support team works with, supplied by the owner'),
             'faqs' => [
                 self::howToStart('the application you need supported'),
                 ['question' => 'Can you add new features as well as fix issues?', 'answer' => 'Yes. Small enhancements are part of support, and larger changes can move to Application Development, which is also a WeIntegral Service.'],
-                ['question' => 'Can you support an application another team built?', 'answer' => self::placeholder('Answer to be supplied by owner')],
-                ['question' => 'What hours do you provide support?', 'answer' => self::placeholder('Answer to be supplied by owner (coverage hours and service levels)')],
+                ['question' => 'Can you support an application another team built?', 'answer' => 'Yes. Support starts with an assessment: we review the code, environments, documentation and known issues, then agree with you on what support covers before we take it on.'],
+                ['question' => 'What hours do you provide support?', 'answer' => $this->pending('app-support.hours', 'Answer to be supplied by owner (coverage hours and service levels)')],
             ],
         ];
     }
@@ -267,7 +301,7 @@ class ServiceCatalog
                 ['term' => 'We test', 'detail' => 'Web and mobile applications before each release'],
                 ['term' => 'Focus', 'detail' => 'Deployment readiness, quality and performance'],
                 ['term' => 'Pairs with', 'detail' => 'Application Development, DevOps & Cloud, Application Support'],
-                ['term' => 'Engagement', 'detail' => self::placeholder('Models offered, owner to confirm')],
+                ['term' => 'Engagement', 'detail' => $this->pending('testing.engagement', 'Models offered, owner to confirm')],
             ],
             'overview' => [
                 'heading' => 'Quality built in, not bolted on',
@@ -284,13 +318,13 @@ class ServiceCatalog
                 ]],
                 ['heading' => 'Confidence under load', 'capabilities' => [
                     'Performance testing',
-                    self::placeholder('Security testing, confirm'),
+                    $this->pending('testing.security', 'Security testing, confirm'),
                     'Release readiness sign-off',
                 ]],
                 ['heading' => 'Results you can act on', 'capabilities' => [
                     'Clear defect reports your developers can reproduce',
                     'Manual exploratory testing',
-                    self::placeholder('Test automation, tools to confirm'),
+                    $this->pending('testing.automation', 'Test automation, tools to confirm'),
                 ]],
             ],
             'delivery' => [
@@ -302,16 +336,12 @@ class ServiceCatalog
                     ['stage' => 'Run', 'title' => 'Confirm', 'description' => 'We verify fixes and confirm the release is ready to deploy.'],
                 ],
             ],
-            'technologies' => [
-                'heading' => 'Tools',
-                'items' => [],
-                'note' => self::placeholder('Testing tools and frameworks the team uses, supplied by the owner'),
-            ],
+            'technologies' => $this->technologies('testing', 'Tools', [], 'Testing tools and frameworks the team uses, supplied by the owner'),
             'faqs' => [
                 self::howToStart('the application and release you need tested'),
                 ['question' => 'What is the difference between manual and automated testing?', 'answer' => 'Manual testing is a person working through the application the way a user would, which is good at finding unexpected problems. Automated tests are scripts that repeat the same checks on every build, which catches regressions quickly. Most applications benefit from both.'],
-                ['question' => 'Can you test software we built ourselves?', 'answer' => self::placeholder('Answer to be supplied by owner')],
-                ['question' => 'Which test automation tools do you use?', 'answer' => self::placeholder('Answer to be supplied by owner')],
+                ['question' => 'Can you test software we built ourselves?', 'answer' => 'Yes. We start by learning what the application must do and how your team releases it, then agree with you on what to test and what "ready" means for each release.'],
+                ['question' => 'Which test automation tools do you use?', 'answer' => $this->pending('testing.automation-tools', 'Answer to be supplied by owner')],
             ],
         ];
     }
@@ -333,7 +363,7 @@ class ServiceCatalog
                 ['term' => 'We set up', 'detail' => 'Build and deployment pipelines, and the cloud environments they deploy to'],
                 ['term' => 'Cloud platforms', 'detail' => 'Amazon Web Services (AWS), Microsoft Azure and Google Cloud'],
                 ['term' => 'Pairs with', 'detail' => 'Application Development, Quality Assurance & Testing, Application Support'],
-                ['term' => 'Engagement', 'detail' => self::placeholder('Models offered, owner to confirm')],
+                ['term' => 'Engagement', 'detail' => $this->pending('devops.engagement', 'Models offered, owner to confirm')],
             ],
             'overview' => [
                 'heading' => 'From commit to production',
@@ -350,12 +380,12 @@ class ServiceCatalog
                 ]],
                 ['heading' => 'Environments you can rebuild', 'capabilities' => [
                     'Cloud environment setup',
-                    self::placeholder('Infrastructure as code (environments defined in versioned files), confirm'),
-                    self::placeholder('Migrating existing systems to the cloud, confirm'),
+                    $this->pending('devops.infrastructure-as-code', 'Infrastructure as code (environments defined in versioned files), confirm'),
+                    $this->pending('devops.migration', 'Migrating existing systems to the cloud, confirm'),
                 ]],
                 ['heading' => 'Visibility after release', 'capabilities' => [
-                    self::placeholder('Monitoring and alerting, tools to confirm'),
-                    self::placeholder('Cloud cost reviews, confirm'),
+                    $this->pending('devops.monitoring', 'Monitoring and alerting, tools to confirm'),
+                    $this->pending('devops.cost-reviews', 'Cloud cost reviews, confirm'),
                     'Documentation your team can run with',
                 ]],
             ],
@@ -368,16 +398,17 @@ class ServiceCatalog
                     ['stage' => 'Run', 'title' => 'Document', 'description' => 'We document the setup so your team can work with it.'],
                 ],
             ],
-            'technologies' => [
-                'heading' => 'Platforms and tools',
-                'items' => ['Amazon Web Services (AWS)', 'Microsoft Azure', 'Google Cloud'],
-                'note' => self::placeholder('Cloud platforms from the current Services page; owner to confirm, and add CI/CD and infrastructure tools'),
-            ],
+            'technologies' => $this->technologies(
+                'devops',
+                'Platforms and tools',
+                ['Amazon Web Services (AWS)', 'Microsoft Azure', 'Google Cloud'],
+                'Cloud platforms from the current Services page; owner to confirm, and add CI/CD and infrastructure tools',
+            ),
             'faqs' => [
                 self::howToStart('how you build and release software today'),
                 ['question' => 'What is CI/CD?', 'answer' => 'Continuous integration (CI) builds and tests every change as soon as it is committed. Continuous delivery (CD) then deploys changes that pass, the same way every time. Together they make releases smaller, more frequent and less risky.'],
-                ['question' => 'Which cloud platform should we use?', 'answer' => self::placeholder('Answer to be supplied by owner')],
-                ['question' => 'Can you work with our existing infrastructure?', 'answer' => self::placeholder('Answer to be supplied by owner')],
+                ['question' => 'Which cloud platform should we use?', 'answer' => "It depends on what you already run, the services your application needs and your team's experience. If you already use a cloud provider, staying with it is often simplest; we talk through the trade-offs with you during the assessment."],
+                ['question' => 'Can you work with our existing infrastructure?', 'answer' => 'Yes. We start by reviewing how your code is built, tested and released today, and build on what works rather than replacing it for its own sake.'],
             ],
         ];
     }
@@ -397,8 +428,8 @@ class ServiceCatalog
             'summary' => 'Some work needs another skilled person on your team rather than a whole project. We find IT professionals with the skills the role needs and the fit your team needs.',
             'atAGlance' => [
                 ['term' => 'We serve', 'detail' => 'IT organizations, including multinationals'],
-                ['term' => 'Roles', 'detail' => self::placeholder('Typical roles filled, owner to confirm')],
-                ['term' => 'Hiring models', 'detail' => self::placeholder('Contract, contract-to-hire or direct hire: owner to confirm which apply')],
+                ['term' => 'Roles', 'detail' => $this->pending('staffing.roles', 'Typical roles filled, owner to confirm')],
+                ['term' => 'Hiring models', 'detail' => $this->pending('staffing.hiring-models', 'Contract, contract-to-hire or direct hire: owner to confirm which apply')],
                 ['term' => 'Pairs with', 'detail' => 'Application Development, Quality Assurance & Testing, DevOps & Cloud'],
             ],
             'overview' => [
@@ -415,14 +446,14 @@ class ServiceCatalog
                     'A shortlist of candidates for you to interview',
                 ]],
                 ['heading' => 'Flexible ways to hire', 'capabilities' => [
-                    self::placeholder('Contract staffing, confirm'),
-                    self::placeholder('Contract-to-hire, confirm'),
-                    self::placeholder('Direct hire, confirm'),
+                    $this->pending('staffing.contract', 'Contract staffing, confirm'),
+                    $this->pending('staffing.contract-to-hire', 'Contract-to-hire, confirm'),
+                    $this->pending('staffing.direct-hire', 'Direct hire, confirm'),
                 ]],
                 ['heading' => 'Consultants who keep growing', 'capabilities' => [
                     'Growth opportunities for every consultant',
                     'Continuous learning and development',
-                    self::placeholder('Replacement policy, owner to supply'),
+                    $this->pending('staffing.replacement', 'Replacement policy, owner to supply'),
                 ]],
             ],
             'delivery' => [
@@ -434,16 +465,12 @@ class ServiceCatalog
                     ['stage' => 'Run', 'title' => 'Start', 'description' => 'We agree on a start date, and your new team member joins your team.'],
                 ],
             ],
-            'technologies' => [
-                'heading' => 'Skills we recruit for',
-                'items' => [],
-                'note' => self::placeholder('Skills and roles WeIntegral recruits for, supplied by the owner'),
-            ],
+            'technologies' => $this->technologies('staffing', 'Skills we recruit for', [], 'Skills and roles WeIntegral recruits for, supplied by the owner'),
             'faqs' => [
                 self::howToStart('the role you need to fill'),
                 ['question' => 'Can you deliver a whole project instead?', 'answer' => "Yes. If you'd rather hand over the work than add people, Application Development, Quality Assurance & Testing, DevOps & Cloud and Application Support are all WeIntegral Services."],
-                ['question' => 'How quickly can you present candidates?', 'answer' => self::placeholder('Answer to be supplied by owner (typical turnaround)')],
-                ['question' => "What if a placement doesn't work out?", 'answer' => self::placeholder('Answer to be supplied by owner (replacement policy)')],
+                ['question' => 'How quickly can you present candidates?', 'answer' => $this->pending('staffing.turnaround', 'Answer to be supplied by owner (typical turnaround)')],
+                ['question' => "What if a placement doesn't work out?", 'answer' => $this->pending('staffing.failed-placement', 'Answer to be supplied by owner (replacement policy)')],
             ],
         ];
     }

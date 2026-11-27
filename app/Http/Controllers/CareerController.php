@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Content\SampleContent;
 use App\Services\ContactInfo;
 use App\Services\Job;
 use Inertia\Inertia;
@@ -18,6 +19,7 @@ class CareerController extends Controller
     public function __construct(
         private readonly Job $jobService,
         private readonly ContactInfo $contactInfo,
+        private readonly SampleContent $sampleContent,
     ) {
     }
 
@@ -30,6 +32,7 @@ class CareerController extends Controller
             ),
             'openPositionCount' => count($this->jobService->getLatestRequirements()),
             'careersEmail' => $this->contactInfo->getHrEmailId(),
+            'sample' => $this->sampleContent->careers(),
         ]);
     }
 
@@ -50,6 +53,8 @@ class CareerController extends Controller
                 'Benefits',
                 'Benefits for WeIntegral employees and consultants, covering health, time off, retirement and career growth, plus how eligibility works for each role.',
             ),
+            // Sample benefit specifics; null (placeholders shown) unless sample content is on.
+            'sample' => $this->sampleContent->careers(),
         ]);
     }
 

@@ -1,6 +1,7 @@
 import { Head } from "@inertiajs/react";
 import type { ReactNode } from "react";
 
+import { SampleBanner } from "@/components/site/sample-banner";
 import { SiteFooter } from "@/components/site/site-footer";
 import { SiteHeader } from "@/components/site/site-header";
 import { typeRoles } from "@/lib/typography";
@@ -28,6 +29,7 @@ export function InternalToolLayout({
             >
                 Skip to content
             </a>
+            <SampleBanner />
             <SiteHeader />
             <main id="main-content" tabIndex={-1} className="outline-none">
                 <div className="mx-auto max-w-(--container-max) px-(--gutter) py-12 lg:py-16">

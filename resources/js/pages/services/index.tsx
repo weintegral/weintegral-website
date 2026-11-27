@@ -7,6 +7,14 @@ import { SectionHeading, sectionHeadingGap } from "@/components/site/section-hea
 import { SiteLayout } from "@/components/site/site-layout";
 import { contactHref } from "@/components/site/site-navigation";
 import { Button } from "@/components/ui/button";
+import {
+    Table,
+    TableBody,
+    TableCell,
+    TableHead,
+    TableHeader,
+    TableRow,
+} from "@/components/ui/table";
 import { PlaceholderBlock } from "@/features/services/copy-text";
 import { FaqList, type Faq } from "@/features/services/faq-list";
 import type { ServiceSummary } from "@/features/services/service";
@@ -15,11 +23,22 @@ import { typeRoles } from "@/lib/typography";
 /** Props from ServiceController::indexAction. */
 export interface ServicesOverviewProps {
     services: ServiceSummary[];
+    /** Sample engagement models and pricing (App\Content\SampleContent); null unless sample content is on. */
+    sample: { engagementModels: EngagementModel[]; pricing: string } | null;
+}
+
+/** One row of the engagement-model comparison. */
+export interface EngagementModel {
+    name: string;
+    whoManages: string;
+    duration: string;
+    bestFor: string;
 }
 
 const container = "mx-auto max-w-(--container-max) px-(--gutter)";
 
-const faqs: Faq[] = [
+/** The overview FAQ; the pricing answer awaits the owner unless sample content supplies one. */
+const faqs = (pricing: string | undefined): Faq[] => [
     {
         question: "Which Service do I need?",
         answer: "Start from what you're trying to achieve: new software, keeping existing software healthy, release confidence, faster deployments or more people on your team. If you're not sure, Talk to an Expert and we'll point you to the right team.",
@@ -30,13 +49,13 @@ const faqs: Faq[] = [
     },
     {
         question: "How is pricing structured?",
-        answer: {
+        answer: pricing ?? {
             placeholder: "Answer to be supplied by owner (pricing approach per engagement model)",
         },
     },
 ];
 
-export default function ServicesOverview({ services }: ServicesOverviewProps) {
+export default function ServicesOverview({ services, sample }: ServicesOverviewProps) {
     return (
         <SiteLayout>
             <PageIntro
@@ -98,23 +117,60 @@ export default function ServicesOverview({ services }: ServicesOverviewProps) {
 
             <ProcessBand heading="From first conversation to running software" />
 
-            <div className="py-(--section-space)">
-                <div className={container}>
-                    <PlaceholderBlock title="How engagements are structured">
-                        Placeholder. A comparison of the engagement models WeIntegral offers (for
-                        example project-based delivery, managed support, contract staffing,
-                        contract-to-hire and direct hire): who manages the work, typical duration
-                        and best fit. Awaiting owner confirmation of which models apply.
-                    </PlaceholderBlock>
+            {sample ? (
+                <section aria-labelledby="engagement-heading" className="py-(--section-space)">
+                    <div className={container}>
+                        <SectionHeading
+                            id="engagement-heading"
+                            intro="Start small and grow: each model suits a different kind of work."
+                            className={sectionHeadingGap}
+                        >
+                            How engagements are structured
+                        </SectionHeading>
+                        <Table data-engagement-models="">
+                            <TableHeader>
+                                <TableRow>
+                                    <TableHead scope="col">Model</TableHead>
+                                    <TableHead scope="col">Who manages the work</TableHead>
+                                    <TableHead scope="col">Typical duration</TableHead>
+                                    <TableHead scope="col">Best for</TableHead>
+                                </TableRow>
+                            </TableHeader>
+                            <TableBody>
+                                {sample.engagementModels.map((model) => (
+                                    <TableRow key={model.name}>
+                                        <TableHead scope="row" className="font-semibold">
+                                            {model.name}
+                                        </TableHead>
+                                        <TableCell>{model.whoManages}</TableCell>
+                                        <TableCell>{model.duration}</TableCell>
+                                        <TableCell>{model.bestFor}</TableCell>
+                                    </TableRow>
+                                ))}
+                            </TableBody>
+                        </Table>
+                    </div>
+                </section>
+            ) : (
+                <div className="py-(--section-space)">
+                    <div className={container}>
+                        <PlaceholderBlock title="How engagements are structured">
+                            Placeholder. A comparison of the engagement models WeIntegral offers
+                            (for example project-based delivery, managed support, contract staffing,
+                            contract-to-hire and direct hire): who manages the work, typical
+                            duration and best fit. Awaiting owner confirmation of which models
+                            apply.
+                        </PlaceholderBlock>
+                    </div>
                 </div>
-            </div>
+            )}
 
             <section aria-labelledby="faq-heading" className="bg-muted py-(--section-space)">
                 <div className={container}>
                     <SectionHeading id="faq-heading" className={sectionHeadingGap}>
                         Questions Clients ask
                     </SectionHeading>
-                    <FaqList faqs={faqs} />
+                    <FaqList faqs={faqs(sample?.pricing)} />
                 </div>
             </section>
 

@@ -12,7 +12,7 @@ import { contactHref } from "./site-navigation";
  * text, the ink "Talk to an Expert" button and an email fallback.
  */
 export function ClosingBand() {
-    const { contact } = usePage().props.site;
+    const { contact, sample } = usePage().props.site;
 
     return (
         <section aria-labelledby="closing-heading" className="bg-cta text-cta-foreground">
@@ -23,10 +23,14 @@ export function ClosingBand() {
                     </h2>
                     <p className={`mt-4 max-w-[48ch] ${typeRoles.lead}`}>
                         Tell us what you need and the right person from our team will follow up.{" "}
-                        <Placeholder className="border-cta-foreground bg-white/45 text-cta-foreground">
-                            Reply-time commitment, e.g. &ldquo;within N business days&rdquo;, owner
-                            to confirm
-                        </Placeholder>
+                        {sample ? (
+                            sample.replyTime
+                        ) : (
+                            <Placeholder className="border-cta-foreground bg-white/45 text-cta-foreground">
+                                Reply-time commitment, e.g. &ldquo;within N business days&rdquo;,
+                                owner to confirm
+                            </Placeholder>
+                        )}
                     </p>
                 </div>
                 <div className="flex flex-col items-start gap-4 min-[52rem]:justify-self-end">

@@ -14,7 +14,10 @@ export interface Leader {
     title: string;
     /** Two sentences at most. */
     bio: string;
-    photoUrl: string;
+    /** Shown in an avatar when there is no photo. */
+    initials: string;
+    /** Null shows the initials avatar (sample leaders never use photos of real people). */
+    photoUrl: string | null;
     linkedInUrl: string | null;
 }
 
@@ -38,7 +41,7 @@ export default function Leadership({ leaders }: LeadershipPageProps) {
                         Our leadership team
                     </SectionHeading>
                     {leaders.length > 0 ? (
-                        <ul className="grid gap-x-8 gap-y-12 sm:grid-cols-2 lg:grid-cols-3">
+                        <ul className="grid gap-x-8 gap-y-12 sm:grid-cols-2 lg:grid-cols-4">
                             {leaders.map((leader) => (
                                 <LeaderCard key={leader.name} leader={leader} />
                             ))}
@@ -89,14 +92,24 @@ export default function Leadership({ leaders }: LeadershipPageProps) {
 function LeaderCard({ leader }: { leader: Leader }) {
     return (
         <li>
-            <img
-                src={leader.photoUrl}
-                alt=""
-                width={480}
-                height={600}
-                loading="lazy"
-                className="aspect-4/5 w-full rounded-xl bg-muted object-cover"
-            />
+            {leader.photoUrl ? (
+                <img
+                    src={leader.photoUrl}
+                    alt=""
+                    width={480}
+                    height={600}
+                    loading="lazy"
+                    className="aspect-4/5 w-full rounded-xl bg-muted object-cover"
+                />
+            ) : (
+                <div
+                    aria-hidden="true"
+                    data-initials-avatar=""
+                    className="grid aspect-4/5 w-full place-items-center rounded-xl bg-inverse text-[clamp(3rem,2rem+4vw,5rem)] font-[650] tracking-[-0.03em] text-inverse-foreground"
+                >
+                    {leader.initials}
+                </div>
+            )}
             <h3 className={`mt-5 ${typeRoles.title}`}>{leader.name}</h3>
             <p className="text-sm font-medium text-emphasis">{leader.title}</p>
             <p className="mt-3 text-muted-foreground">{leader.bio}</p>

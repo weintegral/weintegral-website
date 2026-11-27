@@ -40,8 +40,10 @@ export interface Insight {
 export interface HomePageProps {
     statistics: Statistic[];
     testimonials: Testimonial[];
-    /** Newest first, at most three; empty when the blog feed is unavailable. */
+    /** Newest first, at most three; empty when the blog feed is unavailable (sample posts when sample content is on). */
     insights: Insight[];
+    /** Sample copy for the page's gaps (App\Content\SampleContent::home()); null unless sample content is on. */
+    sample: { officeWork: string } | null;
 }
 
 const { section: h2, title: h3, subtitle: h4, lead } = typeRoles;
@@ -91,29 +93,34 @@ function stationsFor(services: ServiceListing[]): Station[] {
     });
 }
 
-const differentiators: { title: string; body: ReactNode }[] = [
-    {
-        title: "Build, test and run under one roof",
-        body: "Development, quality assurance, DevOps and support sit with one firm, so nothing gets lost between vendors.",
-    },
-    {
-        title: "Built around your needs",
-        body: "We customize every solution to your goals, your process and the systems you already run.",
-    },
-    {
-        title: "Teams in Texas and India",
-        body: (
-            <>
-                An office in Lakeway, Texas and a team in Ongole, Andhra Pradesh.{" "}
-                <Placeholder>Owner to confirm how the two offices share work</Placeholder>
-            </>
-        ),
-    },
-    {
-        title: "People who keep learning",
-        body: "We invest in continuous learning, so our people stay current with the technologies your project needs.",
-    },
-];
+/** "Why WeIntegral" items; `officeWork` is the sample split of work between the offices, if any. */
+function differentiators(officeWork: string | undefined): { title: string; body: ReactNode }[] {
+    return [
+        {
+            title: "Build, test and run under one roof",
+            body: "Development, quality assurance, DevOps and support sit with one firm, so nothing gets lost between vendors.",
+        },
+        {
+            title: "Built around your needs",
+            body: "We customize every solution to your goals, your process and the systems you already run.",
+        },
+        {
+            title: "Teams in Texas and India",
+            body: (
+                <>
+                    An office in Lakeway, Texas and a team in Ongole, Andhra Pradesh.{" "}
+                    {officeWork ?? (
+                        <Placeholder>Owner to confirm how the two offices share work</Placeholder>
+                    )}
+                </>
+            ),
+        },
+        {
+            title: "People who keep learning",
+            body: "We invest in continuous learning, so our people stay current with the technologies your project needs.",
+        },
+    ];
+}
 
 const careerPillars = [
     {
@@ -134,7 +141,7 @@ const cultureLink = careersLinks.find((link) => link.label === "Culture");
 
 const insightDate = new Intl.DateTimeFormat("en-US", { dateStyle: "medium", timeZone: "UTC" });
 
-export default function Home({ statistics, testimonials, insights }: HomePageProps) {
+export default function Home({ statistics, testimonials, insights, sample }: HomePageProps) {
     const { contact, services, industries } = usePage().props.site;
 
     return (
@@ -243,7 +250,7 @@ export default function Home({ statistics, testimonials, insights }: HomePagePro
                             </p>
                         </div>
                         <ul className="grid gap-10 sm:grid-cols-2">
-                            {differentiators.map((item) => (
+                            {differentiators(sample?.officeWork).map((item) => (
                                 <li key={item.title}>
                                     <h3
                                         className={`${h4} relative mb-2 pt-4 before:absolute before:top-0 before:left-0 before:h-0.5 before:w-6 before:bg-brand-coral`}
@@ -269,12 +276,15 @@ export default function Home({ statistics, testimonials, insights }: HomePagePro
                                 </div>
                             ))}
                         </dl>
-                        <p className="mt-6 text-caption">
-                            <Placeholder>
-                                To confirm: figures copied from the current About page. Owner to
-                                confirm them, and add an &ldquo;as of&rdquo; date, before launch.
-                            </Placeholder>
-                        </p>
+                        {!sample && (
+                            <p className="mt-6 text-caption">
+                                <Placeholder>
+                                    To confirm: figures copied from the current About page. Owner to
+                                    confirm them, and add an &ldquo;as of&rdquo; date, before
+                                    launch.
+                                </Placeholder>
+                            </p>
+                        )}
                     </div>
                 </div>
             </section>
@@ -306,24 +316,20 @@ export default function Home({ statistics, testimonials, insights }: HomePagePro
                                         {industry.name}
                                     </h3>
                                     <span className="text-sm text-muted-foreground">
-                                        {industry.summary ?? (
-                                            <Placeholder>
-                                                One line on WeIntegral&rsquo;s{" "}
-                                                {industry.name.toLowerCase()} work, supplied by
-                                                owner
-                                            </Placeholder>
-                                        )}
+                                        {industry.summary}
                                     </span>
                                 </a>
                             </li>
                         ))}
                     </ul>
-                    <p className="mt-6 text-sm text-muted-foreground">
-                        <Placeholder>
-                            Industry list taken from the current Industries page; owner to confirm
-                            or extend
-                        </Placeholder>
-                    </p>
+                    {!sample && (
+                        <p className="mt-6 text-sm text-muted-foreground">
+                            <Placeholder>
+                                Industry list taken from the current Industries page; owner to
+                                confirm or extend
+                            </Placeholder>
+                        </p>
+                    )}
                 </div>
             </section>
 

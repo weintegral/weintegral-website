@@ -1,12 +1,14 @@
 import type { ReactNode } from "react";
 
+import { SampleBanner } from "./sample-banner";
 import { Seo } from "./seo";
 import { SiteFooter } from "./site-footer";
 import { SiteHeader } from "./site-header";
 
 /**
  * The shared shell for every public Inertia page: SEO head (from the page's `seo`
- * prop), skip link, utility bar and header, the page's own content as <main>, and the footer.
+ * prop), skip link, the sample-content banner (only while sample content is on), utility
+ * bar and header, the page's own content as <main>, and the footer.
  */
 export function SiteLayout({ children }: { children: ReactNode }) {
     return (
@@ -18,6 +20,7 @@ export function SiteLayout({ children }: { children: ReactNode }) {
             >
                 Skip to content
             </a>
+            <SampleBanner />
             <SiteHeader />
             <main id="main-content" tabIndex={-1} className="outline-none">
                 {children}

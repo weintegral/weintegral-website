@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Content\SampleContent;
 use App\Services\BlogFeed;
 use Inertia\Inertia;
 use Inertia\Response;
@@ -19,8 +20,10 @@ class HomePageController extends Controller
         ['value' => '25', 'label' => 'Employees'],
     ];
 
-    public function __construct(private readonly BlogFeed $blogFeed)
-    {
+    public function __construct(
+        private readonly BlogFeed $blogFeed,
+        private readonly SampleContent $sampleContent,
+    ) {
     }
 
     public function indexAction(): Response
@@ -30,10 +33,12 @@ class HomePageController extends Controller
                 'IT Services and IT Staffing',
                 'WeIntegral builds, tests, deploys and supports web and mobile applications, and supplies IT specialists to extend your team. Talk to an Expert today.',
             ),
-            'statistics' => self::STATISTICS,
+            'statistics' => $this->sampleContent->statistics() ?? self::STATISTICS,
             // Real testimonials with written consent only; the old site's are template placeholders.
-            'testimonials' => [],
-            'insights' => $this->blogFeed->latestInsights(),
+            'testimonials' => $this->sampleContent->testimonials() ?? [],
+            'insights' => $this->blogFeed->latestInsights() ?: ($this->sampleContent->insights() ?? []),
+            // Sample copy for the page's own gaps; null (placeholders shown) unless sample content is on.
+            'sample' => $this->sampleContent->home(),
         ]);
     }
 }

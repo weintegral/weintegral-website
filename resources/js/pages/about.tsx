@@ -20,6 +20,8 @@ export interface Stat {
 /** Props from AboutController::aboutAction. */
 export interface AboutPageProps {
     stats: Stat[];
+    /** Sample copy (App\Content\SampleContent::about()); null unless sample content is on. */
+    sample: { foundingStory: string; officeWork: string } | null;
 }
 
 const values = [
@@ -41,7 +43,7 @@ const values = [
     },
 ];
 
-export default function About({ stats }: AboutPageProps) {
+export default function About({ stats, sample }: AboutPageProps) {
     const { offices, services } = usePage().props.site;
 
     return (
@@ -78,7 +80,9 @@ export default function About({ stats }: AboutPageProps) {
                             finds skilled professionals to join your own team.
                         </p>
                         <p className="text-base">
-                            <Placeholder>Founding story and year, owner to supply</Placeholder>
+                            {sample?.foundingStory ?? (
+                                <Placeholder>Founding story and year, owner to supply</Placeholder>
+                            )}
                         </p>
                         <ul className="flex flex-wrap gap-x-6 gap-y-3 pt-2 text-base">
                             {services.map((service) => (
@@ -146,7 +150,11 @@ export default function About({ stats }: AboutPageProps) {
                             ))}
                         </ul>
                         <p className="mt-8 text-sm">
-                            <Placeholder>How the two offices share work, to confirm</Placeholder>
+                            {sample?.officeWork ?? (
+                                <Placeholder>
+                                    How the two offices share work, to confirm
+                                </Placeholder>
+                            )}
                         </p>
                     </div>
                 </div>
@@ -167,12 +175,14 @@ export default function About({ stats }: AboutPageProps) {
                             </div>
                         ))}
                     </dl>
-                    <p className="mt-6 text-caption">
-                        <Placeholder>
-                            Figures carried over from the previous About page, to confirm with an
-                            "as of" date
-                        </Placeholder>
-                    </p>
+                    {!sample && (
+                        <p className="mt-6 text-caption">
+                            <Placeholder>
+                                Figures carried over from the previous About page, to confirm with
+                                an "as of" date
+                            </Placeholder>
+                        </p>
+                    )}
                 </div>
             </section>
 

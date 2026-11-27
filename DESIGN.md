@@ -436,6 +436,10 @@ These are not in the comps yet; they are built with the contact form (#60). Inpu
 
 Unconfirmed facts are wrapped in a dashed coral-text outline on a pale coral wash (`.ph`). Production must never ship this style: each placeholder is either filled or removed, and tracked in the launch checklist.
 
+### Sample content banner (local review only)
+
+With `SITE_SAMPLE_CONTENT=true` (never in production), fictional values from `app/Content/SampleContent.php` fill the placeholders so the complete site can be reviewed. Every page then opens with a full-width strip above the utility bar: `--emphasis` fill, `--background` text (5.58:1 light, 8.27:1 dark), label weight, centred, reading "Sample content — not for publication". It is an `aside` landmark labelled "Sample content notice" and cannot be dismissed. Sample leaders use initials avatars (navy band fill, inverse text), never stock portraits.
+
 ## Motion
 
 - **Easing:** `--ease-out` is cubic-bezier(0.16, 1, 0.3, 1), an exponential ease-out.

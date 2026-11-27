@@ -2,14 +2,17 @@
 
 namespace App\Http\Controllers;
 
+use App\Content\SampleContent;
 use App\Services\ContactInfo;
 use Inertia\Inertia;
 use Inertia\Response;
 
 class AboutController extends Controller
 {
-    public function __construct(private readonly ContactInfo $contactInfo)
-    {
+    public function __construct(
+        private readonly ContactInfo $contactInfo,
+        private readonly SampleContent $sampleContent,
+    ) {
     }
 
     /**
@@ -23,12 +26,14 @@ class AboutController extends Controller
                 'Who We Are',
                 'WeIntegral builds, tests, deploys and supports business applications and staffs IT roles, from offices in Lakeway, Texas and Ongole, India.',
             ),
-            'stats' => [
+            'stats' => $this->sampleContent->statistics() ?? [
                 ['value' => '110', 'label' => 'Clients served'],
                 ['value' => '150', 'label' => 'Projects delivered'],
                 ['value' => '1,463', 'label' => 'Hours of support'],
                 ['value' => '25', 'label' => 'Employees'],
             ],
+            // Sample founding story and office split; null (placeholders shown) unless sample content is on.
+            'sample' => $this->sampleContent->about(),
         ]);
     }
 

@@ -143,13 +143,9 @@ export default function ServicePage({ service }: ServicePageProps) {
 
             <div className={`${section} bg-muted`}>
                 <div className={`${container} grid gap-6 md:grid-cols-2`}>
-                    <PlaceholderBlock id="engagement-options" title="Engagement options">
-                        {service.engagementOptions.placeholder}
-                    </PlaceholderBlock>
+                    <EngagementOptions service={service} />
                     <Technologies service={service} />
-                    <PlaceholderBlock title="A case story" className="md:col-span-2">
-                        {service.caseStory.placeholder}
-                    </PlaceholderBlock>
+                    <CaseStoryBlock service={service} />
                 </div>
             </div>
 
@@ -255,10 +251,81 @@ function ServiceHero({ service }: ServicePageProps) {
     );
 }
 
+const panel = "scroll-mt-20 rounded-lg border border-border bg-card px-6 py-5";
+
+function EngagementOptions({ service }: ServicePageProps) {
+    const options = service.engagementOptions;
+
+    if (isPending(options)) {
+        return (
+            <PlaceholderBlock id="engagement-options" title="Engagement options">
+                {options.placeholder}
+            </PlaceholderBlock>
+        );
+    }
+
+    return (
+        <section
+            id="engagement-options"
+            aria-labelledby="engagement-options-heading"
+            className={panel}
+        >
+            <h2 id="engagement-options-heading" className="mb-3 font-semibold">
+                Engagement options
+            </h2>
+            <dl className="divide-y divide-border">
+                {options.map((option) => (
+                    <div key={option.name} className="py-3 first:pt-0 last:pb-0">
+                        <dt className="font-medium">{option.name}</dt>
+                        <dd className="mt-1 text-sm text-muted-foreground">{option.description}</dd>
+                    </div>
+                ))}
+            </dl>
+        </section>
+    );
+}
+
+function CaseStoryBlock({ service }: ServicePageProps) {
+    const story = service.caseStory;
+
+    if (isPending(story)) {
+        return (
+            <PlaceholderBlock title="A case story" className="md:col-span-2">
+                {story.placeholder}
+            </PlaceholderBlock>
+        );
+    }
+
+    return (
+        <section
+            aria-labelledby="case-story-heading"
+            data-case-story=""
+            className={`${panel} md:col-span-2`}
+        >
+            <h2 id="case-story-heading" className="font-semibold">
+                A case story
+            </h2>
+            <p className="mb-4 text-sm text-muted-foreground">{story.client}</p>
+            <dl className="grid gap-6 md:grid-cols-3">
+                {[
+                    { term: "Challenge", detail: story.challenge },
+                    { term: "What we did", detail: story.approach },
+                    { term: "Result", detail: story.result },
+                ].map((item) => (
+                    <div key={item.term} className="border-t border-border pt-3">
+                        <dt className="text-caption font-semibold text-emphasis">{item.term}</dt>
+                        <dd className="mt-1">{item.detail}</dd>
+                    </div>
+                ))}
+            </dl>
+        </section>
+    );
+}
+
 function Technologies({ service }: ServicePageProps) {
     const { heading, items, note } = service.technologies;
 
-    if (items.length === 0) {
+    if (items.length === 0 && note !== null) {
         return (
             <PlaceholderBlock id="technologies" title={heading}>
                 {isPending(note) ? note.placeholder : note}
@@ -267,11 +334,7 @@ function Technologies({ service }: ServicePageProps) {
     }
 
     return (
-        <section
-            id="technologies"
-            aria-labelledby="technologies-heading"
-            className="scroll-mt-20 rounded-lg border border-border bg-card px-6 py-5"
-        >
+        <section id="technologies" aria-labelledby="technologies-heading" className={panel}>
             <h2 id="technologies-heading" className="mb-3 font-semibold">
                 {heading}
             </h2>
@@ -285,9 +348,11 @@ function Technologies({ service }: ServicePageProps) {
                     </li>
                 ))}
             </ul>
-            <p className="mt-4 text-sm">
-                <CopyText copy={note} />
-            </p>
+            {note !== null && (
+                <p className="mt-4 text-sm">
+                    <CopyText copy={note} />
+                </p>
+            )}
         </section>
     );
 }

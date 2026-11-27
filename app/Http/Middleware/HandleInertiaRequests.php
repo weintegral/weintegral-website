@@ -3,6 +3,7 @@
 namespace App\Http\Middleware;
 
 use App\Content\IndustryCatalog;
+use App\Content\SampleContent;
 use App\Content\ServiceCatalog;
 use App\Services\ContactInfo;
 use Illuminate\Http\Request;
@@ -26,6 +27,7 @@ class HandleInertiaRequests extends Middleware
         private readonly ContactInfo $contactInfo,
         private readonly ServiceCatalog $serviceCatalog,
         private readonly IndustryCatalog $industryCatalog,
+        private readonly SampleContent $sampleContent,
     ) {
     }
 
@@ -55,6 +57,8 @@ class HandleInertiaRequests extends Middleware
                     'height' => 630,
                     'alt' => 'A team working on laptops around a shared table',
                 ],
+                // Null unless sample content is on (never in production); see App\Content\SampleContent.
+                'sample' => $this->sampleContent->shell(),
             ],
         ];
     }

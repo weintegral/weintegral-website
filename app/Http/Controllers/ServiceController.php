@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Content\SampleContent;
 use App\Content\ServiceCatalog;
 use Inertia\Inertia;
 use Inertia\Response;
@@ -12,8 +13,10 @@ use Inertia\Response;
  */
 class ServiceController extends Controller
 {
-    public function __construct(private readonly ServiceCatalog $catalog)
-    {
+    public function __construct(
+        private readonly ServiceCatalog $catalog,
+        private readonly SampleContent $sampleContent,
+    ) {
     }
 
     public function indexAction(): Response
@@ -24,6 +27,8 @@ class ServiceController extends Controller
                 "WeIntegral's IT services: application development, application support, quality assurance and testing, DevOps and cloud, and IT staffing.",
             ),
             'services' => $this->catalog->summaries(),
+            // Sample engagement-model comparison and pricing answer; null unless sample content is on.
+            'sample' => $this->sampleContent->servicesOverview(),
         ]);
     }
 

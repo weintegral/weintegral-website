@@ -20,6 +20,8 @@
     <env name="TELESCOPE_ENABLED" value="false"/>
     <!-- Feature tests inspect the Inertia page object; the SSR server is exercised by Dusk. -->
     <env name="INERTIA_SSR_ENABLED" value="false"/>
+    <!-- Tests start with sample content off whatever the local .env says; SampleContentTest switches it on. -->
+    <env name="SITE_SAMPLE_CONTENT" value="false" force="true"/>
   </php>
   <source>
     <include>
