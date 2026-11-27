@@ -1,16 +1,16 @@
 import { ExternalLink } from "@/components/internal-tools/data-table";
 import { InternalToolLayout } from "@/components/internal-tools/internal-tool-layout";
 
-/** Props from InternalToolsController::managementResourcesAction. */
-export interface ManagementResourcesPageProps {
+/** Props from InternalToolsController::companySystemsAction. */
+export interface CompanySystemsPageProps {
     resources: { title: string; brief: string; url: string }[];
 }
 
-export default function ManagementResources({ resources }: ManagementResourcesPageProps) {
+export default function CompanySystems({ resources }: CompanySystemsPageProps) {
     return (
         <InternalToolLayout
-            title="Management resources"
-            intro="Company systems for WeIntegral staff."
+            title="Company systems"
+            intro="Links to the systems WeIntegral staff use."
         >
             <ul className="grid gap-4 sm:grid-cols-2">
                 {resources.map((resource) => (

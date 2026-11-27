@@ -133,7 +133,7 @@ class LegalAndInternalToolsTest extends DuskTestCase
     public static function internalTools(): array
     {
         return [
-            'management resources' => ['/mgmt-resources', 'Management resources'],
+            'company systems' => ['/mgmt-resources', 'Company systems'],
             'vendors' => ['/vendors', 'Vendors'],
             'job portals' => ['/job-portals', 'Job portals'],
             'client list' => ['/client-list', 'Client list'],

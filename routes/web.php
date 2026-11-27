@@ -106,7 +106,7 @@ Route::get('/resources', [ResourceController::class, 'indexAction'])->name('reso
 |
 */
 Route::middleware(NoIndex::class)->controller(InternalToolsController::class)->group(function () {
-    Route::get('/mgmt-resources', 'managementResourcesAction')->name('mgmtResourcePage');
+    Route::get('/mgmt-resources', 'companySystemsAction')->name('companySystemsPage');
     Route::get('/vendors', 'vendorsAction')->name('vendorsPage');
     Route::get('/job-portals', 'jobPortalsAction')->name('jobPortalsPage');
     Route::get('/client-list', 'clientListAction')->name('clientListPage');

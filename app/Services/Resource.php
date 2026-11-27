@@ -70,7 +70,7 @@ class Resource
         ];
     }
 
-    public function getManagementResources(): array
+    public function getCompanySystems(): array
     {
         return [
             [

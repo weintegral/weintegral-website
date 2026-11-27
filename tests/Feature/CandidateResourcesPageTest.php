@@ -7,7 +7,7 @@ use Tests\TestCase;
 
 /**
  * Candidate Resources stays public at /resources: the visa and H-1B links from
- * the Resource service, never the management (Internal Tools) links.
+ * the Resource service, never the company-systems links from Internal Tools.
  */
 class CandidateResourcesPageTest extends TestCase
 {
@@ -34,7 +34,7 @@ class CandidateResourcesPageTest extends TestCase
             );
     }
 
-    public function test_candidate_resources_page_leaves_out_management_links(): void
+    public function test_candidate_resources_page_leaves_out_internal_tools_links(): void
     {
         $this->get('/resources')
             ->assertInertia(fn (AssertableInertia $page) => $page

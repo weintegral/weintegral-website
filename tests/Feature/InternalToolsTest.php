@@ -28,7 +28,7 @@ class InternalToolsTest extends TestCase
     public static function internalTools(): array
     {
         return [
-            'management resources' => ['/mgmt-resources', 'internal-tools/management-resources'],
+            'company systems' => ['/mgmt-resources', 'internal-tools/company-systems'],
             'vendors' => ['/vendors', 'internal-tools/vendors'],
             'job portals' => ['/job-portals', 'internal-tools/job-portals'],
             'client list' => ['/client-list', 'internal-tools/client-list'],
@@ -81,7 +81,12 @@ class InternalToolsTest extends TestCase
         $response->assertDontSee('name="robots"', escape: false);
     }
 
-    public function test_management_resources_list_company_systems(): void
+    public function test_company_systems_keep_their_legacy_url(): void
+    {
+        $this->assertSame(url('/mgmt-resources'), route('companySystemsPage'));
+    }
+
+    public function test_company_systems_list_the_staff_systems(): void
     {
         $this->get('/mgmt-resources')
             ->assertInertia(fn (AssertableInertia $page) => $page

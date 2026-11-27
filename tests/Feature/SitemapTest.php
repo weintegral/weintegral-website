@@ -46,7 +46,7 @@ class SitemapTest extends TestCase
     public static function excludedPaths(): array
     {
         return [
-            'management resources' => ['/mgmt-resources'],
+            'company systems' => ['/mgmt-resources'],
             'vendors' => ['/vendors'],
             'job portals' => ['/job-portals'],
             'client list' => ['/client-list'],

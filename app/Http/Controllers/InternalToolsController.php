@@ -17,10 +17,10 @@ class InternalToolsController extends Controller
     {
     }
 
-    public function managementResourcesAction(): Response
+    public function companySystemsAction(): Response
     {
-        return Inertia::render('internal-tools/management-resources', [
-            'resources' => $this->resource->getManagementResources(),
+        return Inertia::render('internal-tools/company-systems', [
+            'resources' => $this->resource->getCompanySystems(),
         ]);
     }
 
