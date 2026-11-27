@@ -45,9 +45,9 @@ class SiteShellTest extends DuskTestCase
     public static function desktopMenuItems(): array
     {
         return [
-            'services: application development' => ['Services', 'Application Development', '/app-development', 'WEI - App Dev'],
-            'services: it staffing' => ['Services', 'IT Staffing', '/staffing', 'WEI - Staffing'],
-            'services: view all' => ['Services', 'View all Services', '/services', 'WEI - Services'],
+            'services: application development' => ['Services', 'Application Development', '/app-development', 'Application Development Services | WeIntegral'],
+            'services: it staffing' => ['Services', 'IT Staffing', '/staffing', 'IT Staffing Services | WeIntegral'],
+            'services: view all' => ['Services', 'View all Services', '/services', 'IT Services | WeIntegral'],
             'about: who we are' => ['About', 'Who We Are', '/about', 'WEI - About'],
             'about: leadership' => ['About', 'Leadership', '/team', 'WEI - Team'],
             'careers: open positions' => ['Careers', 'Open Positions', '/career/openings', 'Under Construction'],

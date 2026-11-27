@@ -2,56 +2,31 @@
 
 namespace App\Http\Controllers;
 
-use App\Services\ContactInfo;
-use Illuminate\View\View;
+use App\Content\ServiceCatalog;
+use Inertia\Inertia;
+use Inertia\Response;
 
+/**
+ * The Services overview and the five Service pages. Each Service route passes
+ * its slug as the `service` route default; one page component renders them all.
+ */
 class ServiceController extends Controller
 {
-    private ContactInfo $contactInfo;
-    private array $basicContactData;
-
-    public function __construct(ContactInfo $contactInfo)
+    public function __construct(private readonly ServiceCatalog $catalog)
     {
-        $this->contactInfo = $contactInfo;
-        $this->basicContactData = [
-            'email' => $this->contactInfo->getAdminEmailId(),
-            'phone' => $this->contactInfo->getPhoneNumber(),
-            'address' => $this->contactInfo->getCorporateAddress()
-        ];
     }
 
-    public function appDevelopmentAction(): View
+    public function indexAction(): Response
     {
-        $data = $this->basicContactData;
-
-        return view('services/appDevelopment/index', $data);
+        return Inertia::render('services/index', [
+            'services' => $this->catalog->summaries(),
+        ]);
     }
 
-    public function appSupportAction(): View
+    public function showAction(string $service): Response
     {
-        $data = $this->basicContactData;
-
-        return view('services/appSupport/index', $data);
-    }
-
-    public function testingAction(): View
-    {
-        $data = $this->basicContactData;
-
-        return view('services/testing/index', $data);
-    }
-
-    public function devopsAction(): View
-    {
-        $data = $this->basicContactData;
-
-        return view('services/devops/index', $data);
-    }
-
-    public function staffingAction(): View
-    {
-        $data = $this->basicContactData;
-
-        return view('services/staffing/index', $data);
+        return Inertia::render('services/show', [
+            'service' => $this->catalog->page($service),
+        ]);
     }
 }
