@@ -28,12 +28,15 @@ export default defineConfig({
         include: ["resources/js/**/*.test.ts"],
     },
     plugins: lazyPlugins(() => [
-        laravel({
-            input: ["resources/css/app.css", "resources/js/inertia.tsx"],
-            // The Inertia plugin wraps this entry in an SSR server for `vp build --ssr`.
-            ssr: "resources/js/inertia.tsx",
-            refresh: true,
-        }),
+        // The Laravel plugin refuses to start a dev server in CI, and `vp test` starts one; unit tests don't need it.
+        process.env.VITEST
+            ? null
+            : laravel({
+                  input: ["resources/css/app.css", "resources/js/inertia.tsx"],
+                  // The Inertia plugin wraps this entry in an SSR server for `vp build --ssr`.
+                  ssr: "resources/js/inertia.tsx",
+                  refresh: true,
+              }),
         inertia({ ssr: { entry: "resources/js/inertia.tsx" } }),
         react(),
         tailwindcss(),
