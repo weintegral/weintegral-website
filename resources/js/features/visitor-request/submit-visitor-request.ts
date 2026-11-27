@@ -2,7 +2,7 @@ import type { VisitorRequest } from "./visitor-request-schema";
 
 export type VisitorRequestFieldErrors = Partial<Record<keyof VisitorRequest, string>>;
 
-/** The API rejected one or more fields (HTTP 422); `fieldErrors` holds the first message per field. */
+/** The API rejected one or more form fields (HTTP 422); `fieldErrors` holds the first message per field and is never empty. */
 export class VisitorRequestRejectedError extends Error {
     constructor(
         message: string,
@@ -18,7 +18,10 @@ interface ValidationErrorBody {
     errors?: Record<string, string[]>;
 }
 
-/** Posts a Visitor Request to the existing JSON API; throws on any non-201 response. */
+/**
+ * Posts a Visitor Request to the existing JSON API. Throws VisitorRequestRejectedError when
+ * a 422 names form fields, and a plain Error on any other non-201 response.
+ */
 export async function submitVisitorRequest(
     url: string,
     visitorRequest: VisitorRequest,
@@ -40,6 +43,10 @@ export async function submitVisitorRequest(
             if (field in visitorRequest && messages[0]) {
                 fieldErrors[field as keyof VisitorRequest] = messages[0];
             }
+        }
+        // Errors the form can't show beside a field must still reach the visitor, as a general failure.
+        if (Object.keys(fieldErrors).length === 0) {
+            throw new Error(`Visitor Request rejected without field errors: ${body.message ?? ""}`);
         }
         throw new VisitorRequestRejectedError(
             body.message ?? "The Visitor Request was rejected.",
