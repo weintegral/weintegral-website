@@ -50,9 +50,9 @@ class SiteShellTest extends DuskTestCase
             'services: view all' => ['Services', 'View all Services', '/services', 'WEI - Services'],
             'about: who we are' => ['About', 'Who We Are', '/about', 'Who We Are | WeIntegral'],
             'about: leadership' => ['About', 'Leadership', '/team', 'Leadership | WeIntegral'],
-            'careers: open positions' => ['Careers', 'Open Positions', '/career/openings', 'Under Construction'],
-            'careers: culture' => ['Careers', 'Culture', '/career/work-culture', 'Under Construction'],
-            'careers: benefits' => ['Careers', 'Benefits', '/career/benefits', 'Under Construction'],
+            'careers: open positions' => ['Careers', 'Open Positions', '/career/openings', 'Open Positions | WeIntegral'],
+            'careers: culture' => ['Careers', 'Culture', '/career/work-culture', 'Culture | WeIntegral'],
+            'careers: benefits' => ['Careers', 'Benefits', '/career/benefits', 'Benefits | WeIntegral'],
         ];
     }
 
@@ -145,7 +145,7 @@ class SiteShellTest extends DuskTestCase
                 ->assertSeeLink('Candidate Resources')
                 ->clickLink('Careers')
                 ->waitForLocation('/career')
-                ->assertTitle('WEI - Career');
+                ->assertTitle('Careers | WeIntegral');
         });
     }
 
@@ -179,7 +179,7 @@ class SiteShellTest extends DuskTestCase
                     ->waitForLink('Benefits')
                     ->clickLink('Benefits'))
                 ->waitForLocation('/career/benefits')
-                ->assertTitle('Under Construction');
+                ->assertTitle('Benefits | WeIntegral');
         });
     }
 
