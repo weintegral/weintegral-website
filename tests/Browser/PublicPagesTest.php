@@ -52,17 +52,6 @@ class PublicPagesTest extends DuskTestCase
         });
     }
 
-    public function test_home_page_renders_hero_and_contact_details(): void
-    {
-        $this->browse(function (Browser $browser) {
-            $browser->visit('/')
-                ->assertTitle('WEI - Home')
-                ->assertPresent('#hero')
-                ->assertSeeLink('info@weintegral.com')
-                ->assertSee('+1 (512) 774-6577');
-        });
-    }
-
     public function test_career_page_renders(): void
     {
         $this->browse(function (Browser $browser) {
@@ -115,7 +104,7 @@ class PublicPagesTest extends DuskTestCase
     public function test_header_navigation_link_opens_page_and_marks_it_active(string $link, string $path, string $title): void
     {
         $this->browse(function (Browser $browser) use ($link, $path, $title) {
-            $browser->visit('/')
+            $browser->visit('/privacy-policy')
                 ->within('#navbar', fn (Browser $nav) => $nav->clickLink($link))
                 ->assertPathIs($path)
                 ->assertTitle($title)
@@ -126,7 +115,7 @@ class PublicPagesTest extends DuskTestCase
     public function test_header_contact_link_opens_the_inertia_contact_page(): void
     {
         $this->browse(function (Browser $browser) {
-            $browser->visit('/')
+            $browser->visit('/privacy-policy')
                 ->within('#navbar', fn (Browser $nav) => $nav->clickLink('Contact'))
                 ->assertPathIs('/contact')
                 ->waitForTextIn('h1', 'Contact')
@@ -143,7 +132,8 @@ class PublicPagesTest extends DuskTestCase
             $browser->visit('/about')
                 ->within('#header .logo', fn (Browser $logo) => $logo->clickLink('WeIntegral'))
                 ->assertPathIs('/')
-                ->assertTitle('WEI - Home');
+                ->waitForTextIn('h1', 'One team for the software your business runs on.')
+                ->assertTitle('IT Services and IT Staffing | WeIntegral');
         });
     }
 
@@ -152,7 +142,8 @@ class PublicPagesTest extends DuskTestCase
         $this->browse(function (Browser $browser) {
             $browser->visit('/this-page-does-not-exist')
                 ->assertPathIs('/')
-                ->assertTitle('WEI - Home');
+                ->waitForTextIn('h1', 'One team for the software your business runs on.')
+                ->assertTitle('IT Services and IT Staffing | WeIntegral');
         });
     }
 }

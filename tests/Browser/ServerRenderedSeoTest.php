@@ -48,4 +48,24 @@ class ServerRenderedSeoTest extends DuskTestCase
         $this->assertStringContainsString('West East Integral Inc.', $this->html);
         $this->assertMatchesRegularExpression('#<h1[^>]*>Contact</h1>#', $this->html);
     }
+
+    public function test_home_html_is_server_rendered_with_its_seo_head(): void
+    {
+        $base = rtrim(config('app.url'), '/');
+        $html = Http::get($base.'/?utm_source=test')->throw()->body();
+
+        $this->assertMatchesRegularExpression('#<title[^>]*>IT Services and IT Staffing \| WeIntegral</title>#', $html);
+        $this->assertMatchesRegularExpression('#<meta[^>]+name="description"[^>]+content="[^"]{50,}"#', $html);
+        $this->assertMatchesRegularExpression('#<link[^>]+rel="canonical"[^>]+href="'.preg_quote($base, '#').'/?"#', $html);
+
+        foreach (['og:type', 'og:title', 'og:description', 'og:url'] as $property) {
+            $this->assertMatchesRegularExpression('#<meta[^>]+property="'.$property.'"[^>]+content="[^"]+"#', $html, "Missing $property");
+        }
+
+        foreach (['twitter:card', 'twitter:title', 'twitter:description'] as $name) {
+            $this->assertMatchesRegularExpression('#<meta[^>]+name="'.$name.'"[^>]+content="[^"]+"#', $html, "Missing $name");
+        }
+
+        $this->assertMatchesRegularExpression('#<h1[^>]*>One team for the software your business runs on\.</h1>#', $html);
+    }
 }

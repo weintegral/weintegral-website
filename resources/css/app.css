@@ -111,3 +111,78 @@
         scroll-behavior: auto !important;
     }
 }
+
+/* The Integral Line (DESIGN.md, Signature): the homepage hero's ∫-shaped line with
+   the five Services as linked stations. Draws once on load; static under reduced motion. */
+@layer components {
+    .integral-line .track {
+        fill: none;
+        stroke: var(--inverse-border);
+        stroke-width: 14;
+        stroke-linecap: round;
+    }
+    .integral-line .line {
+        fill: none;
+        stroke: var(--cta);
+        stroke-width: 3;
+        stroke-linecap: round;
+        stroke-dasharray: 1;
+        stroke-dashoffset: 0;
+    }
+    .integral-line .end {
+        fill: var(--cta);
+    }
+    .integral-line .station a {
+        cursor: pointer;
+        text-decoration: none;
+        transition: opacity var(--duration-base) var(--ease-out);
+    }
+    .integral-line .station circle {
+        fill: var(--inverse);
+        stroke: var(--cta);
+        stroke-width: 3;
+        transition:
+            r var(--duration-base) var(--ease-out),
+            fill var(--duration-base) var(--ease-out);
+    }
+    .integral-line .station text {
+        fill: var(--inverse-foreground);
+        font-size: 20px;
+        font-weight: 620;
+        letter-spacing: -0.01em;
+    }
+    .integral-line .station .role {
+        fill: var(--inverse-muted);
+        font-size: 14px;
+        font-weight: 450;
+        letter-spacing: 0;
+    }
+    .integral-line .station a:hover circle,
+    .integral-line .station a:focus-visible circle {
+        r: 12;
+        fill: var(--cta);
+    }
+    .integral-line .station a:focus-visible {
+        outline: none;
+    }
+    .integral-line .station a:focus-visible text:first-of-type {
+        text-decoration: underline;
+    }
+    .integral-line:has(.station a:hover) .station a:not(:hover) {
+        opacity: 0.55;
+    }
+    @media (prefers-reduced-motion: no-preference) {
+        .integral-line .line {
+            animation: integral-draw var(--duration-draw) var(--ease-out) 0.15s both;
+        }
+    }
+}
+
+@keyframes integral-draw {
+    from {
+        stroke-dashoffset: 1;
+    }
+    to {
+        stroke-dashoffset: 0;
+    }
+}

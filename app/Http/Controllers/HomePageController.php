@@ -2,28 +2,34 @@
 
 namespace App\Http\Controllers;
 
-use App\Services\ContactInfo;
-use Illuminate\View\View;
+use App\Services\BlogFeed;
+use Inertia\Inertia;
+use Inertia\Response;
 
 class HomePageController extends Controller
 {
-    private ContactInfo $contactInfo;
-    private array $basicContactData;
+    /**
+     * Figures from the old About page. Unconfirmed: the page shows them only
+     * beside a visible "to confirm" marker (launch checklist).
+     */
+    private const STATISTICS = [
+        ['value' => '110', 'label' => 'Clients served'],
+        ['value' => '150', 'label' => 'Projects delivered'],
+        ['value' => '1,463', 'label' => 'Hours of support'],
+        ['value' => '25', 'label' => 'Employees'],
+    ];
 
-    public function __construct(ContactInfo $contactInfo)
+    public function __construct(private readonly BlogFeed $blogFeed)
     {
-        $this->contactInfo = $contactInfo;
-        $this->basicContactData = [
-            'email' => $this->contactInfo->getAdminEmailId(),
-            'phone' => $this->contactInfo->getPhoneNumber(),
-            'address' => $this->contactInfo->getCorporateAddress()
-        ];
     }
 
-    public function indexAction(): View
+    public function indexAction(): Response
     {
-        $data = $this->basicContactData;
-
-        return view('homePage/index', $data);
+        return Inertia::render('home', [
+            'statistics' => self::STATISTICS,
+            // Real testimonials with written consent only; the old site's are template placeholders.
+            'testimonials' => [],
+            'insights' => $this->blogFeed->latestInsights(),
+        ]);
     }
 }
