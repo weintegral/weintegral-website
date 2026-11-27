@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Services\ContactInfo;
 use Illuminate\View\View;
+use Inertia\Inertia;
+use Inertia\Response;
 
 class AboutController extends Controller
 {
@@ -48,17 +50,17 @@ class AboutController extends Controller
         return view('about/industries', $data);
     }
 
-    public function termsOfServiceAction(): View
+    public function termsOfServiceAction(): Response
     {
-        $data = $this->basicContactData;
-
-        return view('about/termsOfService/index', $data);
+        return Inertia::render('legal/terms-of-service', [
+            'contactEmail' => $this->contactInfo->getAdminEmailId(),
+        ]);
     }
 
-    public function privacyPolicyAction(): View
+    public function privacyPolicyAction(): Response
     {
-        $data = $this->basicContactData;
-
-        return view('about/privacyPolicy/index', $data);
+        return Inertia::render('legal/privacy-policy', [
+            'contactEmail' => $this->contactInfo->getAdminEmailId(),
+        ]);
     }
 }

@@ -45,19 +45,4 @@ class ManagementController extends Controller
             'visitorRequestUrl' => route('createCustomerRequest', absolute: false),
         ]);
     }
-
-    public function marketingSubmissionAction(): View
-    {
-        $data = $this->basicContactData;
-
-        return view('management/marketingData', $data);
-    }
-
-    public function marketingDataAction(): View
-    {
-        $data = $this->basicContactData;
-
-        return view('management/data', $data);
-    }
-
 }

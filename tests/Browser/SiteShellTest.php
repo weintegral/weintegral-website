@@ -159,7 +159,7 @@ class SiteShellTest extends DuskTestCase
                     ->assertSee('West East Integral Inc.')
                     ->clickLink('Privacy Policy'))
                 ->waitForLocation('/privacy-policy')
-                ->assertTitle('WEI - Privacy');
+                ->assertTitle('Privacy Policy | WeIntegral');
         });
     }
 

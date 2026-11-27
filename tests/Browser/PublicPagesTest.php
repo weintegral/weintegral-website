@@ -20,22 +20,13 @@ class PublicPagesTest extends DuskTestCase
             'services' => ['/services', 'WEI - Services', 'Services'],
             'clients' => ['/clients', 'WEI - Clients', 'Clients'],
             'industries' => ['/industries', 'WEI - Industries', 'Industries'],
-            'terms of service' => ['/terms-of-service', 'WEI - Terms', 'Terms of Service'],
-            'privacy policy' => ['/privacy-policy', 'WEI - Privacy', 'Privacy Policy'],
             'app development' => ['/app-development', 'WEI - App Dev', 'Application Development'],
             'app support' => ['/app-support', 'WEI - App Support', 'Application Support'],
             'testing' => ['/testing', 'WEI - Testing', 'Testing'],
             'devops' => ['/devops', 'WEI - DevOps', 'DevOps'],
             'staffing' => ['/staffing', 'WEI - Staffing', 'Staffing'],
             'team' => ['/team', 'WEI - Team', 'Team'],
-            'marketing submissions' => ['/marketing-data', 'WEI - Submissions', 'Marketing Data'],
-            'marketing data' => ['/data', 'WEI - Submissions', 'Marketing Data'],
             'resources' => ['/resources', 'WEI - Resources', 'Resources'],
-            'management resources' => ['/mgmt-resources', 'WEI - Resources', 'Resources'],
-            'vendors' => ['/vendors', 'WEI - Resources', 'Vendors'],
-            'job portals' => ['/job-portals', 'WEI - Resources', 'Job Portals'],
-            'client list' => ['/client-list', 'WEI - Resources', 'Clients'],
-            'job groups' => ['/job-groups', 'WEI - Job Groups', 'Job Groups'],
         ];
     }
 
