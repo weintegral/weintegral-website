@@ -13,13 +13,7 @@ import {
 
 export default function Culture() {
     return (
-        <SiteLayout
-            seo={{
-                title: "Culture",
-                description:
-                    "Life at WeIntegral: continuous learning, room to experiment and an inclusive, transparent workplace where every employee and consultant has a voice.",
-            }}
-        >
+        <SiteLayout>
             <CareersPageIntro
                 title="Culture"
                 withinCareers

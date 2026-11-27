@@ -42,13 +42,7 @@ const benefitGroups: { title: string; detail: React.ReactNode }[] = [
 
 export default function Benefits() {
     return (
-        <SiteLayout
-            seo={{
-                title: "Benefits",
-                description:
-                    "Benefits for WeIntegral employees and consultants, covering health, time off, retirement and career growth, plus how eligibility works for each role.",
-            }}
-        >
+        <SiteLayout>
             <CareersPageIntro
                 title="Benefits"
                 withinCareers

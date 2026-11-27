@@ -15,13 +15,7 @@ export default function Contact({ visitorRequestUrl }: ContactPageProps) {
     const { contact: contactDetails, offices } = usePage().props.site;
 
     return (
-        <SiteLayout
-            seo={{
-                title: "Contact",
-                description:
-                    "Talk to an Expert at WeIntegral about application development, support, testing, DevOps or IT staffing. Send us a message or call our Lakeway, TX office.",
-            }}
-        >
+        <SiteLayout>
             <div className="mx-auto max-w-(--container-max) px-(--gutter) py-12 lg:py-16">
                 <nav aria-label="Breadcrumb" className="text-sm text-muted-foreground">
                     <ol className="flex gap-2">

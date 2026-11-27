@@ -57,13 +57,7 @@ export default function About({ stats }: AboutPageProps) {
     const { offices, services } = usePage().props.site;
 
     return (
-        <SiteLayout
-            seo={{
-                title: "Who We Are",
-                description:
-                    "WeIntegral builds, tests, deploys and supports business applications and staffs IT roles, from offices in Lakeway, Texas and Ongole, India.",
-            }}
-        >
+        <SiteLayout>
             <PageIntro
                 trail={[{ label: "Home", href: "/" }]}
                 title="Who We Are"

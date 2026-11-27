@@ -22,13 +22,7 @@ function hostOf(url: string): string {
 
 export default function CandidateResources({ candidateResources }: CandidateResourcesProps) {
     return (
-        <SiteLayout
-            seo={{
-                title: "Candidate Resources",
-                description:
-                    "Useful links for IT candidates: USCIS case status, H-1B prevailing wages and registration, visa appointment wait times, PERM, E-Verify and OPT extensions.",
-            }}
-        >
+        <SiteLayout>
             <CareersPageIntro
                 title="Candidate resources"
                 lead="Working through a visa, H-1B or green card process? These official and third-party tools can help you check a case, research wages and plan appointments."

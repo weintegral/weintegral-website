@@ -19,14 +19,21 @@ class ServiceController extends Controller
     public function indexAction(): Response
     {
         return Inertia::render('services/index', [
+            'seo' => self::seo(
+                'IT Services',
+                "WeIntegral's IT services: application development, application support, quality assurance and testing, DevOps and cloud, and IT staffing.",
+            ),
             'services' => $this->catalog->summaries(),
         ]);
     }
 
     public function showAction(string $service): Response
     {
+        $page = $this->catalog->page($service);
+
         return Inertia::render('services/show', [
-            'service' => $this->catalog->page($service),
+            'seo' => $page['seo'],
+            'service' => $page,
         ]);
     }
 }

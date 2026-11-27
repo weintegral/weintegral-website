@@ -2,6 +2,7 @@ import { Head, usePage } from "@inertiajs/react";
 
 import { pageTitle, siteName } from "@/lib/page-title";
 
+/** A public page's `seo` prop, from Controller::seo() in Laravel. */
 export interface SeoProps {
     /** Page title without the site name; the app appends " | WeIntegral". */
     title: string;
@@ -10,11 +11,14 @@ export interface SeoProps {
 }
 
 /**
- * The page's search and sharing metadata: title, description, canonical URL,
- * Open Graph and Twitter tags. Rendered into <head> during SSR by Inertia.
+ * The page's search and sharing metadata, from its `seo` prop: title, description,
+ * canonical URL, Open Graph and Twitter tags. Rendered into <head> during SSR by
+ * Inertia; resources/views/app.blade.php renders the same tags when SSR is down.
  */
-export function Seo({ title, description }: SeoProps) {
-    const { canonicalUrl } = usePage().props.site;
+export function Seo() {
+    const { props } = usePage<{ seo: SeoProps }>();
+    const { title, description } = props.seo;
+    const { canonicalUrl } = props.site;
     const fullTitle = pageTitle(title);
 
     return (

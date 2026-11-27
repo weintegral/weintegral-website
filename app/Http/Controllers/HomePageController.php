@@ -26,6 +26,10 @@ class HomePageController extends Controller
     public function indexAction(): Response
     {
         return Inertia::render('home', [
+            'seo' => self::seo(
+                'IT Services and IT Staffing',
+                'WeIntegral builds, tests, deploys and supports web and mobile applications, and supplies IT specialists to extend your team. Talk to an Expert today.',
+            ),
             'statistics' => self::STATISTICS,
             // Real testimonials with written consent only; the old site's are template placeholders.
             'testimonials' => [],

@@ -1,7 +1,6 @@
 import type { ReactNode } from "react";
 
 import { SiteLayout } from "@/components/site/site-layout";
-import type { SeoProps } from "@/components/site/seo";
 
 /**
  * A legal document (Terms of Service, Privacy Policy) on the public site: breadcrumb,
@@ -9,17 +8,15 @@ import type { SeoProps } from "@/components/site/seo";
  */
 export function LegalPage({
     title,
-    description,
     contactEmail,
     children,
 }: {
     title: string;
-    description: SeoProps["description"];
     contactEmail: string;
     children: ReactNode;
 }) {
     return (
-        <SiteLayout seo={{ title, description }}>
+        <SiteLayout>
             <article className="mx-auto max-w-(--container-max) px-(--gutter) py-12 lg:py-16">
                 <nav aria-label="Breadcrumb" className="text-sm text-muted-foreground">
                     <ol className="flex gap-2">

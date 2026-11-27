@@ -13,13 +13,7 @@ export default function Industries() {
     const { industries, services } = usePage().props.site;
 
     return (
-        <SiteLayout
-            seo={{
-                title: "Industries",
-                description:
-                    "The industries WeIntegral serves with application development, support, testing, DevOps and IT staffing, and how sector knowledge speeds up every project.",
-            }}
-        >
+        <SiteLayout>
             <PageIntro
                 trail={[{ label: "Home", href: "/" }]}
                 title="Industries"

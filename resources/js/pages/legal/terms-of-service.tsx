@@ -8,11 +8,7 @@ export interface TermsOfServicePageProps {
 
 export default function TermsOfService({ contactEmail }: TermsOfServicePageProps) {
     return (
-        <LegalPage
-            title="Terms of Service"
-            description="The Terms of Service for weintegral.com, the website of West East Integral Inc. (WeIntegral), an IT services and staffing firm."
-            contactEmail={contactEmail}
-        >
+        <LegalPage title="Terms of Service" contactEmail={contactEmail}>
             {/* The previous page showed only "under construction": no terms text exists yet. */}
             <p>
                 <Placeholder>Terms of Service text, owner to supply before launch</Placeholder>

@@ -14,13 +14,7 @@ export interface OpenPositionsProps {
 
 export default function OpenPositions({ openPositions, careersEmail }: OpenPositionsProps) {
     return (
-        <SiteLayout
-            seo={{
-                title: "Open Positions",
-                description:
-                    "Search open IT positions at WeIntegral by role, technology or skill, then apply by sending your résumé to our team. New roles are added as they open.",
-            }}
-        >
+        <SiteLayout>
             <CareersPageIntro
                 title="Open positions"
                 withinCareers

@@ -27,13 +27,7 @@ export default function CareersIndex({ openPositionCount, careersEmail }: Career
         openPositionCount === 1 ? "1 open position" : `${openPositionCount} open positions`;
 
     return (
-        <SiteLayout
-            seo={{
-                title: "Careers",
-                description:
-                    "Build your IT career with WeIntegral. Browse open positions in development, testing and DevOps, and learn about our culture, benefits and candidate resources.",
-            }}
-        >
+        <SiteLayout>
             <CareersPageIntro
                 title="Careers"
                 lead="Grow your career with WeIntegral. We offer our employees and consultants room to grow, real support and a voice in how we work."

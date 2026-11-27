@@ -152,13 +152,7 @@ export default function Home({ statistics, testimonials, insights }: HomePagePro
     const { contact, services, industries } = usePage().props.site;
 
     return (
-        <SiteLayout
-            seo={{
-                title: "IT Services and IT Staffing",
-                description:
-                    "WeIntegral builds, tests, deploys and supports web and mobile applications, and supplies IT specialists to extend your team. Talk to an Expert today.",
-            }}
-        >
+        <SiteLayout>
             {/* Hero */}
             <section
                 aria-labelledby="home-heading"

@@ -15,6 +15,10 @@ class ManagementController extends Controller
     public function teamAction(): Response
     {
         return Inertia::render('leadership', [
+            'seo' => self::seo(
+                'Leadership',
+                'Meet the leadership team behind WeIntegral, the IT services firm for application development, support, testing, DevOps and IT staffing.',
+            ),
             'leaders' => [],
         ]);
     }
@@ -25,6 +29,10 @@ class ManagementController extends Controller
     public function contactAction(): Response
     {
         return Inertia::render('contact', [
+            'seo' => self::seo(
+                'Contact',
+                'Talk to an Expert at WeIntegral about application development, support, testing, DevOps or IT staffing. Send us a message or call our Lakeway, TX office.',
+            ),
             'visitorRequestUrl' => route('createCustomerRequest', absolute: false),
         ]);
     }

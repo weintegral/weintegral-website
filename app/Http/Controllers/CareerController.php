@@ -24,6 +24,10 @@ class CareerController extends Controller
     public function indexAction(): Response
     {
         return Inertia::render('careers/index', [
+            'seo' => self::seo(
+                'Careers',
+                'Build your IT career with WeIntegral. Browse open positions in development, testing and DevOps, and learn about our culture, benefits and candidate resources.',
+            ),
             'openPositionCount' => count($this->jobService->getLatestRequirements()),
             'careersEmail' => $this->contactInfo->getHrEmailId(),
         ]);
@@ -31,17 +35,31 @@ class CareerController extends Controller
 
     public function cultureAction(): Response
     {
-        return Inertia::render('careers/culture');
+        return Inertia::render('careers/culture', [
+            'seo' => self::seo(
+                'Culture',
+                'Life at WeIntegral: continuous learning, room to experiment and an inclusive, transparent workplace where every employee and consultant has a voice.',
+            ),
+        ]);
     }
 
     public function benefitsAction(): Response
     {
-        return Inertia::render('careers/benefits');
+        return Inertia::render('careers/benefits', [
+            'seo' => self::seo(
+                'Benefits',
+                'Benefits for WeIntegral employees and consultants, covering health, time off, retirement and career growth, plus how eligibility works for each role.',
+            ),
+        ]);
     }
 
     public function jobOpeningsAction(): Response
     {
         return Inertia::render('careers/open-positions', [
+            'seo' => self::seo(
+                'Open Positions',
+                'Search open IT positions at WeIntegral by role, technology or skill, then apply by sending your résumé to our team. New roles are added as they open.',
+            ),
             'openPositions' => array_map(
                 fn (array $job) => $this->openPosition($job),
                 $this->jobService->getLatestRequirements(),

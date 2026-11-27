@@ -15,8 +15,32 @@
 
     @viteReactRefresh
     @vite(['resources/js/inertia.tsx', "resources/js/pages/{$page['component']}.tsx"])
+    {{--
+        The slot renders only when SSR is unavailable (with SSR up, Inertia sends the
+        server-rendered head instead), so crawlers still get the page's SEO head. It
+        mirrors resources/js/components/site/seo.tsx; each tag's `data-inertia` attribute is
+        its head-key, so the client-side <Head> replaces it rather than duplicating it.
+    --}}
     <x-inertia::head>
-        <title inertia>WeIntegral</title>
+        @php($seo = $page['props']['seo'] ?? null)
+        @if ($seo)
+        @php($fullTitle = $seo['title'].' | WeIntegral')
+        @php($canonicalUrl = $page['props']['site']['canonicalUrl'])
+        <title data-inertia="">{{ $fullTitle }}</title>
+        <meta name="description" content="{{ $seo['description'] }}" data-inertia="description">
+        <link rel="canonical" href="{{ $canonicalUrl }}" data-inertia="canonical">
+        <meta property="og:type" content="website" data-inertia="og:type">
+        <meta property="og:site_name" content="WeIntegral" data-inertia="og:site_name">
+        <meta property="og:locale" content="en_US" data-inertia="og:locale">
+        <meta property="og:title" content="{{ $fullTitle }}" data-inertia="og:title">
+        <meta property="og:description" content="{{ $seo['description'] }}" data-inertia="og:description">
+        <meta property="og:url" content="{{ $canonicalUrl }}" data-inertia="og:url">
+        <meta name="twitter:card" content="summary" data-inertia="twitter:card">
+        <meta name="twitter:title" content="{{ $fullTitle }}" data-inertia="twitter:title">
+        <meta name="twitter:description" content="{{ $seo['description'] }}" data-inertia="twitter:description">
+        @else
+        <title data-inertia="">WeIntegral</title>
+        @endif
     </x-inertia::head>
 </head>
 

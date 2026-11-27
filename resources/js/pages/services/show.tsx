@@ -43,7 +43,7 @@ export default function ServicePage({ service }: ServicePageProps) {
     );
 
     return (
-        <SiteLayout seo={service.seo}>
+        <SiteLayout>
             <ServiceHero service={service} />
             <ServiceAnchorNav anchors={pageAnchors} />
 

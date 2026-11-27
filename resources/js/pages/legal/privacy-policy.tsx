@@ -8,11 +8,7 @@ export interface PrivacyPolicyPageProps {
 
 export default function PrivacyPolicy({ contactEmail }: PrivacyPolicyPageProps) {
     return (
-        <LegalPage
-            title="Privacy Policy"
-            description="The Privacy Policy for weintegral.com, the website of West East Integral Inc. (WeIntegral), an IT services and staffing firm."
-            contactEmail={contactEmail}
-        >
+        <LegalPage title="Privacy Policy" contactEmail={contactEmail}>
             {/* The previous page showed only "under construction": no policy text exists yet. */}
             <p>
                 <Placeholder>Privacy Policy text, owner to supply before launch</Placeholder>

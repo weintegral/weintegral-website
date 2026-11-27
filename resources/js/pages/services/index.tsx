@@ -55,13 +55,7 @@ const faqs: Faq[] = [
 
 export default function ServicesOverview({ services }: ServicesOverviewProps) {
     return (
-        <SiteLayout
-            seo={{
-                title: "IT Services",
-                description:
-                    "WeIntegral's IT services: application development, application support, quality assurance and testing, DevOps and cloud, and IT staffing.",
-            }}
-        >
+        <SiteLayout>
             <section
                 aria-labelledby="services-heading"
                 className="border-b border-border pt-[clamp(2.5rem,2rem+3vw,5rem)] pb-[clamp(3rem,2rem+4vw,5.5rem)]"

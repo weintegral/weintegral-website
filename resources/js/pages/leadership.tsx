@@ -23,13 +23,7 @@ export interface LeadershipPageProps {
 
 export default function Leadership({ leaders }: LeadershipPageProps) {
     return (
-        <SiteLayout
-            seo={{
-                title: "Leadership",
-                description:
-                    "Meet the leadership team behind WeIntegral, the IT services firm for application development, support, testing, DevOps and IT staffing.",
-            }}
-        >
+        <SiteLayout>
             <PageIntro
                 trail={[
                     { label: "Home", href: "/" },
