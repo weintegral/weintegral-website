@@ -18,6 +18,8 @@
     <env name="QUEUE_CONNECTION" value="sync"/>
     <env name="SESSION_DRIVER" value="array"/>
     <env name="TELESCOPE_ENABLED" value="false"/>
+    <!-- Feature tests inspect the Inertia page object; the SSR server is exercised by Dusk. -->
+    <env name="INERTIA_SSR_ENABLED" value="false"/>
   </php>
   <source>
     <include>

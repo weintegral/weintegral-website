@@ -1,3 +1,4 @@
+FROM node:26.13.1-trixie AS nodebuild
 FROM php:8.6.0-cli-trixie
 
 LABEL Maintainer="Gopibabu Srungavarapu <s.gopibabu@gmail.com>" \
@@ -27,6 +28,11 @@ RUN apt-get -yqq update \
     && docker-php-ext-configure zip \
     && docker-php-ext-install mysqli pdo pdo_mysql pgsql pdo_pgsql pcntl intl zip sockets curl mbstring \
     && rm -rf /var/lib/apt/lists/*
+
+###############################################################################
+# installing node (runs the Inertia SSR server)
+###############################################################################
+COPY --from=nodebuild /usr/local /usr/local
 
 ###############################################################################
 # configure supervisor

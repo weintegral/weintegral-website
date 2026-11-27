@@ -28,7 +28,6 @@ class PublicPagesTest extends DuskTestCase
             'devops' => ['/devops', 'WEI - DevOps', 'DevOps'],
             'staffing' => ['/staffing', 'WEI - Staffing', 'Staffing'],
             'team' => ['/team', 'WEI - Team', 'Team'],
-            'contact' => ['/contact', 'WEI - Contact', 'Contact'],
             'marketing submissions' => ['/marketing-data', 'WEI - Submissions', 'Marketing Data'],
             'marketing data' => ['/data', 'WEI - Submissions', 'Marketing Data'],
             'resources' => ['/resources', 'WEI - Resources', 'Resources'],
@@ -109,7 +108,6 @@ class PublicPagesTest extends DuskTestCase
             'services' => ['Services', '/services', 'WEI - Services'],
             'clients' => ['Clients', '/clients', 'WEI - Clients'],
             'career' => ['Career', '/career', 'WEI - Career'],
-            'contact' => ['Contact', '/contact', 'WEI - Contact'],
         ];
     }
 
@@ -122,6 +120,20 @@ class PublicPagesTest extends DuskTestCase
                 ->assertPathIs($path)
                 ->assertTitle($title)
                 ->assertSeeIn('#navbar a.active', $link);
+        });
+    }
+
+    public function test_header_contact_link_opens_the_inertia_contact_page(): void
+    {
+        $this->browse(function (Browser $browser) {
+            $browser->visit('/')
+                ->within('#navbar', fn (Browser $nav) => $nav->clickLink('Contact'))
+                ->assertPathIs('/contact')
+                ->waitForTextIn('h1', 'Contact')
+                ->assertTitle('WEI - Contact')
+                ->assertSeeLink('info@weintegral.com')
+                ->assertSee('+1 (512) 774-6577')
+                ->assertPresent('#visitor-request-form');
         });
     }
 

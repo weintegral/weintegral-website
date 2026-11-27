@@ -21,3 +21,4 @@ yarn-error.log
 php_errors.log
 /database/dusk.sqlite
 /.claude/worktrees/
+/bootstrap/ssr

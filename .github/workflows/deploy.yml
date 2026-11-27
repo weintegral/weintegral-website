@@ -36,10 +36,11 @@ jobs:
         uses: actions/setup-node@v7
         with:
           node-version: "26.13.1"
-      - name: Install, check and build front-end (Vite+)
+      - name: Install, check, test and build front-end (Vite+)
         run: |
           npm ci
           npm run check
+          npm test
           npm run build
       - name: Generate key
         run: php artisan key:generate
