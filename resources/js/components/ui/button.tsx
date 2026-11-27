@@ -17,6 +17,8 @@ const buttonVariants = cva(
                 destructive:
                     "bg-destructive/10 text-destructive hover:bg-destructive/20 focus-visible:border-destructive/40 focus-visible:ring-destructive/20 dark:bg-destructive/20 dark:hover:bg-destructive/30 dark:focus-visible:ring-destructive/40",
                 link: "text-primary underline-offset-4 hover:underline",
+                // "Talk to an Expert" only (DESIGN.md, Buttons): coral with ink text.
+                cta: "bg-cta font-semibold text-cta-foreground hover:bg-cta-hover",
             },
             size: {
                 default:
@@ -30,6 +32,10 @@ const buttonVariants = cva(
                 "icon-sm":
                     "size-7 rounded-[min(var(--radius-md),12px)] in-data-[slot=button-group]:rounded-lg",
                 "icon-lg": "size-9",
+                // DESIGN.md sizes: 44px minimum touch target, 52px for large.
+                brand: "min-h-11 gap-2 px-5 py-2.5 text-[0.9375rem] leading-tight",
+                "brand-lg": "min-h-13 gap-2 px-6 py-3.5 text-base leading-tight",
+                "icon-brand": "size-11 [&_svg:not([class*='size-'])]:size-6",
             },
         },
         defaultVariants: {

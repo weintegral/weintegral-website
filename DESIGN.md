@@ -153,7 +153,7 @@ components:
 
 # Design System: WeIntegral
 
-Status: proposed in issue #56 (spec #54). Tokens live in `resources/css/tokens.css`; they are not wired into any page yet. Owner approval of the comps is required before the site shell (#57) starts.
+Status: comps approved (spec #54). Tokens live in `resources/css/tokens.css`; `resources/css/app.css` imports them and maps them onto the Tailwind/shadcn theme (#57), so utilities such as `bg-primary`, `bg-inverse` and `text-cta-foreground` resolve to them. Fonts are self-hosted with `@fontsource`.
 
 ## Overview
 
@@ -340,7 +340,7 @@ Tailwind's default `dark:` variant already follows `prefers-color-scheme`, which
 
 ## Typography
 
-**Inter** (Google Fonts, variable, optical sizes 14 to 32, weights 400 to 700) is used for everything. Display sizes use Inter's display optical size, tight tracking and a 650 to 680 weight, which gives headlines their own voice without a second family. **Poppins 700** is kept only for the "WEINTEGRAL" wordmark. Self-host both in production (the site shell ticket decides on `@fontsource` or local files).
+**Inter** (variable, optical sizes 14 to 32, weights 400 to 700) is used for everything. Display sizes use Inter's display optical size, tight tracking and a 650 to 680 weight, which gives headlines their own voice without a second family. **Poppins 700** is kept only for the "WEINTEGRAL" wordmark. Both are self-hosted through `@fontsource` packages.
 
 Fallback stack: `Inter, ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif`.
 
@@ -409,7 +409,7 @@ Map these onto shadcn/ui components where one exists: Button, NavigationMenu (me
 ### Navigation
 
 - **Utility bar:** email and phone on the left; Candidate Resources and Careers on the right.
-- **Primary nav:** Services (mega-menu), Industries, Insights (external, with an arrow icon and an "opens the blog" screen-reader label), About (dropdown: Who We Are, Leadership, Clients) and Careers (dropdown: Open Positions, Culture, Benefits).
+- **Primary nav:** Services (mega-menu), Industries, Insights (external, with an arrow icon and an "opens the blog" screen-reader label), About (dropdown: Who We Are, Leadership) and Careers (dropdown: Open Positions, Culture, Benefits).
 - **Trigger states:** hover and open use the `--accent` wash, and the chevron rotates 180°. The current section gets a 2px coral underline.
 - **Mega-menu:** full width under the header, `--popover` background, shadow lg. On the left is "View all Services" plus the five Services in two columns (name plus a one-line outcome). On the right is a navy feature panel, "Not sure which Service fits?", with the CTA. It opens on click or Enter, and Escape, an outside click or opening another menu closes it. Focus returns to the trigger.
 - **Mobile (below 64rem):** a menu button opens a full-height sheet. Sections are accordions (Services is expanded in the comp), rows are 56px, and the CTA plus email and phone are pinned to the bottom.

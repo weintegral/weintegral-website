@@ -130,7 +130,7 @@ class PublicPagesTest extends DuskTestCase
                 ->within('#navbar', fn (Browser $nav) => $nav->clickLink('Contact'))
                 ->assertPathIs('/contact')
                 ->waitForTextIn('h1', 'Contact')
-                ->assertTitle('WEI - Contact')
+                ->assertTitle('Contact | WeIntegral')
                 ->assertSeeLink('info@weintegral.com')
                 ->assertSee('+1 (512) 774-6577')
                 ->assertPresent('#visitor-request-form');

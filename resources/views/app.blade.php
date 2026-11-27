@@ -12,7 +12,7 @@
     @viteReactRefresh
     @vite(['resources/js/inertia.tsx', "resources/js/pages/{$page['component']}.tsx"])
     <x-inertia::head>
-        <title inertia>WEI</title>
+        <title inertia>WeIntegral</title>
     </x-inertia::head>
 </head>
 

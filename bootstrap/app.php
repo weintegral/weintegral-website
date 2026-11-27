@@ -23,7 +23,10 @@ $app =  Application::configure(basePath: $_ENV['APP_BASE_PATH'] ?? dirname(__DIR
         health: '/up'
     )
     ->withMiddleware(function (Middleware $middleware) {
-        // Add your custom middleware configuration here
+        // These groups, not App\Http\Kernel::$middlewareGroups, are the ones applied to routes.
+        $middleware->web(append: [
+            \App\Http\Middleware\HandleInertiaRequests::class,
+        ]);
     })
     ->withExceptions(function (Exceptions $exceptions) {
         // This integrates Sentry with the exception handler

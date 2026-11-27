@@ -44,4 +44,14 @@ ADDRESS;
             Andhra Pradesh, India - 523001
 ADDRESS;
     }
+
+    /**
+     * The addresses above are formatted as HTML for the Blade views; React renders plain lines.
+     *
+     * @return list<string>
+     */
+    public function addressLines(string $htmlAddress): array
+    {
+        return array_values(array_filter(array_map('trim', explode('<br>', $htmlAddress))));
+    }
 }

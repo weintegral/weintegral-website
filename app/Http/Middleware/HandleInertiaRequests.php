@@ -2,6 +2,8 @@
 
 namespace App\Http\Middleware;
 
+use App\Services\ContactInfo;
+use Illuminate\Http\Request;
 use Inertia\Middleware;
 
 /**
@@ -17,4 +19,31 @@ class HandleInertiaRequests extends Middleware
      * @var string
      */
     protected $rootView = 'app';
+
+    public function __construct(private readonly ContactInfo $contactInfo)
+    {
+    }
+
+    /**
+     * Props every page receives for the shared site shell (header, footer, SEO head).
+     *
+     * @return array<string, mixed>
+     */
+    public function share(Request $request): array
+    {
+        return [
+            ...parent::share($request),
+            'site' => [
+                'contact' => [
+                    'email' => $this->contactInfo->getAdminEmailId(),
+                    'phone' => $this->contactInfo->getPhoneNumber(),
+                ],
+                'offices' => [
+                    ['name' => 'Corporate office', 'addressLines' => $this->contactInfo->addressLines($this->contactInfo->getCorporateAddress())],
+                    ['name' => 'Overseas office', 'addressLines' => $this->contactInfo->addressLines($this->contactInfo->getOverseasAddress())],
+                ],
+                'canonicalUrl' => $request->url(),
+            ],
+        ];
+    }
 }

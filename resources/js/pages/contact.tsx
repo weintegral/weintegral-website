@@ -1,6 +1,8 @@
-import { Head } from "@inertiajs/react";
-import { Mail, MapPin, Phone } from "lucide-react";
+import { Mail, MapPin, Phone, type LucideIcon } from "lucide-react";
+import type { ReactNode } from "react";
 
+import { SiteLayout } from "@/components/site/site-layout";
+import { telHref } from "@/components/site/site-navigation";
 import { VisitorRequestForm } from "@/features/visitor-request/visitor-request-form";
 
 /** Props from ManagementController::contactAction. */
@@ -12,9 +14,14 @@ export interface ContactPageProps {
 
 export default function Contact({ contactDetails, offices, visitorRequestUrl }: ContactPageProps) {
     return (
-        <>
-            <Head title="Contact" />
-            <main className="mx-auto max-w-6xl px-4 py-12 sm:px-6 lg:py-16">
+        <SiteLayout
+            seo={{
+                title: "Contact",
+                description:
+                    "Talk to an Expert at WeIntegral about application development, support, testing, DevOps or IT staffing. Send us a message or call our Lakeway, TX office.",
+            }}
+        >
+            <div className="mx-auto max-w-(--container-max) px-(--gutter) py-12 lg:py-16">
                 <nav aria-label="Breadcrumb" className="text-sm text-muted-foreground">
                     <ol className="flex gap-2">
                         <li>
@@ -26,7 +33,9 @@ export default function Contact({ contactDetails, offices, visitorRequestUrl }: 
                         <li aria-current="page">Contact</li>
                     </ol>
                 </nav>
-                <h1 className="mt-4 text-3xl font-semibold tracking-tight sm:text-4xl">Contact</h1>
+                <h1 className="mt-4 text-(length:--text-h1) leading-tight font-semibold tracking-tight">
+                    Contact
+                </h1>
                 <p className="mt-3 max-w-2xl text-muted-foreground">
                     Talk to an Expert. Send us a message and we will get back to you, or reach us
                     directly.
@@ -38,59 +47,29 @@ export default function Contact({ contactDetails, offices, visitorRequestUrl }: 
                             Contact details
                         </h2>
                         <dl className="space-y-6">
-                            <div className="flex gap-3">
-                                <Mail
-                                    className="mt-0.5 size-5 shrink-0 text-muted-foreground"
-                                    aria-hidden="true"
-                                />
-                                <div>
-                                    <dt className="font-medium">Email Us</dt>
-                                    <dd>
-                                        <a
-                                            href={`mailto:${contactDetails.email}`}
-                                            className="hover:underline"
-                                        >
-                                            {contactDetails.email}
-                                        </a>
-                                    </dd>
-                                </div>
-                            </div>
-                            <div className="flex gap-3">
-                                <Phone
-                                    className="mt-0.5 size-5 shrink-0 text-muted-foreground"
-                                    aria-hidden="true"
-                                />
-                                <div>
-                                    <dt className="font-medium">Call Us</dt>
-                                    <dd>
-                                        <a
-                                            href={`tel:${contactDetails.phone.replace(/[^+\d]/g, "")}`}
-                                            className="hover:underline"
-                                        >
-                                            {contactDetails.phone}
-                                        </a>
-                                    </dd>
-                                </div>
-                            </div>
+                            <ContactDetail icon={Mail} label="Email Us">
+                                <a
+                                    href={`mailto:${contactDetails.email}`}
+                                    className="hover:underline"
+                                >
+                                    {contactDetails.email}
+                                </a>
+                            </ContactDetail>
+                            <ContactDetail icon={Phone} label="Call Us">
+                                <a href={telHref(contactDetails.phone)} className="hover:underline">
+                                    {contactDetails.phone}
+                                </a>
+                            </ContactDetail>
                             {offices.map((office) => (
-                                <div key={office.name} className="flex gap-3">
-                                    <MapPin
-                                        className="mt-0.5 size-5 shrink-0 text-muted-foreground"
-                                        aria-hidden="true"
-                                    />
-                                    <div>
-                                        <dt className="font-medium">{office.name}</dt>
-                                        <dd>
-                                            <address className="not-italic">
-                                                {office.addressLines.map((line) => (
-                                                    <span key={line} className="block">
-                                                        {line}
-                                                    </span>
-                                                ))}
-                                            </address>
-                                        </dd>
-                                    </div>
-                                </div>
+                                <ContactDetail key={office.name} icon={MapPin} label={office.name}>
+                                    <address className="not-italic">
+                                        {office.addressLines.map((line) => (
+                                            <span key={line} className="block">
+                                                {line}
+                                            </span>
+                                        ))}
+                                    </address>
+                                </ContactDetail>
                             ))}
                         </dl>
                     </section>
@@ -110,7 +89,28 @@ export default function Contact({ contactDetails, offices, visitorRequestUrl }: 
                         </div>
                     </section>
                 </div>
-            </main>
-        </>
+            </div>
+        </SiteLayout>
+    );
+}
+
+/** One term/description pair in the contact details list, with its icon in the term. */
+function ContactDetail({
+    icon: Icon,
+    label,
+    children,
+}: {
+    icon: LucideIcon;
+    label: string;
+    children: ReactNode;
+}) {
+    return (
+        <div>
+            <dt className="flex items-center gap-3 font-medium">
+                <Icon className="size-5 shrink-0 text-muted-foreground" aria-hidden="true" />
+                {label}
+            </dt>
+            <dd className="pl-8">{children}</dd>
+        </div>
     );
 }

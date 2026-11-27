@@ -38,22 +38,12 @@ class ManagementController extends Controller
                 'phone' => $this->contactInfo->getPhoneNumber(),
             ],
             'offices' => [
-                ['name' => 'Corporate Address', 'addressLines' => $this->addressLines($this->contactInfo->getCorporateAddress())],
-                ['name' => 'Executive Office', 'addressLines' => $this->addressLines($this->contactInfo->getExecutiveAddress())],
-                ['name' => 'Overseas Office', 'addressLines' => $this->addressLines($this->contactInfo->getOverseasAddress())],
+                ['name' => 'Corporate Address', 'addressLines' => $this->contactInfo->addressLines($this->contactInfo->getCorporateAddress())],
+                ['name' => 'Executive Office', 'addressLines' => $this->contactInfo->addressLines($this->contactInfo->getExecutiveAddress())],
+                ['name' => 'Overseas Office', 'addressLines' => $this->contactInfo->addressLines($this->contactInfo->getOverseasAddress())],
             ],
             'visitorRequestUrl' => route('createCustomerRequest', absolute: false),
         ]);
-    }
-
-    /**
-     * ContactInfo formats addresses as HTML for the Blade views; React renders plain lines.
-     *
-     * @return list<string>
-     */
-    private function addressLines(string $htmlAddress): array
-    {
-        return array_values(array_filter(array_map('trim', explode('<br>', $htmlAddress))));
     }
 
     public function marketingSubmissionAction(): View
