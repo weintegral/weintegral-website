@@ -24,7 +24,6 @@ class PublicPagesTest extends DuskTestCase
             'team' => ['/team', 'WEI - Team', 'Team'],
             'marketing submissions' => ['/marketing-data', 'WEI - Submissions', 'Marketing Data'],
             'marketing data' => ['/data', 'WEI - Submissions', 'Marketing Data'],
-            'resources' => ['/resources', 'WEI - Resources', 'Resources'],
             'management resources' => ['/mgmt-resources', 'WEI - Resources', 'Resources'],
             'vendors' => ['/vendors', 'WEI - Resources', 'Vendors'],
             'job portals' => ['/job-portals', 'WEI - Resources', 'Job Portals'],
@@ -57,39 +56,6 @@ class PublicPagesTest extends DuskTestCase
         });
     }
 
-    public function test_career_page_renders(): void
-    {
-        $this->browse(function (Browser $browser) {
-            $browser->visit('/career')
-                ->assertTitle('WEI - Career')
-                ->assertSee('Page is under Construction!!');
-        });
-    }
-
-    /**
-     * @return array<string, array{string}>
-     */
-    public static function underConstructionPages(): array
-    {
-        return [
-            'work culture' => ['/career/work-culture'],
-            'benefits' => ['/career/benefits'],
-            'openings' => ['/career/openings'],
-        ];
-    }
-
-    #[DataProvider('underConstructionPages')]
-    public function test_career_sub_page_shows_under_construction(string $path): void
-    {
-        $this->browse(function (Browser $browser) use ($path) {
-            $browser->visit($path)
-                ->assertPathIs($path)
-                ->assertTitle('Under Construction')
-                // The heading fades in via a delayed CSS animation; WebDriver ignores invisible text.
-                ->waitForText('Page is under construction');
-        });
-    }
-
     /**
      * Header nav links that stay on this site (Blog leaves for blog.weintegral.com).
      *
@@ -100,7 +66,6 @@ class PublicPagesTest extends DuskTestCase
         return [
             'about' => ['About', '/about', 'WEI - About'],
             'clients' => ['Clients', '/clients', 'WEI - Clients'],
-            'career' => ['Career', '/career', 'WEI - Career'],
         ];
     }
 
