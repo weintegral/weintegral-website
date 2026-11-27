@@ -48,8 +48,8 @@ class SiteShellTest extends DuskTestCase
             'services: application development' => ['Services', 'Application Development', '/app-development', 'WEI - App Dev'],
             'services: it staffing' => ['Services', 'IT Staffing', '/staffing', 'WEI - Staffing'],
             'services: view all' => ['Services', 'View all Services', '/services', 'WEI - Services'],
-            'about: who we are' => ['About', 'Who We Are', '/about', 'WEI - About'],
-            'about: leadership' => ['About', 'Leadership', '/team', 'WEI - Team'],
+            'about: who we are' => ['About', 'Who We Are', '/about', 'Who We Are | WeIntegral'],
+            'about: leadership' => ['About', 'Leadership', '/team', 'Leadership | WeIntegral'],
             'careers: open positions' => ['Careers', 'Open Positions', '/career/openings', 'Under Construction'],
             'careers: culture' => ['Careers', 'Culture', '/career/work-culture', 'Under Construction'],
             'careers: benefits' => ['Careers', 'Benefits', '/career/benefits', 'Under Construction'],
@@ -94,7 +94,8 @@ class SiteShellTest extends DuskTestCase
                 ->assertSeeIn(self::PRIMARY_NAV, 'Insights')
                 ->within(self::PRIMARY_NAV, fn (Browser $nav) => $nav->clickLink('Industries'))
                 ->waitForLocation('/industries')
-                ->assertTitle('WEI - Industries');
+                ->waitForTextIn('h1', 'Industries')
+                ->assertTitle('Industries | WeIntegral');
         });
     }
 
