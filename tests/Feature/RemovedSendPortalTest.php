@@ -24,4 +24,9 @@ class RemovedSendPortalTest extends TestCase
         $this->get('/resources')->assertOk()->assertDontSee('/sendportal');
         $this->get('/mgmt-resources')->assertOk()->assertDontSee('/sendportal');
     }
+
+    public function test_published_sendportal_assets_are_gone(): void
+    {
+        $this->assertDirectoryDoesNotExist(public_path('vendor/sendportal'));
+    }
 }
