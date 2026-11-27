@@ -412,7 +412,7 @@ Map these onto shadcn/ui components where one exists: Button, NavigationMenu (me
 - **Primary nav:** Services (mega-menu), Industries, Insights (external, with an arrow icon and an "opens the blog" screen-reader label), About (dropdown: Who We Are, Leadership) and Careers (dropdown: Open Positions, Culture, Benefits).
 - **Trigger states:** hover and open use the `--accent` wash, and the chevron rotates 180°. The current section gets a 2px coral underline.
 - **Mega-menu:** full width under the header, `--popover` background, shadow lg. On the left is "View all Services" plus the five Services in two columns (name plus a one-line outcome). On the right is a navy feature panel, "Not sure which Service fits?", with the CTA. It opens on click or Enter, and Escape, an outside click or opening another menu closes it. Focus returns to the trigger.
-- **Mobile (below 64rem):** a menu button opens a full-height sheet. Sections are accordions (Services is expanded in the comp), rows are 56px, and the CTA plus email and phone are pinned to the bottom.
+- **Mobile (below 64rem):** a compact "Talk to an Expert" button stays in the header bar beside the menu button. The menu button opens a full-height sheet. Sections are accordions (Services is expanded in the comp), rows are 56px, and the CTA plus email and phone are pinned to the bottom.
 
 ### Service index rows
 

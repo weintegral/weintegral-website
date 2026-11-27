@@ -183,6 +183,35 @@ class SiteShellTest extends DuskTestCase
         });
     }
 
+    /**
+     * "Talk to an Expert" stays one tap away on phones: a compact button beside the
+     * menu trigger, not only inside the sheet.
+     */
+    public function test_talk_to_an_expert_stays_visible_in_the_mobile_header(): void
+    {
+        $this->browse(function (Browser $browser) {
+            $this->visitContact($browser, phone: true)
+                ->assertVisible('header a[data-header-cta]')
+                ->assertAttribute('header a[data-header-cta]', 'href', '/contact');
+
+            [$cta, $menu] = $browser->script(<<<'JS'
+                return [
+                    document.querySelector('header a[data-header-cta]').getBoundingClientRect().toJSON(),
+                    document.querySelector('button[aria-label="Open menu"]').getBoundingClientRect().toJSON(),
+                ];
+                JS)[0];
+
+            // Beside the menu trigger, at least 44px tall, and inside the 390px viewport.
+            $this->assertLessThanOrEqual($menu['left'], $cta['right']);
+            $this->assertEqualsWithDelta($menu['top'] + $menu['height'] / 2, $cta['top'] + $cta['height'] / 2, 2);
+            $this->assertGreaterThanOrEqual(44, $cta['height']);
+            $this->assertGreaterThanOrEqual(0, $cta['left']);
+            $this->assertLessThanOrEqual(390, $menu['right']);
+
+            $this->assertNoAxeViolations($browser);
+        });
+    }
+
     public function test_mobile_menu_closes_with_escape(): void
     {
         $this->browse(function (Browser $browser) {

@@ -56,19 +56,20 @@ export function SiteHeader() {
                 </div>
 
                 <div className="relative border-b border-border bg-background">
-                    <div className="mx-auto flex min-h-16 max-w-(--container-max) items-center justify-between gap-8 px-(--gutter) lg:min-h-18 lg:justify-start">
+                    <div className="mx-auto flex min-h-16 max-w-(--container-max) items-center justify-between gap-3 px-(--gutter) lg:min-h-18 lg:justify-start lg:gap-8">
                         <Wordmark />
                         <DesktopNavigation
                             openMenu={openMenu}
                             onOpenMenuChange={setOpenMenu}
                             currentPath={currentPath}
                         />
-                        <div className="flex items-center gap-2">
+                        <div className="flex shrink-0 items-center gap-2">
+                            {/* Always visible: compact beside the menu button on phones (DESIGN.md, Navigation). */}
                             <Button
                                 asChild
                                 variant="cta"
                                 size="brand"
-                                className="hidden lg:inline-flex"
+                                className="px-3 text-sm max-[24rem]:max-w-28 max-[24rem]:text-center max-[24rem]:whitespace-normal min-[24rem]:px-4 lg:px-5 lg:text-[0.9375rem]"
                             >
                                 <a
                                     href={contactHref}
