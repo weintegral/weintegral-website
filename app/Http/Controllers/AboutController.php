@@ -54,17 +54,17 @@ class AboutController extends Controller
         ]);
     }
 
-    public function termsOfServiceAction(): View
+    public function termsOfServiceAction(): Response
     {
-        $data = $this->basicContactData;
-
-        return view('about/termsOfService/index', $data);
+        return Inertia::render('legal/terms-of-service', [
+            'contactEmail' => $this->contactInfo->getAdminEmailId(),
+        ]);
     }
 
-    public function privacyPolicyAction(): View
+    public function privacyPolicyAction(): Response
     {
-        $data = $this->basicContactData;
-
-        return view('about/privacyPolicy/index', $data);
+        return Inertia::render('legal/privacy-policy', [
+            'contactEmail' => $this->contactInfo->getAdminEmailId(),
+        ]);
     }
 }

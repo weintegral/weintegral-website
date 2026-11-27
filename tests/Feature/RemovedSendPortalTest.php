@@ -21,7 +21,7 @@ class RemovedSendPortalTest extends TestCase
 
     public function test_resources_pages_do_not_link_to_sendportal(): void
     {
-        // /resources is an Inertia page; the Vite manifest is a build artifact.
+        // /resources and /mgmt-resources are Inertia pages; the Vite manifest is a build artifact.
         $this->withoutVite();
 
         $this->get('/resources')->assertOk()->assertDontSee('/sendportal');

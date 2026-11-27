@@ -4,10 +4,12 @@ use App\Http\Controllers\AboutController;
 use App\Http\Controllers\BlogController;
 use App\Http\Controllers\CareerController;
 use App\Http\Controllers\HomePageController;
+use App\Http\Controllers\InternalToolsController;
 use App\Http\Controllers\ManagementController;
 use App\Http\Controllers\ResourceController;
 use App\Http\Controllers\SeoController;
 use App\Http\Controllers\ServiceController;
+use App\Http\Middleware\NoIndex;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -87,10 +89,6 @@ Route::get('/team', [ManagementController::class, 'teamAction'])->name('teamPage
 
 Route::get('/contact', [ManagementController::class, 'contactAction'])->name('contactPage');
 
-Route::get('/marketing-data', [ManagementController::class, 'marketingSubmissionAction'])->name('marketingSubmissionPage');
-
-Route::get('/data', [ManagementController::class, 'marketingDataAction'])->name('marketingDataPage');
-
 /*
 |--------------------------------------------------------------------------
 | Useful Resources
@@ -98,15 +96,24 @@ Route::get('/data', [ManagementController::class, 'marketingDataAction'])->name(
 */
 Route::get('/resources', [ResourceController::class, 'indexAction'])->name('resourcePage');
 
-Route::get('/mgmt-resources', [ResourceController::class, 'mgmtAction'])->name('mgmtResourcePage');
-
-Route::get('/vendors', [ResourceController::class, 'vendorAction'])->name('vendorsPage');
-
-Route::get('/job-portals', [ResourceController::class, 'jobPortalAction'])->name('jobPortalsPage');
-
-Route::get('/client-list', [ResourceController::class, 'clientAction'])->name('clientListPage');
-
-Route::get('/job-groups', [ResourceController::class, 'jobGroupsAction'])->name('jobGroupListPage');
+/*
+|--------------------------------------------------------------------------
+| Internal Tools
+|--------------------------------------------------------------------------
+|
+| Staff-only pages: reachable by URL, marked noindex, and absent from the
+| public navigation and the sitemap.
+|
+*/
+Route::middleware(NoIndex::class)->controller(InternalToolsController::class)->group(function () {
+    Route::get('/mgmt-resources', 'managementResourcesAction')->name('mgmtResourcePage');
+    Route::get('/vendors', 'vendorsAction')->name('vendorsPage');
+    Route::get('/job-portals', 'jobPortalsAction')->name('jobPortalsPage');
+    Route::get('/client-list', 'clientListAction')->name('clientListPage');
+    Route::get('/job-groups', 'jobGroupsAction')->name('jobGroupListPage');
+    Route::get('/marketing-data', 'marketingSubmissionsAction')->name('marketingSubmissionPage');
+    Route::get('/data', 'marketingDataAction')->name('marketingDataPage');
+});
 
 /*
 |--------------------------------------------------------------------------
