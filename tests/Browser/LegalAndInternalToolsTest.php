@@ -59,8 +59,16 @@ class LegalAndInternalToolsTest extends DuskTestCase
         });
     }
 
-    #[DataProvider('legalPages')]
-    public function test_legal_page_passes_axe(string $link, string $path): void
+    /**
+     * @return array<string, array{string}>
+     */
+    public static function legalPagePaths(): array
+    {
+        return array_map(fn (array $case) => [$case[1]], self::legalPages());
+    }
+
+    #[DataProvider('legalPagePaths')]
+    public function test_legal_page_passes_axe(string $path): void
     {
         $this->browse(function (Browser $browser) use ($path) {
             $browser->resize(1440, 900)->visit($path)->waitFor(self::SHELL_READY);
@@ -69,8 +77,8 @@ class LegalAndInternalToolsTest extends DuskTestCase
         });
     }
 
-    #[DataProvider('legalPages')]
-    public function test_legal_page_passes_axe_in_the_dark_palette(string $link, string $path): void
+    #[DataProvider('legalPagePaths')]
+    public function test_legal_page_passes_axe_in_the_dark_palette(string $path): void
     {
         $this->browse(function (Browser $browser) use ($path) {
             $this->emulateColorScheme($browser, 'dark');
@@ -145,8 +153,13 @@ class LegalAndInternalToolsTest extends DuskTestCase
                 ->assertPathIs($path)
                 ->assertTitle($heading.' | WeIntegral')
                 ->assertSeeIn('h1', $heading)
-                ->assertPresent('footer')
-                ->assertAttribute('meta[name="robots"]', 'content', 'noindex, nofollow');
+                ->assertPresent('footer');
+
+            // Dusk scopes selectors to <body>; the robots meta lives in <head>.
+            $this->assertSame(
+                'noindex, nofollow',
+                $browser->script('return document.head.querySelector(\'meta[name="robots"]\')?.content ?? null;')[0],
+            );
         });
     }
 
