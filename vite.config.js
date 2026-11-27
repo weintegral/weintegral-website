@@ -29,12 +29,7 @@ export default defineConfig({
     },
     plugins: lazyPlugins(() => [
         laravel({
-            input: [
-                "resources/css/app.css",
-                "resources/js/app.js",
-                "resources/js/main.js",
-                "resources/js/inertia.tsx",
-            ],
+            input: ["resources/css/app.css", "resources/js/inertia.tsx"],
             // The Inertia plugin wraps this entry in an SSR server for `vp build --ssr`.
             ssr: "resources/js/inertia.tsx",
             refresh: true,
